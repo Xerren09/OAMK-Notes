@@ -1,0 +1,92 @@
+body{
+    width: auto;
+    margin: auto;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+.frontLogo{
+    background-color: #f18800;
+    width: 300px;
+    height: 55px;
+}
+.headerCont{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #f18800;
+}
+.headerButtons{
+    color: #fefefe;
+    background-color: #f18800;
+    border: 0px;
+    font-weight: 600;
+    font-size: 22px;
+    outline: none;
+    cursor: pointer;
+}
+.headerButtons:hover{
+    text-decoration: underline;
+}
+.userCont{
+    display: flex;
+
+}
+.userButtons{
+    color: #fefefe;
+    background-color: #f18800;
+    border: 0px;
+    font-weight: 600;
+    font-size: 22px;
+    outline: none;
+    cursor: pointer;
+}
+.userLogo{
+    height: 36px;
+    width: 36px;
+}
+.registerContainer{
+    background-color: #f18800;
+    width: 25%;
+    margin-top: 5%;
+    margin-left: 37%;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+}
+.registerContainer h1{
+    margin-left: 27%;
+    color: #fefefe;
+}
+.registerFormOut{
+    background-color: #fefefe;
+    border-radius: 10px;
+}
+.registerFormIn{
+    margin-left: 25%;
+    padding: 10px;
+}
+.registerFormIn p{
+    font-size: 25px;
+    margin-bottom: -2px;
+}
+.registerFormIn button{
+    background-color: #f18800;
+    border-radius: 5px;
+    border-width: 0;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 20px;
+    color: #fefefe;
+    font-weight: 400;
+    outline: none;
+    cursor: pointer;
+}
+.registerFormIn button:hover{
+    background-color: #925300;
+}
+.registration{
+    color: #fefefe;
+    margin-left: 40%;
+    font-size: 30px;
+}
