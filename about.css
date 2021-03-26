@@ -17,6 +17,47 @@ body {
     background-color: #ff9300;
 }
 
+.dropBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 50px;
+}
+
+.dropBtn:focus {
+    outline: none;
+}
+
+.dropDown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropDownMenu {
+    display: none;
+    position: absolute;
+    background-color: #ff9300;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropDownMenu a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropDownMenu a:hover {
+    outline: 1px solid black;
+}
+
+.dropDown:hover .dropDownMenu {
+    display: block;
+}
+
 .aboutContainer {
     display: flex;
     flex-direction: column;
@@ -49,13 +90,19 @@ body {
 .coders img {
     border-radius: 50%;
     border: 2px solid #ff9300;
+    width: 100px;
+    height: 100px;
 }
 
 .coders img:hover {
     cursor: pointer;
 }
 
+.coders h3 {
+    font-size: 16px;
+}
+
 .coders p {
-    font-weight: 800;
-    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
 }
