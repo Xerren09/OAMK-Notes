@@ -58,6 +58,10 @@ body {
     display: block;
 }
 
+.dropDown:focus-within .dropDownMenu {
+    display: block;
+}
+
 .aboutContainer {
     display: flex;
     flex-direction: column;
