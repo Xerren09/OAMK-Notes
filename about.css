@@ -33,11 +33,6 @@ body {
     width: 50%;
 }
 
-.aboutContainer h2 {
-    border-bottom: 2px solid #8d8d8d;
-    width: 50%;
-}
-
 .codersContainer {
     display: flex;
     flex-direction: row;
