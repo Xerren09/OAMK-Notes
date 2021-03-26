@@ -1,0 +1,39 @@
+html {
+    background-color: #fefefe;
+}
+
+body {
+    font-family: 'PT Sans Narrow', sans-serif;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #ff9300;
+}
+
+.aboutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutContainer h1 {
+    border-bottom: 2px solid #8d8d8d;
+    width: 50%;
+}
+
+.aboutContainer p {
+    font-size: 18px;
+    width: 50%;
+}
+
+.aboutContainer h2 {
+    border-bottom: 2px solid #8d8d8d;
+    width: 50%;
+}
