@@ -53,14 +53,26 @@ body{
     padding: 10px;
     border-radius: 10px;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 1100px) {
+    .registerContainer input[type="text"] {
+        width: 90px;
+    }
 }
 .registerContainer h1{
-    margin-left: 27%;
     color: #fefefe;
+}
+@media (max-width: 1100px) {
+    .registerContainer h1 {
+        margin-left: 2%;
+    }
 }
 .registerFormOut{
     background-color: #fefefe;
     border-radius: 10px;
+    width: 100%;
 }
 .registerFormIn{
     margin-left: 25%;
