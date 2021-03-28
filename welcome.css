@@ -17,13 +17,13 @@ body {
   background-color: #ff9300;
 }
 
-#login {
+#signInHeaderButton {
   margin-left: -10%;
   color: #fefefe;
   cursor: pointer;
   transition: transform 0.1s ease;
 }
-#login:hover {
+#signInHeaderButton:hover {
   transform: scale(1.1);
 }
 
