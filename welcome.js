@@ -15,12 +15,13 @@ let newUserButton = document.createElement('button');
     newUserButton.classList.add('logRegButton')
 
 let br = document.createElement('br') ;
-
 let errorMessage = document.createElement('p1');
     errorMessage.id = 'errorMessage';
-    errorMessage.innerHTML = 'Error messages show up here';
     errorMessage.style.color = 'red';
     errorMessage.style.opacity = '0';
+    let wrongUserPassCombo = 'Wrong user/password combination!';
+    let emailInUse = 'There is an account with that email!';
+    let notMachingRegPasswords = 'Entered passwords do not match!';
 
 let userPasswordRepeat = document.createElement('input');
     userPasswordRepeat.id = 'userPasswordRepeat';
@@ -60,11 +61,14 @@ signInHeaderButton.onclick = () => {
     signInHeaderButton.remove();
     logRegContainer.append(signInButton, newUserButton);
     logRegContainer.style.top = '30%';
-    logRegContainer.style.height = '170px'
     pageContainer.style.filter = 'blur(5px)';
 };
 
 newUserButton.onclick = () => {
+    newUserButton.style.transform = 'scale(0.95)' ;
+    setTimeout( function() {
+        newUserButton.style.transform = 'scale(1)' ;
+    }, 50 ) ;
     signInButton.style.opacity = '0';
     newUserButton.style.opacity = '0';
     errorMessage.style.opacity = '0';
@@ -73,6 +77,7 @@ newUserButton.onclick = () => {
         signInButton.remove();
         newUserButton.remove();
         errorMessage.remove();
+        br.remove();
         logRegContainer.append(userPasswordRepeat, userName, userGroupCode, registerButton, haveAccountButton);
         setTimeout(() => {
             userName.style.opacity = '1';
@@ -85,11 +90,16 @@ newUserButton.onclick = () => {
 };
 
 haveAccountButton.onclick = () => {
+    haveAccountButton.style.transform = 'scale(0.95)' ;
+    setTimeout( function() {
+        haveAccountButton.style.transform = 'scale(1)' ;
+    }, 50 ) ;
     userName.style.opacity = '0';
     userGroupCode.style.opacity = '0';
     userPasswordRepeat.style.opacity = '0';
     registerButton.style.opacity = '0';
     haveAccountButton.style.opacity = '0';
+    errorMessage.style.opacity = '0';
     setTimeout(() => {
         logRegContainer.style.height = '170px';
         userName.remove();
@@ -97,6 +107,8 @@ haveAccountButton.onclick = () => {
         registerButton.remove();
         haveAccountButton.remove();
         userPasswordRepeat.remove();
+        errorMessage.remove();
+        br.remove();
         logRegContainer.append(signInButton, newUserButton);
         setTimeout(() => {
             signInButton.style.opacity = '1';
@@ -106,9 +118,27 @@ haveAccountButton.onclick = () => {
 };
 
 signInButton.onclick = () => {
+    signInButton.style.transform = 'scale(0.95)' ;
+    setTimeout( function() {
+        signInButton.style.transform = 'scale(1)' ;
+    }, 50 ) ;
+    errorMessage.innerHTML = wrongUserPassCombo;
     logRegContainer.append(br, errorMessage);
     logRegContainer.style.height = '190px';
     setTimeout(() => {
         errorMessage.style.opacity = '1';
     }, 200);
 };
+
+registerButton.onclick = () => {
+    registerButton.style.transform = 'scale(0.95)' ;
+    setTimeout( function() {
+        registerButton.style.transform = 'scale(1)' ;
+    }, 50 ) ;
+    errorMessage.innerHTML = notMachingRegPasswords;
+    logRegContainer.append(br, errorMessage);
+    logRegContainer.style.height = '335px';
+    setTimeout(() => {
+        errorMessage.style.opacity = '1';
+    }, 200);
+}
