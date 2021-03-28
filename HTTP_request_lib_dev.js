@@ -86,3 +86,6 @@ let userAllNotes = sendHTTP.rGET("http://localhost:3000/note/getAll", userAuthTo
 let note = userAllNotes[0];
 console.debug(note.subjectName);
 console.debug(note.noteText);
+//Or
+console.debug(userAllNotes[0].subjectName);
+console.debug(userAllNotes[0].noteText);
