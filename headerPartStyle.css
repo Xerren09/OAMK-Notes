@@ -1,0 +1,41 @@
+html {
+    background-color: #fefefe;
+  }
+  .headerCont{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #f18800;
+}
+.headerButtons{
+    color: #fefefe;
+    background-color: #f18800;
+    border: 0px;
+    font-weight: 600;
+    font-size: 22px;
+    outline: none;
+    cursor: pointer;
+}
+.headerButtons:hover{
+    text-decoration: underline;
+}
+.userCont{
+    display: flex;
+
+}
+.userButtons{
+    color: #fefefe;
+    background-color: #f18800;
+    border: 0px;
+    font-weight: 600;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+}
+.userLogo{
+    height: 36px;
+    width: 36px;
+}
