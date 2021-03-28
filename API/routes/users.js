@@ -83,7 +83,7 @@ router.post('/register', function(req, res) {
 						//
 						var serverresponse = {
 							valid: true,
-							authID: dbResult[0].userEmail,
+							//authID: dbResult[0].userEmail,
 							authToken: authReg.token
 						};
 						res.json(serverresponse);
@@ -131,27 +131,37 @@ router.post('/refreshToken', function(req, res) {
 		} 
 		else 
 		{
-			if (Date.now() >= dbResult[0].authTokenDate)
+			if (dbResult.length != 0)
 			{
-				var crypto = require('crypto');
-				var authToken = crypto.randomBytes(64).toString('hex');
-				usersData.refreshToken(authToken, dbResult[0].authToken,  dbResult[0].userEmail, function(err, dbResult_refresh) {
-					if (err) 
-					{
-						res.json(err);
-					} 
-				});
-				var serverresponse = {
-					authAlive: false,
-					authID: dbResult[0].userEmail,
-					authToken: authToken
-				};
-				res.json(serverresponse);
+				if (Date.now() >= dbResult[0].authTokenDate)
+				{
+					var crypto = require('crypto');
+					var authToken = crypto.randomBytes(64).toString('hex');
+					usersData.refreshToken(authToken, dbResult[0].authToken,  dbResult[0].userEmail, function(err, dbResult_refresh) {
+						if (err) 
+						{
+							res.json(err);
+						} 
+					});
+					var serverresponse = {
+						authAlive: false,
+						authID: dbResult[0].userEmail,
+						authToken: authToken
+					};
+					res.json(serverresponse);
+				}
+				else
+				{
+					var serverresponse = {
+						authAlive: true
+					};
+					res.json(serverresponse);
+				}
 			}
 			else
 			{
 				var serverresponse = {
-					authAlive: true,
+					authAlive: false
 				};
 				res.json(serverresponse);
 			}
