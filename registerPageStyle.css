@@ -62,6 +62,7 @@ body{
     }
 }
 .registerContainer h1{
+    margin-left: -18%;
     color: #fefefe;
 }
 @media (max-width: 1100px) {
