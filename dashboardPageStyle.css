@@ -1,0 +1,91 @@
+body {
+    font-family: "PT Sans Narrow", sans-serif;
+    margin: auto;
+    overflow-x: hidden;
+}
+.headerCont{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #f18800;
+}
+.headerButtons{
+    color: #fefefe;
+    background-color: #f18800;
+    border: 0px;
+    font-weight: 600;
+    font-size: 22px;
+    outline: none;
+    cursor: pointer;
+}
+.headerButtons:hover{
+    text-decoration: underline;
+}
+.userCont{
+    display: flex;
+}
+.userButtons{
+    color: #fefefe;
+    background-color: #f18800;
+    border: 0px;
+    font-weight: 600;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+}
+.userLogo{
+    height: 36px;
+    width: 36px;
+}
+.wholePageContainer{
+    display: flex;
+    flex-direction: row;
+}
+.sideDisplayContainer{
+    background-color: #fefefe;
+    width: 15%;
+    align-items: center;
+    position: fixed;
+    border: 2px solid #f18800;
+    border-top: none;
+    height: 100%;
+}
+.sideDisplayContainer h1{
+    color: black;
+    margin-left: 10%;
+}
+.sideDisplayContainer button{
+    font-size: 40px;
+    text-align: center;
+    margin-left: 40%;
+    margin-top: 5px;
+    outline: none;
+    background-color: #fefefe;
+    color: #f18800;
+    border: none;
+    border-radius: 5px;
+}
+.sideDisplayContainer button:hover{
+    font-size: 40px;
+    text-align: center;
+    margin-left: 40%;
+    margin-top: 5px;
+    outline: none;
+    color: #fefefe;
+    background-color: #f18800;
+}
+.noteViewContainer{
+    font-size: 30px;
+    height: 100%;
+}
+#noteViewer{
+    width: 100%;
+    margin-left: 0px;
+    font-size: 20px;
+    height: 100%;
+    border-bottom: none;
+    border: 2px solid #f18800;
+}
