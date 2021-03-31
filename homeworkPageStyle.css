@@ -40,13 +40,13 @@ body {
     height: 36px;
     width: 36px;
 }
-.wholePageContainer{
+.wholePageContainerWork{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.sideDisplayContainer{
+.sideDisplayContainerWork{
     background-color: #fefefe;
     width: 15%;
     align-items: center;
@@ -55,11 +55,11 @@ body {
     border-top: none;
     height: 100%;
 }
-.sideDisplayContainer h1{
+.sideDisplayContainerWork h1{
     color: black;
     margin-left: 10%;
 }
-.sideDisplayContainer button{
+.sideDisplayContainerWork button{
     font-size: 40px;
     text-align: center;
     margin-left: 40%;
@@ -70,7 +70,7 @@ body {
     border: none;
     border-radius: 5px;
 }
-.sideDisplayContainer button:hover{
+.sideDisplayContainerWork button:hover{
     font-size: 40px;
     text-align: center;
     margin-left: 40%;
@@ -80,11 +80,11 @@ body {
     background-color: #f18800;
     cursor: pointer
 }
-.noteViewContainer{
+.homeworkViewContainer{
     font-size: 30px;
     height: 100%;
 }
-#noteViewer{
+#homeworkViewer{
     width: 100%;
     margin-left: 0px;
     font-size: 20px;
@@ -92,46 +92,57 @@ body {
     border-bottom: none;
     border: 2px solid #f18800;
 }
-#noteViewer:focus{
+#homeworkViewer:focus{
     outline: none;
 }
-.newNoteContainer{
+.newHomeworkContainer{
     margin-left: 25%;
     width: 50%;
 }
-.newNoteContainer h2{
+.newHomeworkContainer h2{
     border-bottom: 1px solid black;
 }
-.newNoteContainer button{
+#newAssignmentBtn{
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    background-color: #fefefe;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+#newAssignmentBtn:hover {
+    background-color: #e2e2e2;
+}
+.buttonContainerWork button{
     font-size: 20px;
     font-weight: bolder;
-    text-align: center;
     outline: none;
     cursor: pointer;
     border: 2px solid #ccc;
     border-radius: 5px;
-    padding: 30px;
+    padding: 10px;
     background-color: #fefefe;
     margin-right: 5px;
-    width: 200px;
-    height: 200px;
-}
-.newNoteContainer button:hover{
-    background-color: #e2e2e2;
-}
-.buttonContainer{
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-}
-.buttonContainer p {
-    font-size: 15px;
-    color: #b3b3b3;
-    font-weight: 200;
+    width: 100%;
+    height: 50px;
     text-align: left;
 }
-.buttonContainer h6 {
+.buttonContainerWork button:hover{
+    background-color: #e2e2e2;
+}
+.buttonContainerWork{
+    display: flex;
+    flex-direction: row;
+}
+.buttonContainerWork h6 {
     font-size: 15px;
     font-weight: 300;
     text-align: left;
+}
+.buttonContainerWork p {
+    font-size: 5px;
 }
