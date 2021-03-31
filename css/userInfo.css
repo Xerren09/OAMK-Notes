@@ -1,0 +1,35 @@
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutContainer h1 {
+  border-bottom: 2px solid #8d8d8d;
+  width: 50%;
+}
+
+.aboutContainer p {
+  font-size: 18px;
+  width: 50%;
+}
+
+.userInfoHeaders{
+    font-weight: 400;
+    font-size: 22px;
+    width: 50%;
+    table-layout: fixed;
+}
+
+.userInfoHeaders td:nth-child(1) {
+  width: 20%;
+}
+
+.userInfoHeaders button {
+  margin-left: -40%;
+  font-size: 20px;
+  background-color:#fefefe ;
+  border-radius: 5px;
+  border: 1px solid #8d8d8d;
+  outline: none
+}
