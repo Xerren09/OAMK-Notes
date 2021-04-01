@@ -1,6 +1,15 @@
 const mysql = require('mysql');
 const fs = require('fs');
 require('dotenv').config();
+var certificatePath = "";
+if (fs.existsSync("./.env") || fs.existsSync("D:/home/site/wwwroot/.env")) {
+	certificatePath = "./certificate/DigiCertGlobalRootCA.crt.pem";
+}
+else
+{
+	certificatePath = "D:/home/site/wwwroot/certificate/DigiCertGlobalRootCA.crt.pem";
+}
+console.log(certificatePath);
 const connection = mysql.createConnection({
 	host: process.env.DB_HOST,
 	user: process.env.DB_USER, 
@@ -8,7 +17,7 @@ const connection = mysql.createConnection({
 	database:"mydb",
 	port:3306,
 	ssl:{
-		ca: fs.readFileSync("./certificate/DigiCertGlobalRootCA.crt.pem")
+		ca: fs.readFileSync(certificatePath)
 		}
 });
 module.exports = connection;
