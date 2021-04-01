@@ -3,7 +3,7 @@ var router = express.Router();
 const homeworkData = require('../models/homeworks_models');
 
 router.get('/getAll', function(req, res) {
-	homeworkData.getAll(req.body.authToken, function(err, dbResult) {
+	homeworkData.getAll(req.headers.authtoken, function(err, dbResult) {
 		if (err) 
 		{
 			res.json(err);

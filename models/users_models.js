@@ -16,17 +16,17 @@ const userQuery = {
 		return db.query('update users set authToken=?, authTokenDate=? where userEmail=?', [token, tokendate, email], callback);
 	},
 
-	getByToken: function(email, token, callback) {
-		return db.query('SELECT * FROM users WHERE (authToken=? AND userEmail=?)', [token, email], callback);
+	getByToken: function(token, callback) {
+		return db.query('SELECT * FROM users WHERE authToken=?', [token], callback);
 	},
 
-	checkTokenDate: function(token, email, callback) {
-		return db.query('SELECT * FROM users WHERE (authToken=? AND userEmail=?)', [token, email], callback);
+	checkTokenDate: function(token, callback) {
+		return db.query('SELECT * FROM users WHERE authToken=?', [token], callback);
 	},
 
-	refreshToken: function(token, tokenOld, email, callback) {
+	refreshToken: function(token, tokenOld, callback) {
 		var tokendate = (Date.now() + authTokenLifeTime);
-		return db.query('update users set authToken=?, authTokenDate=? where (userEmail=? AND authToken=?)', [token, tokendate, email, tokenOld], callback);
+		return db.query('update users set authToken=?, authTokenDate=? where authToken=?', [token, tokendate, tokenOld], callback);
 	},
 };
 module.exports = userQuery;

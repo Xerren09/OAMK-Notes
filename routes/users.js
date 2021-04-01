@@ -59,7 +59,6 @@ const UserAuthorization = {
 }
 
 router.post('/register', function(req, res) {
-		//req.body.userEmail.includes("@students.oamk.fi");
 		usersData.getByEmail(req.body.userEmail, function(err, dbResult) {
 				if (err) 
 				{
@@ -124,7 +123,7 @@ router.post('/login', function(req, res) {
 });
 
 router.post('/refreshToken', function(req, res) {
-	usersData.checkTokenDate(req.body.authToken, req.body.authID, function(err, dbResult){
+	usersData.checkTokenDate(req.headers.authtoken, function(err, dbResult){
 		if (err) 
 		{
 			res.json(err);
@@ -137,7 +136,7 @@ router.post('/refreshToken', function(req, res) {
 				{
 					var crypto = require('crypto');
 					var authToken = crypto.randomBytes(64).toString('hex');
-					usersData.refreshToken(authToken, dbResult[0].authToken,  dbResult[0].userEmail, function(err, dbResult_refresh) {
+					usersData.refreshToken(authToken, dbResult[0].authToken, function(err, dbResult_refresh) {
 						if (err) 
 						{
 							res.json(err);
@@ -145,7 +144,6 @@ router.post('/refreshToken', function(req, res) {
 					});
 					var serverresponse = {
 						authAlive: false,
-						authID: dbResult[0].userEmail,
 						authToken: authToken
 					};
 					res.json(serverresponse);
@@ -170,7 +168,7 @@ router.post('/refreshToken', function(req, res) {
 });
 
 router.get('/getUserInfo', function(req, res) {
-	usersData.getByToken(req.body.userEmail, req.body.authToken, function(err, dbResult) {
+	usersData.getByToken(req.headers.authtoken, function(err, dbResult) {
 		if (err) 
 		{
 			res.json(err);
