@@ -57,18 +57,22 @@
     height: 100%;
     border-bottom: none;
     border: 2px solid #f18800;
+    overflow-y: auto;
 }
 
 #noteViewer:focus {
     outline: none;
 }
+
 .newNoteContainer {
     margin-left: 25%;
-    width: 50%;
+    width: 60%;
 }
+
 .newNoteContainer h2 {
     border-bottom: 1px solid black;
 }
+
 .newNoteContainer button {
     font-size: 20px;
     font-weight: bolder;
@@ -83,20 +87,24 @@
     width: 200px;
     height: 200px;
 }
+
 .newNoteContainer button:hover {
     background-color: #e2e2e2;
 }
+
 .buttonContainer {
     display: flex;
     flex-direction: row;
     width: 50%;
 }
+
 .buttonContainer p {
     font-size: 15px;
     color: #b3b3b3;
     font-weight: 200;
     text-align: left;
 }
+
 .buttonContainer h6 {
     font-size: 15px;
     font-weight: 300;

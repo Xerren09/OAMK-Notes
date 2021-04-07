@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .sideDisplayContainer {
     background-color: #fefefe;
     width: 15%;
@@ -22,10 +23,12 @@
     border-top: none;
     height: 100%;
 }
+
 .sideDisplayContainer h1 {
     color: black;
     margin-left: 10%;
 }
+
 .sideDisplayContainer button {
     font-size: 40px;
     text-align: center;
@@ -37,6 +40,7 @@
     border: none;
     border-radius: 5px;
 }
+
 .sideDisplayContainer button:hover {
     font-size: 40px;
     text-align: center;
@@ -47,10 +51,12 @@
     background-color: #f18800;
     cursor: pointer
 }
+
 .homeworkViewContainer {
     font-size: 30px;
     height: 100%;
 }
+
 #homeworkViewer {
     width: 100%;
     margin-left: 0px;
@@ -58,17 +64,22 @@
     height: 100%;
     border-bottom: none;
     border: 2px solid #f18800;
+    overflow-y: auto;
 }
+
 #homeworkViewer:focus {
     outline: none;
 }
+
 .newHomeworkContainer {
     margin-left: 25%;
     width: 50%;
 }
+
 .newHomeworkContainer h2 {
     border-bottom: 1px solid black;
 }
+
 #newAssignmentBtn {
     padding: 5px;
     margin-bottom: 5px;
@@ -81,9 +92,11 @@
     border: 2px solid #ccc;
     border-radius: 5px;
 }
+
 #newAssignmentBtn:hover {
     background-color: #e2e2e2;
 }
+
 .buttonContainer button {
     font-size: 20px;
     font-weight: bolder;
@@ -98,18 +111,22 @@
     height: 50px;
     text-align: left;
 }
+
 .buttonContainer button:hover {
     background-color: #e2e2e2;
 }
+
 .buttonContainer {
     display: flex;
     flex-direction: row;
 }
+
 .buttonContainer h6 {
     font-size: 15px;
     font-weight: 300;
     text-align: left;
 }
+
 .buttonContainer p {
     font-size: 5px;
 }
