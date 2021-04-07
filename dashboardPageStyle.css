@@ -11,6 +11,10 @@ body {
     width: 100%;
     background-color: #f18800;
 }
+#testi{
+
+    margin-top: 4000px;
+}
 .headerButtons{
     color: #fefefe;
     background-color: #f18800;
@@ -54,6 +58,7 @@ body {
     border: 2px solid #f18800;
     border-top: none;
     height: 100%;
+    position:static;
 }
 .sideDisplayContainer h1{
     color: black;
@@ -90,7 +95,7 @@ body {
     font-size: 20px;
     height: 100%;
     border-bottom: none;
-    border: 2px solid #f18800;
+border: none;
 }
 #noteViewer:focus{
     outline: none;
