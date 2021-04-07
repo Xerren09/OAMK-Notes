@@ -48,6 +48,8 @@
 .noteViewContainer {
     font-size: 30px;
     height: 100%;
+    outline: none;
+    border-top: 2px solid #f18800;
 }
 
 #noteViewer {
@@ -55,8 +57,8 @@
     margin-left: 0px;
     font-size: 20px;
     height: 100%;
-    border-bottom: none;
-    border: 2px solid #f18800;
+    border: none;
+    overflow-y: auto;
 }
 
 #noteViewer:focus {

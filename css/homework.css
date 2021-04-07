@@ -56,8 +56,9 @@
     margin-left: 0px;
     font-size: 20px;
     height: 100%;
-    border-bottom: none;
-    border: 2px solid #f18800;
+    border: none;
+    border-top: 2px solid #f18800;
+    overflow-y: auto;
 }
 #homeworkViewer:focus {
     outline: none;

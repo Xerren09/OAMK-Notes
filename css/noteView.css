@@ -1,0 +1,31 @@
+.noteWrite{
+    height: 400px;
+}
+.newNoteContainerWrite {
+    margin-left: 25%;
+    width: 50%;
+}
+.newNoteContainerWrite button {
+    font-weight: bolder;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fefefe;
+    padding: 20px;
+    margin-top: 20px;
+}
+.newNoteContainerWrite button:hover {
+    background-color: #e2e2e2;
+}
+.noteWrite{
+    border: 2px solid #cccc;
+    border-radius: 5px;
+    outline: none;
+}
+.newNoteContainerWrite h2 {
+    border-bottom: 1px solid black;
+    outline: none;
+
+}
