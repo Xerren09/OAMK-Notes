@@ -1,0 +1,115 @@
+.noteBtn {
+    border: none;
+    cursor: pointer;
+    color: #fefefe;
+    background-color: #ff9300;
+    font-size: 20px;
+    box-shadow: inset 0 0px 0 white, inset 0 -3px 0 white;
+}
+
+.wholePageContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.sideDisplayContainer {
+    background-color: #fefefe;
+    width: 15%;
+    align-items: center;
+    position: fixed;
+    border: 2px solid #f18800;
+    border-top: none;
+    height: 100%;
+}
+
+.sideDisplayContainer h1 {
+    color: black;
+    margin-left: 10%;
+}
+
+.sideDisplayContainer button {
+    font-size: 40px;
+    text-align: center;
+    margin-left: 40%;
+    margin-top: 5px;
+    outline: none;
+    background-color: #fefefe;
+    color: #f18800;
+    border: none;
+    border-radius: 5px;
+}
+
+.sideDisplayContainer button:hover {
+    outline: none;
+    color: #fefefe;
+    background-color: #f18800;
+}
+
+.noteViewContainer {
+    font-size: 30px;
+    height: 100%;
+    outline: none;
+    border-top: 2px solid #f18800;
+}
+
+#noteViewer {
+    width: 100%;
+    margin-left: 0px;
+    font-size: 20px;
+    height: 100%;
+    border: none;
+    border-bottom: none;
+    border: 2px solid #f18800;
+    overflow-y: auto;
+}
+
+#noteViewer:focus {
+    outline: none;
+}
+
+.newNoteContainer {
+    margin-left: 25%;
+    width: 60%;
+}
+
+.newNoteContainer h2 {
+    border-bottom: 1px solid black;
+}
+
+.newNoteContainer button {
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #fefefe;
+    margin-right: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+.newNoteContainer button:hover {
+    background-color: #e2e2e2;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+.buttonContainer p {
+    font-size: 15px;
+    color: #b3b3b3;
+    font-weight: 200;
+    text-align: left;
+}
+
+.buttonContainer h6 {
+    font-size: 15px;
+    font-weight: 300;
+    text-align: left;
+}
