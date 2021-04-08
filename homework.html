@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/dropMenu.css">
+        <link rel="stylesheet" href="css/sideMenu.css">
         <link rel="stylesheet" href="css/homework.css">
+        <link rel="stylesheet" href="css/addSubject.css">
         <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
@@ -14,7 +16,7 @@
         <div class="header">
             <img src="images/logoWhite.png">
             <button class="headerBtn">NOTES</button>
-            <button class="homeworkBtn">HOMEWORK</button>
+            <button class="headerBtn">HOMEWORK</button>
             <button class="headerBtn">SCHEDULE</button>
             <div class="userInfo">
                 <table>
@@ -36,18 +38,57 @@
             </div>
         </div>
         <div class="wholePageContainer">
+            <div id="addSubjectContainer" class='hidden'>
+                <i class="fas fa-plus fa-2x"></i><br>
+                <input type="text" placeholder="Subject name" class='addSubjectInput'>
+                <input type="number" placeholder="Study period (1-4)" class='addSubjectInput'>
+                <input type="number" placeholder="Study year" class='addSubjectInput'>
+                <button id='addSubjectButton'>ADD</button><br>
+                <p1 id='addSubjectError'>Place for error messages</p1>
+            </div>
             <div class="sideDisplayContainer">
                 <h1>Courses:</h1>
-                <div class="homeworkViewContainer">
+                <div class="noteViewContainer">
                     <form action="">
-                        <select name="viewNotes" id="homeworkViewer" size="22" multiple>
+                        <select name="viewNotes" id="noteViewer" size="33" multiple>
                             <option value="placeHolder1">placeHolder1</option>
                             <option value="placeHolder2">placeHolder2</option>
                             <option value="placeHolder3">placeHolder3</option>
                             <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder1">placeHolder1</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder3">placeHolder3</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder2">placeHolder2</option>
+                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder2">placeHolder2</option>                            <option value="placeHolder4">placeHolder4</option>
+                            <option value="placeHolder2">placeHolder2</option>
                         </select>
                     </form>
-                    <button>+</button>
                 </div>
             </div>
             <div class="newHomeworkContainer">
@@ -59,5 +100,6 @@
                 <h2>Past assignments</h2>
             </div>
         </div>
+        <script src="./js/addSubject.js"></script>
     </body>
 </html>
