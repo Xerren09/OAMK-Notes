@@ -3,6 +3,64 @@
     flex-direction: row;
 }
 
+<<<<<<< HEAD
+=======
+.sideDisplayContainer {
+    background-color: #fefefe;
+    width: 15%;
+    align-items: center;
+    position: fixed;
+    border: 2px solid #f18800;
+    border-top: none;
+    height: 100%;
+}
+
+.sideDisplayContainer h1 {
+    color: black;
+    margin-left: 10%;
+}
+
+.sideDisplayContainer button {
+    font-size: 40px;
+    text-align: center;
+    margin-left: 40%;
+    margin-top: 5px;
+    outline: none;
+    background-color: #fefefe;
+    color: #f18800;
+    border: none;
+    border-radius: 5px;
+}
+
+.sideDisplayContainer button:hover {
+    outline: none;
+    color: #fefefe;
+    background-color: #f18800;
+}
+
+.noteViewContainer {
+    font-size: 30px;
+    height: 100%;
+    outline: none;
+    border-top: 2px solid #f18800;
+}
+
+#noteViewer {
+    width: 100%;
+    margin-left: 0px;
+    font-size: 20px;
+    height: 100%;
+    border: none;
+    border-bottom: none;
+    border: 2px solid #f18800;
+    overflow-y: auto;
+}
+
+#noteViewer:focus {
+    outline: none;
+}
+
+>>>>>>> 828209dcdee89fd683d11ded418a8697543ad015
 .newNoteContainer {
     margin-left: 25%;
     width: 60%;

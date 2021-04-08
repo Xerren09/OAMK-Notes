@@ -1,12 +1,18 @@
 .noteWrite{
     height: 400px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 828209dcdee89fd683d11ded418a8697543ad015
 .newNoteContainerWrite {
     margin-left: 25%;
     width: 50%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 828209dcdee89fd683d11ded418a8697543ad015
 .newNoteContainerWrite button {
     font-weight: bolder;
     font-size: 15px;
@@ -18,16 +24,23 @@
     padding: 20px;
     margin-top: 20px;
 }
+<<<<<<< HEAD
 
 .newNoteContainerWrite button:hover {
     background-color: #e2e2e2;
 }
 
+=======
+.newNoteContainerWrite button:hover {
+    background-color: #e2e2e2;
+}
+>>>>>>> 828209dcdee89fd683d11ded418a8697543ad015
 .noteWrite{
     border: 2px solid #cccc;
     border-radius: 5px;
     outline: none;
 }
+<<<<<<< HEAD
 
 .newNoteContainerWrite h2 {
     border-bottom: 1px solid black;
@@ -44,4 +57,10 @@ textarea{
     resize: none;
     border: none;
     outline: none;
+=======
+.newNoteContainerWrite h2 {
+    border-bottom: 1px solid black;
+    outline: none;
+
+>>>>>>> 828209dcdee89fd683d11ded418a8697543ad015
 }
