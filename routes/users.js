@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const usersData = require('../models/users_models');
+const crypto = require('crypto');
 
 const authTokenLifeTime = 21600000;
 
 const UserAuthorization = {
     authSaltLength: 32,
     createSecurePassword: function(password) {
-        var crypto = require('crypto');
         var authPassword = password.toString().trim();
         var authSalt = crypto.randomBytes(UserAuthorization.authSaltLength).toString('hex');
         var authorizationToken_RAW = (authPassword + authSalt);
@@ -21,7 +21,6 @@ const UserAuthorization = {
         };
     },
     verifyUserAuthorization: function(password, userID, dbResult, res) {
-        var crypto = require('crypto');
 		var userAuthorizationToken_Stored = dbResult[0].userPassword;
 		var userAuthorizationSalt_Stored = dbResult[0].authst;
 		var userAuthorizationTokenPlain_Local = (password + userAuthorizationSalt_Stored);
@@ -42,7 +41,7 @@ const UserAuthorization = {
 			});
 			var serverresponse = {
 				authSuccess: true,
-				authID: dbResult[0].userEmail,
+				//authID: dbResult[0].userEmail,
 				authToken: authToken
 			};
 			res.json(serverresponse);				
@@ -122,7 +121,7 @@ router.post('/login', function(req, res) {
 	});
 });
 
-router.post('/refreshToken', function(req, res) {
+router.get('/refreshToken', function(req, res) {
 	usersData.checkTokenDate(req.headers.authtoken, function(err, dbResult){
 		if (err) 
 		{
@@ -134,7 +133,6 @@ router.post('/refreshToken', function(req, res) {
 			{
 				if (Date.now() >= dbResult[0].authTokenDate)
 				{
-					var crypto = require('crypto');
 					var authToken = crypto.randomBytes(64).toString('hex');
 					usersData.refreshToken(authToken, dbResult[0].authToken, function(err, dbResult_refresh) {
 						if (err) 

@@ -1,0 +1,49 @@
+
+#XEditorContainer #XEditor {
+    border: 1px solid grey;
+    height: 50vh;
+    width: 50vw;
+    margin: 0px auto 0;
+    padding:10px;
+}
+#XEditorControls {
+    display: flex;
+    margin: 2px auto 0px;
+    height: 4vh;
+    width: 50vw;
+    background-color: #f2f2f2;
+    border:none;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#XEditorContainer button {
+    font-size: medium;
+    text-align: center;
+    padding: 1px 3px;
+    height:30px;
+    width:30px;
+    border:none;
+    background-color: transparent;
+}
+#XEditorContainer button:hover {
+    background-color: lightgray;
+}
+#XEditorColorSelector {
+    margin-top: 1px;
+    height: 27px;
+    width: 30px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+#XEditorFontSelector {
+    height: 25px;
+}
+#XEditorSizeSelector {
+    height: 25px;
+}
+#XEditorFontGroup {
+    margin-top: 0.8vh;
+    border: none;
+    display: flex;
+    justify-content: space-around;
+}
