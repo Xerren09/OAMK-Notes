@@ -3,6 +3,8 @@ let signInHeaderButton = document.querySelector("#signInHeaderButton");
 let logRegContainer = document.querySelector('#logRegContainer');
 let userEmail = document.querySelector('#userEmail');
 let userPassword = document.querySelector('#userPassword');
+let signInCloseButton = document.querySelector('.fa-times');
+let header = document.querySelector('.header');
 
 let signInButton = document.createElement('button');
     signInButton.innerHTML = 'Sign-in';
@@ -62,6 +64,19 @@ signInHeaderButton.onclick = () => {
     logRegContainer.append(signInButton, newUserButton);
     logRegContainer.style.top = '30%';
     pageContainer.style.filter = 'blur(5px)';
+};
+
+signInCloseButton.onclick = () => {
+    signInCloseButton.style.transform = 'scale(0.8)' ;
+    setTimeout( function() {
+        signInCloseButton.style.transform = 'scale(1)' ;
+    }, 50 ) ;
+    logRegContainer.style.top = '35%'
+    setTimeout(() => {
+        logRegContainer.style.top = '-50%';
+    }, 350);
+    pageContainer.style.filter = 'blur(0px)';
+    header.append(signInHeaderButton);
 };
 
 newUserButton.onclick = () => {
