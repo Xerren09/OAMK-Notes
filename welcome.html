@@ -3,7 +3,9 @@
     <head>
         <title>Welcome!</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="welcome.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/welcome.css">
+        <link rel="stylesheet" href="css/signIn.css">
         <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
@@ -14,20 +16,10 @@
             <div id="signInHeaderButton">
                 <h1>Sign-in</h1>
             </div>
-            <div class="dropDown">
-                <button id='sideMenuButton' class="dropBtn"><i class="fas fa-bars fa-2x"></i></button>
-                <div class="dropDownMenu">
-                </div>
+            <div id="logRegContainer">
+                <input id="userEmail" class="logRegInput" type="text" placeholder="yourEmail@students.oamk.fi">
+                <input id="userPassword" class="logRegInput" type="password" placeholder="password">
             </div>
-        </div>
-        <div id="sideMenu" class='hidden'>
-            <h1 class="sideMenuList">NOTES</h1>
-            <h1 class="sideMenuList">HOMEWORK</h1>
-            <h1 class="sideMenuList">SCHEDULE</h1>
-        </div>
-        <div id="logRegContainer">
-            <input id="userEmail" class="logRegInput" type="text" placeholder="yourEmail@students.oamk.fi">
-            <input id="userPassword" class="logRegInput" type="password" placeholder="password">
         </div>
         <div id="pageContainer">
             <div class="aboutContainer">
@@ -63,6 +55,6 @@
                 </div>
             </div>
         </div>
-        <script src="welcome.js"></script>
+        <script src="js/signIn.js"></script>
     </body>
 </html>

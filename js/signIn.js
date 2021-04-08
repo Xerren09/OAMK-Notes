@@ -3,8 +3,6 @@ let signInHeaderButton = document.querySelector("#signInHeaderButton");
 let logRegContainer = document.querySelector('#logRegContainer');
 let userEmail = document.querySelector('#userEmail');
 let userPassword = document.querySelector('#userPassword');
-let sideMenuButton = document.querySelector('#sideMenuButton');
-let sideMenu = document.querySelector('#sideMenu');
 
 let signInButton = document.createElement('button');
     signInButton.innerHTML = 'Sign-in';
@@ -143,18 +141,4 @@ registerButton.onclick = () => {
     setTimeout(() => {
         errorMessage.style.opacity = '1';
     }, 200);
-}
-
-sideMenuButton.onclick = () => {
-    if (sideMenu.className == 'hidden') {
-        sideMenuButton.style.right = '600%';
-        sideMenu.style.left = '87%'
-        sideMenu.classList.remove('hidden');
-        sideMenu.classList.add('visible');
-    } else {
-        sideMenuButton.style.right = '0%';
-        sideMenu.style.left = '100%'
-        sideMenu.classList.remove('visible');
-        sideMenu.classList.add('hidden');
-    }
-}
+};
