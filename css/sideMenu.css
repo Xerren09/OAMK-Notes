@@ -1,6 +1,6 @@
 .sideDisplayContainer {
     background-color: #fefefe;
-    width: 15%;
+    width: 14%;
     align-items: center;
     position: fixed;
     border: 2px solid #f18800;
@@ -10,43 +10,53 @@
 
 .sideDisplayContainer h1 {
     color: black;
-    margin-left: 10%;
+    font-size: 22px;
+    text-align: left;
+    margin-left: 3px;
 }
 
-.sideDisplayContainer button {
-    font-size: 40px;
-    text-align: center;
-    margin-left: 40%;
-    margin-top: 5px;
-    outline: none;
-    background-color: #fefefe;
-    color: #f18800;
-    border: none;
-    border-radius: 5px;
-}
-
-.sideDisplayContainer button:hover {
-    outline: none;
-    color: #fefefe;
-    background-color: #f18800;
-    height: 100%;
-}
-
-.noteViewContainer {
-    font-size: 30px;
-    height: 100%;
-    outline: none;
-}
-
-#noteViewer {
+.sideMenuList {
     width: 100%;
-    margin-left: 0px;
-    font-size: 20px;
     height: 100%;
+    font-size: 18px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    overflow-y: scroll;
     overflow-y: auto;
+    height: 790px;
     border: none;
+    border-top: 2px solid #f18800;
 }
 
-#noteViewer:focus {
-    outline: none;
+ul, .sideMenuList {
+    list-style-type: none;
 }
+
+.sideMenuList {
+    margin: 0;
+    padding: 0;
+}
+
+.caret {
+    cursor: pointer;
+    user-select: none;
+}
+
+.caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.caret-down::before {
+    transform: rotate(90deg);
+}
+
+.nested {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+

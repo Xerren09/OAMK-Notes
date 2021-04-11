@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="css/dropMenu.css">
         <link rel="stylesheet" href="css/sideMenu.css">
         <link rel="stylesheet" href="css/addSubject.css">
-        <link rel="stylesheet" href="css/notes.css">
         <link rel="stylesheet" href="css/homeworkView.css">
         <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
@@ -39,49 +38,57 @@
             </div>
         </div>
         <div class="wholePageContainer">
-            <div id="addSubjectContainer" class='hidden'>
-                <i class="fas fa-plus fa-2x"></i><br>
-                <input type="text" placeholder="Subject name" class='addSubjectInput'>
-                <input type="number" placeholder="Study period (1-4)" class='addSubjectInput'>
-                <input type="number" placeholder="Study year" class='addSubjectInput'>
-                <button id='addSubjectButton'>ADD</button><br>
-                <p1 id='addSubjectError'>Place for error messages</p1>
-            </div>
             <div class="sideDisplayContainer">
                 <h1>Courses:</h1>
-                <div class="noteViewContainer">
-                    <form action="">
-                        <select name="viewNotes" id="noteViewer" size="33" multiple>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                            <option value="placeHolder1">placeHolder1</option>
-                            <option value="placeHolder2">placeHolder2</option>
-                            <option value="placeHolder3">placeHolder3</option>
-                            <option value="placeHolder4">placeHolder4</option>
-                        </select>
-                    </form>
+                <div class="sideMenuContainer">
+                    <ul class="sideMenuList">
+                        <li><button>General Notes</button></li>
+                        <li>
+                            <span class="caret">Year 1</span>
+                            <ul class="nested">
+                                <li>
+                                    <span class="caret">Period 1</span>
+                                    <ul class="nested">
+                                        <li><button>Course 1</button></li>
+                                        <li><button>Course 2</button></li>
+                                        <li><button>Course 3</button></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 2</span>
+                                    <ul class="nested">
+                                        <li><button>Course 1</button></li>
+                                        <li><button>Course 2</button></li>
+                                        <li><button>Course 3</button></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 3</span>
+                                    <ul class="nested">
+                                        <li><button>Course 1</button></li>
+                                        <li><button>Course 2</button></li>
+                                        <li><button>Course 3</button></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 4</span>
+                                    <ul class="nested">
+                                        <li><button>Course 1</button></li>
+                                        <li><button>Course 2</button></li>
+                                        <li><button>Course 3</button></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div id="addSubjectContainer" class='hidden'>
+                    <i class="fas fa-plus fa-2x"></i><br>
+                    <input type="text" placeholder="Subject name" class='addSubjectInput'>
+                    <input type="number" placeholder="Study period (1-4)" class='addSubjectInput'>
+                    <input type="number" placeholder="Study year" class='addSubjectInput'>
+                    <button id='addSubjectButton'>ADD</button><br>
+                    <p1 id='addSubjectError'>Place for error messages</p1>
                 </div>
             </div>
             <div class="newNoteContainerHW">
@@ -93,5 +100,6 @@
             </div>
         </div>
         <script src="./js/addSubject.js"></script>
+        <script src="./js/subjectTree.js"></script>
     </body>
 </html>
