@@ -22,23 +22,46 @@
     font-family: 'PT Sans Narrow', sans-serif;
     overflow-y: scroll;
     overflow-y: auto;
-    height: 790px;
+    height: 820px;
     border: none;
     border-top: 2px solid #f18800;
+    margin: 0;
+    padding: 0;
+}
+
+.sideMenuList button {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 18px;
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.sideMenuList button:hover {
+    color: white;
+    background-color: #ffc575;
+}
+
+.sideMenuList button:focus {
+    color: white;
+    background-color: #f18800;
+}
+
+ul, li {
+    margin: 3%;
+    margin-left: 4%;
 }
 
 ul, .sideMenuList {
     list-style-type: none;
 }
 
-.sideMenuList {
-    margin: 0;
-    padding: 0;
-}
-
 .caret {
     cursor: pointer;
     user-select: none;
+    margin-left: 5px;
 }
 
 .caret::before {
