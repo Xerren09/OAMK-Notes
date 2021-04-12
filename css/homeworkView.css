@@ -6,11 +6,13 @@
 .noteWrite{
     height: 400px;
 }
-.newNoteContainerWrite {
-    margin-left: 25%;
+
+.newNoteContainerHW {
     width: 50%;
+    margin-bottom: 30px;
 }
-.newNoteContainerWrite button {
+
+.newNoteContainerHW button {
     font-weight: bolder;
     font-size: 15px;
     outline: none;
@@ -22,29 +24,28 @@
     margin-top: 20px;
 }
 
-.newNoteContainerWrite button:hover {
+.newNoteContainerHW button:hover {
     background-color: #e2e2e2;
 }
 
-.noteWrite{
+.homeworkWrite{
     border: 2px solid #cccc;
     border-radius: 5px;
-    outline: none;
+    margin-top: 10px;
 }
 
-.newNoteContainerWrite h2 {
+.newNoteContainerHW h2 {
     border-bottom: 1px solid black;
     outline: none;
+
 }
 
-input{
-    width: 100%;
-    border: none;
+.newNoteContainerHW input {
     outline: none;
 }
 
-textarea{
-    resize: none;
-    border: none;
+.inputFieldHW{
     outline: none;
+    border: none;
+    width: 90%;
 }

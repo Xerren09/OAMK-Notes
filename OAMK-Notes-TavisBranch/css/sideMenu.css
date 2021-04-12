@@ -1,0 +1,86 @@
+.sideDisplayContainer {
+    background-color: #fefefe;
+    width: 14%;
+    align-items: center;
+    margin-top: 50px;
+    position: fixed;
+    border: 2px solid #f18800;
+    border-top: none;
+    height: 100%;
+}
+
+.sideDisplayContainer h1 {
+    color: black;
+    font-size: 22px;
+    text-align: left;
+    margin-left: 3px;
+}
+
+.sideMenuList {
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    overflow-y: scroll;
+    overflow-y: auto;
+    height: 820px;
+    border: none;
+    border-top: 2px solid #f18800;
+    margin: 0;
+    padding: 0;
+}
+
+.sideMenuList button {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 18px;
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.sideMenuList button:hover {
+    color: white;
+    background-color: #ffc575;
+}
+
+.sideMenuList button:focus {
+    color: white;
+    background-color: #f18800;
+}
+
+ul, li {
+    margin: 3%;
+    margin-left: 4%;
+}
+
+ul, .sideMenuList {
+    list-style-type: none;
+}
+
+.caret {
+    cursor: pointer;
+    user-select: none;
+    margin-left: 5px;
+}
+
+.caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.caret-down::before {
+    transform: rotate(90deg);
+}
+
+.nested {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
