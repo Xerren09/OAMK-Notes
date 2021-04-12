@@ -1,26 +1,24 @@
 const crypto = require('crypto');
-const usersData = require('../models/users_models');
-const Security = {
-    authTokenLifeTime: 21600000,
+const tokenData = require('./models/tokenHandler_models');
+
+const UserAuthorization = {
     authSaltLength: 32,
-    generateAuthToken: function (length) {
-        var token = crypto.randomBytes(length).toString('hex');
-        return token;
-    },
-    createSecurePassword: function(password) {
+    authTokenLifeTime: 21600000,
+    authTokenGracePeriod: 3600000,
+    Create: function(password) {
         var authPassword = password.toString().trim();
         var authSalt = crypto.randomBytes(UserAuthorization.authSaltLength).toString('hex');
-        var authPassEnc_RAW = (authPassword + authSalt);
-        var authPassEnc = crypto.createHash('sha256').update(authPassEnc_RAW).digest('hex');
+        var authorizationToken_RAW = (authPassword + authSalt);
+        var authorizationToken = crypto.createHash('sha256').update(authorizationToken_RAW).digest('hex');
         var authToken = crypto.randomBytes(64).toString('hex');
         return {
             salt: authSalt,
-            pass: authPassEnc,
+            pass: authorizationToken,
             token: authToken,
-            tokenDate: (Date.now() + authTokenLifeTime)
+            tokenDate: (Date.now() + UserAuthorization.authTokenLifeTime)
         };
     },
-    UserAuthorization: function(password, dbResult, res) {
+    Verify: function(password, userID, dbResult, callback) {
         var userAuthorizationToken_Stored = dbResult[0].userPassword;
         var userAuthorizationSalt_Stored = dbResult[0].authst;
         var userAuthorizationTokenPlain_Local = (password + userAuthorizationSalt_Stored);
@@ -28,42 +26,65 @@ const Security = {
         if(userAuthorizationToken_Local == userAuthorizationToken_Stored)
         {
             var authToken = crypto.randomBytes(64).toString('hex');
-            // Save token here
-            var serverresponse = {
-                authSuccess: true,
-                authToken: authToken
-            };
-            res.json(serverresponse);				
+            tokenData.addToken(authToken, userID, function(err, dbResult) {
+                if (err) 
+                {
+                    console.debug(err);
+                } 
+                else 
+                {
+                    //AuthToken successfully saved
+                    callback(authToken);
+                }
+            });				
         }
         else
         {
-            var serverresponse = {
-                authSuccess: false,
-            };
-            res.json(serverresponse);
+            callback();
         }
     },
-    CheckTokenValidity: function(token, res) {
-        let checkToken = new Promise((resolve) => {
-            usersData.checkTokenDate(token, function(err, dbResult){
-                if (err) {res.json(err);}
-                else if (dbResult.length != 0)
-                {
-                    if (Date.now() >= dbResult[0].authTokenDate)
-                    {
-                        resolve(false);
-                    }
-                    else
-                    {
-                        resolve(true);
-                    }
-                }
-            });
+    RefreshToken: function (requestToken, refreshCallback) {
+        UserAuthorization.VerifyToken(requestToken, function(AuthTokenStatus) {
+            if (AuthTokenStatus.isRefreshable == true)
+            {
+                let authToken = crypto.randomBytes(64).toString('hex');
+                tokenData.refreshToken(authToken, requestToken, function(err, dbResult_refresh) {
+                    //handle error
+                    refreshCallback({isvalid: true, token: authToken});
+                });
+            }
+            else
+            {
+                refreshCallback({isvalid: false});
+            }
         });
-        checkToken.then((successMessage) => {
-            //console.log("Yay! " + successMessage)
-            if (successMessage == true) {return true;} else {return false;}
+    },
+    VerifyToken: function(requestToken, verifCallback) {
+        tokenData.checkTokenDate(requestToken, function (err, dbResult) {
+            if (dbResult.length != 0)
+            {
+                if ((Date.now()+UserAuthorization.authTokenGracePeriod) >= dbResult[0].authTokenDate)
+                {
+                    //token is invalid, can't be refreshed
+                    verifCallback({isValid:false, isRefreshable: false});
+                }
+                else if (Date.now() >= dbResult[0].authTokenDate)
+                {
+                    //token is invalid, can be refreshed
+                    verifCallback({isValid:false, isRefreshable: true});
+                }
+                else
+                {
+                    //token is valid
+                    verifCallback({isValid:true, isRefreshable: false});
+                }
+            }
+            else
+            {
+                //token is invalid
+                verifCallback({isValid:false, isRefreshable: false});
+            }
         });
     }
-};
-module.exports = Security;
+}
+module.exports = UserAuthorization;
