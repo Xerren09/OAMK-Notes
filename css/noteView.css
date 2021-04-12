@@ -7,6 +7,7 @@
     height: 400px;
 }
 .newNoteContainerWrite {
+    margin-top: 50px;
     margin-left: 25%;
     width: 50%;
 }

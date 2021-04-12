@@ -26,12 +26,13 @@
     outline: none;
 }
 
-.newHomeworkContainer {
+.homeworkContainer {
+    margin-top: 50px;
     margin-left: 20%;
     width: 65%;
 }
 
-.newHomeworkContainer h2 {
+.homeworkContainer h2 {
     border-bottom: 1px solid black;
 }
 
@@ -52,7 +53,7 @@
     background-color: #e2e2e2;
 }
 
-.buttonContainer button {
+.newHomework button {
     font-size: 20px;
     font-weight: bolder;
     outline: none;
@@ -67,22 +68,22 @@
     text-align: left;
 }
 
-.buttonContainer button:hover {
+.newHomework button:hover {
     background-color: #e2e2e2;
 }
 
-.buttonContainer {
+.newHomework {
     display: flex;
     flex-direction: row;
 }
 
-.buttonContainer h6 {
+.newHomework h6 {
     font-size: 15px;
     font-weight: 300;
     text-align: left;
 }
 
-.buttonContainer p {
+.newHomework p {
     font-size: 5px;
 }
 
@@ -103,7 +104,7 @@
     border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #fefefe;
-    padding: 20px;
+    padding: 10px;
     margin-top: 20px;
 }
 
@@ -120,7 +121,6 @@
 .newNoteContainerHW h2 {
     border-bottom: 1px solid black;
     outline: none;
-
 }
 
 .newNoteContainerHW input {
@@ -133,6 +133,6 @@
     width: 90%;
 }
 
-input[type="checkbox"] { /* change "blue" browser chrome to yellow */
+input[type="checkbox"] { 
     filter: hue-rotate(160deg);
-  }
+}

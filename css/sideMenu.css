@@ -9,9 +9,27 @@
     margin-top: 50px;
 }
 
-.sideDisplayContainer h1 {
+.sideMenuHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchCourse {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 18px;
+    height: 20px;
+    width: 70%;
+    margin-left: 2px;
+}
+
+.searchCourse:focus {
+    outline: none;
+}
+
+.sideMenuHeader h1 {
     color: black;
-    font-size: 22px;
+    font-size: 20px;
     text-align: left;
     margin-left: 3px;
 }
@@ -23,7 +41,7 @@
     font-family: 'PT Sans Narrow', sans-serif;
     overflow-y: scroll;
     overflow-y: auto;
-    height: 820px;
+    height: 840px;
     border: none;
     border-top: 2px solid #f18800;
     margin: 0;
