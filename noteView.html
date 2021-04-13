@@ -7,9 +7,7 @@
         <link rel="stylesheet" href="css/dropMenu.css">
         <link rel="stylesheet" href="css/sideMenu.css">
         <link rel="stylesheet" href="css/addSubject.css">
-        <link rel="stylesheet" href="css/notes.css">
         <link rel="stylesheet" href="css/custom-text-editor.css">
-        <link rel="stylesheet" href="css/homework.css">
         <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
@@ -17,9 +15,9 @@
     <body>
         <div class="header">
             <img src="images/logoWhite.png">
-            <button class="headerBtn" id="notesHeaderButton">NOTES</button>
-            <button id="homeworkHeaderButton" class="headerBtn">HOMEWORK</button>
-            <button class="headerBtn" id="scheduleHeaderButton">SCHEDULE</button>
+            <button class="headerBtn">NOTES</button>
+            <button class="headerBtn">HOMEWORK</button>
+            <button class="headerBtn">SCHEDULE</button>
             <div class="userInfo">
                 <table>
                     <tr>
@@ -207,49 +205,57 @@
                 </div>
             </div>
             <div id="rightSideContainer">
-                <div class="newNoteContainer">
-                    <h1>Course name</h1>
-                    <h2>Notes</h2>
-                    <div class="noteHolder">
-                        <div class="addNewNote">
-                            <button>New Note<br>+</button>
-                        </div>
-                        <div class="newNote">
-                            <button>
-                                <table>
-                                    <tr class="noteTitle">
-                                        <h1>Note Title</h1>
-                                    </tr>
-                                    <tr class="noteText">
-                                        <p>Preview text of the note, blah blah blah blah blah blah</p>
-                                    </tr>
-                                    <tr class="noteDate">
-                                        <p>12.4.2021 23:49</p>
-                                    </tr>
-                                </table>
-                            </button>
-                        </div>
-                        <div class="newNote">
-                            <button>
-                                <table>
-                                    <tr class="noteTitle">
-                                        <h1>Note Title</h1>
-                                    </tr>
-                                    <tr class="noteText">
-                                        <p>Preview text of the note, blah blah blah blah blah blah</p>
-                                    </tr>
-                                    <tr class="noteDate">
-                                        <p>12.4.2021 23:49</p>
-                                    </tr>
-                                </table>
-                            </button>
-                        </div>
+                <div class="newNoteContainerWrite">
+                    <div id="XEditorContainer" >
+                        <fieldset id="XEditorControls">
+                            <button id="XEditorItalic" onclick="XEditorCommandPalette('i')"><i class="fa fa-italic"></i></button>
+                            <button id="XEditorBold" onclick="XEditorCommandPalette('b')"><i class="fa fa-bold"></i></button>
+                            <button id="XEditorUnderline" onclick="XEditorCommandPalette('u')"><i class="fa fa-underline"></i></button>
+                            <button id="XEditorStrikethrough" onclick="XEditorCommandPalette('s')"><i class="fa fa-strikethrough"></i></button>
+                            <fieldset id="XEditorFontGroup">
+                                <select id="XEditorFontSelector" onchange="XEditorCommandPalette('cf')">
+                                    <option value="'PT Sans Narrow', sans-serif">PT Sans Narrow</option>
+                                    <option value="Arial">Arial</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="Sans serif">Sans serif</option>
+                                    <option value="Courier New">Courier New</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Palatino">Palatino</option>
+                                    <option value="Garamond">Garamond</option>
+                                    <option value="Comic Sans MS">Comic Sans MS</option>
+                                    <option value="Arial Black">Arial Black</option>
+                                    <option value="Tahoma">Tahoma</option>
+                                    <option value="Comic Sans MS">Comic Sans MS</option>
+                                </select>
+                                <select id="XEditorSizeSelector" onclick="XEditorCommandPalette('cs')">
+                                    <option value="1">8</option>			
+                                    <option value="2">10</option>
+                                    <option value="3">11</option>
+                                    <option value="4">14</option>
+                                    <option value="5">18</option>
+                                    <option value="6">24</option>
+                                    <option value="7">36</option>
+                                </select>
+                            </fieldset>
+                            <input id="XEditorColorSelector" type="color" onchange="XEditorCommandPalette('cc')"> 
+                            <button id="XEditorAL" onclick="XEditorCommandPalette('al')"><i class="fa fa-align-left"></i></button>
+                            <button id="XEditorAC" onclick="XEditorCommandPalette('ac')"><i class="fa fa-align-center"></i></button>
+                            <button id="XEditorAR" onclick="XEditorCommandPalette('ar')"><i class="fa fa-align-right"></i></button>
+                            <button id="XEditorUL" onclick="XEditorCommandPalette('ul')"><i class="fa fa-list-ul"></i></button>
+                            <button id="XEditorEX" onclick="XEditorCommandPalette('exps')"><i class="fa fa-file-export"></i></button>		
+                        </fieldset>
+                        
+                    </div>
+                    <div id="XEditor" contenteditable="true" data-text="Enter comment....">
+                
                     </div>
                 </div>
             </div>
         </div>
         <script src="./js/addSubject.js"></script>
         <script src="./js/subjectTree.js"></script>
-        <script src="./js/newNote.js"></script>
         <script src="./js/XTextEditor.js"></script>
+    </body>
 </html>
