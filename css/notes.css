@@ -1,19 +1,22 @@
 .wholePageContainer {
     display: flex;
     flex-direction: row;
-}
-
-.newNoteContainer {
-    margin-top: 50px;
-    margin-left: 20%;
-    width: 65%;
-}
-
-.newNoteContainer h2 {
+  }
+  
+  .newNoteContainer {
+    width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .newNoteContainer h2 {
     border-bottom: 1px solid black;
-}
-
-.newNoteContainer button {
+  }
+  
+  .newNoteContainer button {
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
@@ -27,25 +30,25 @@
     width: 200px;
     height: 200px;
     margin: 4px;
-}
-
-.newNoteContainer button:hover {
+  }
+  
+  .newNoteContainer button:hover {
     background-color: #e2e2e2;
-}
-
-.noteHolder {
+  }
+  
+  .noteHolder {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.newNote h1{
+  }
+  
+  .newNote h1 {
     font-size: 20px;
-}
-
-.newNote p {
+  }
+  
+  .newNote p {
     font-size: 15px;
     color: #b3b3b3;
     font-weight: 200;
     text-align: left;
-}
+  }

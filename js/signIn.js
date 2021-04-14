@@ -61,6 +61,7 @@ let haveAccountButton = document.createElement('button');
 
 signInHeaderButton.onclick = () => {
     signInHeaderButton.remove();
+    //signInHeaderButton.style.opacity = '0';
     logRegContainer.append(signInButton, newUserButton);
     logRegContainer.style.top = '30%';
     pageContainer.style.filter = 'blur(5px)';
@@ -77,6 +78,7 @@ signInCloseButton.onclick = () => {
     }, 350);
     pageContainer.style.filter = 'blur(0px)';
     header.append(signInHeaderButton);
+    //signInHeaderButton.style.opacity = '1';
 };
 
 newUserButton.onclick = () => {
