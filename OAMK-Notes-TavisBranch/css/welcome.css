@@ -1,0 +1,52 @@
+#pageContainer {
+    margin-top: 2%;
+}
+
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutContainer h1 {
+  border-bottom: 2px solid #8d8d8d;
+  width: 50%;
+}
+
+.aboutContainer p {
+  font-size: 18px;
+  width: 50%;
+}
+
+.codersContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.coders {
+  margin-top: 1%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.coders img {
+  border-radius: 50%;
+  border: 2px solid #ff9300;
+  width: 100px;
+  height: 100px;
+}
+
+.coders img:hover {
+  cursor: pointer;
+}
+
+.coders h3 {
+  font-size: 16px;
+}
+
+.coders p {
+  font-size: 12px;
+  font-weight: 400;
+}
