@@ -24,7 +24,7 @@ const XerrenDevHTTPComm = {
 				{
 					sessionStorage.setItem("token", requestResponseData.data.token);
 				}
-            	callback(requestResponseData);
+				callback(requestResponseData);
 			}
 		};
 		xhttp.open("POST", requestURL, true);
@@ -34,3 +34,22 @@ const XerrenDevHTTPComm = {
 		xhttp.send(json);
 	}
 };
+
+function getData() { 
+	let payload = {
+		userPassword: document.getElementById("password").value,
+		userEmail: document.getElementById("username").value
+	}
+	XerrenDevHTTPComm.POST("http://xerrendev01uni.azurewebsites.net/users/login", "0000", payload, function(response) {	
+		//do stuff with the info
+		console.log(response);
+		let token = response.data.token;
+		sessionStorage.setItem('token', token);
+	});
+}
+
+function getUserInfo() {
+	XerrenDevHTTPComm.GET("http://xerrendev01uni.azurewebsites.net/users/getUserInfo", sessionStorage.getItem("token"), function(response) {
+		console.log(response);
+	});
+}
