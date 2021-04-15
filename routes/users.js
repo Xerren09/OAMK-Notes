@@ -7,7 +7,14 @@ router.post('/register', function(req, res) {
 	usersData.getByEmail(req.body.userEmail, function(err, dbResult) {
 		if (err) 
 		{
-			res.json(err);
+			console.debug(err);
+			let serverresponse = {
+				status : "error",
+				data : {
+					type : "internal_database" 
+				},
+			};
+			res.json(serverresponse);
 		} 
 		else 
 		{
@@ -22,9 +29,11 @@ router.post('/register', function(req, res) {
 					else 
 					{
 						//User successfully registered
-						var serverresponse = {
-							valid: true,
-							authToken: authReg.token
+						let serverresponse = {
+							status : "success",
+							data : {
+								token : authReg.token
+							},
 						};
 						res.json(serverresponse);
 					}
@@ -33,8 +42,11 @@ router.post('/register', function(req, res) {
 			else
 			{
 				//username is already taken
-				var serverresponse = {
-					valid: false,
+				let serverresponse = {
+					status : "fail",
+					data : {
+						type : "credentials_exist" 
+					},
 				};
 				res.json(serverresponse);
 			}
@@ -46,7 +58,14 @@ router.post('/login', function(req, res) {
 	usersData.getByEmail(req.body.userEmail, function(err, dbResult) {
 		if (err) 
 		{
-			res.json(err);
+			console.debug(err);
+			let serverresponse = {
+				status : "error",
+				data : {
+					type : "internal_database" 
+				},
+			};
+			res.json(serverresponse);
 		} 
 		else 
 		{
@@ -55,24 +74,33 @@ router.post('/login', function(req, res) {
 				UserAuthorization.Verify(req.body.userPassword, req.body.userEmail, dbResult, function (token="0000") {
 					if (token != "0000")
 					{
-						var serverresponse = {
-							authSuccess: true,
-							authToken: token
+						let serverresponse = {
+							status : "sucess",
+							data : {
+								token : token
+							},
 						};
+						res.json(serverresponse);
 					}
 					else
 					{
-						var serverresponse = {
-							authSuccess: false,
+						let serverresponse = {
+							status : "fail",
+							data : {
+								type : "credentials_unkown"
+							},
 						};
+						res.json(serverresponse);
 					}
-					res.json(serverresponse);
 				});
 			}
 			else
 			{
-				var serverresponse = {
-					authSuccess: false,
+				let serverresponse = {
+					status : "fail",
+					data : {
+						type : "credentials_unkown" 
+					},
 				};
 				res.json(serverresponse);
 			}
@@ -85,15 +113,20 @@ router.get('/refreshToken', function(req, res) {
 		if (result.isvalid == true)
 		{
 			let serverresponse = {
-				authAlive: false,
-				authToken: result.token
+				status : "success",
+				data : {
+					token : result.token 
+				},
 			};
 			res.json(serverresponse);
 		}
 		else
 		{
 			let serverresponse = {
-				authAlive: false,
+				status : "fail",
+				data : {
+					type : "credentials_unkown"
+				},
 			};
 			res.json(serverresponse);
 		}	
@@ -107,15 +140,26 @@ router.get('/getUserInfo', function(req, res) {
 			usersData.getByToken(req.headers.authtoken, function(err, dbResult) {
 				if (err) 
 				{
-					res.json(err);
+					console.debug(err);
+					let serverresponse = {
+						status : "error",
+						data : {
+							type : "internal_database" 
+						},
+					};
+					res.json(serverresponse);
 				} 
 				else 
 				{
-					var serverresponse = {
-						valid: true,
-						userName: dbResult[0].userName,
-						userEmail: dbResult[0].userEmail,
-						userGroup: dbResult[0].userGroup
+					let serverresponse = {
+						status : "success",
+						data : {
+							userName : dbResult[0].userName ,
+							userEmail: dbResult[0].userEmail,
+							userGroup: dbResult[0].userGroup,
+							userPassword: "************",
+							userID: dbResult[0].userID
+						},
 					};
 					res.json(serverresponse);
 				}
@@ -123,7 +167,13 @@ router.get('/getUserInfo', function(req, res) {
 		}
 		else
 		{
-			res.json(AuthTokenStatus);
+			let serverresponse = {
+				status : "fail",
+				data : {
+					type : "credentials_unkown" 
+				},
+			};
+			res.json(serverresponse);
 		}
 	});
 });

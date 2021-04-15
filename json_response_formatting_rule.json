@@ -1,0 +1,38 @@
+{
+    "status" : "error",
+    "message" : "Unable to communicate with database"
+}
+
+{
+    "status" : "fail",
+    "data" : { "title" : "A title is required" }
+},
+
+{
+    "status" : "success",
+    "data" : {
+        "posts" : [
+            { "id" : 1, "title" : "A blog post", "body" : "Some useful content" },
+            { "id" : 2, "title" : "Another blog post", "body" : "More content" },
+        ]
+     }
+}
+
+
+//
+
+var serverresponse = {
+    status : "fail",
+    data : {
+        type : "credentials_taken" 
+    },
+};
+res.json(serverresponse);
+
+var serverresponse = {
+    status : "error",
+    data : {
+        type : "internal_database" 
+    },
+};
+res.json(serverresponse);

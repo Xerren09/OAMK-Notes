@@ -66,23 +66,51 @@ const UserAuthorization = {
                 if ((Date.now()+UserAuthorization.authTokenGracePeriod) >= dbResult[0].authTokenDate)
                 {
                     //token is invalid, can't be refreshed
-                    verifCallback({isValid:false, isRefreshable: false});
+                    verifCallback(
+                        {
+                            isValid:false, 
+                            isRefreshable: false
+                        });
                 }
                 else if (Date.now() >= dbResult[0].authTokenDate)
                 {
                     //token is invalid, can be refreshed
-                    verifCallback({isValid:false, isRefreshable: true});
+                    verifCallback(
+                        {
+                            isValid:false,
+                            isRefreshable: true
+                        });
+                    //auto token refresh code
+                    /*UserAuthorization.RefreshToken(requestToken, function(AuthTokenStatus) {
+                        if (AuthTokenStatus.isValid == true)
+                        {
+                            verifCallback(
+                                {
+                                    isValid:true,
+                                    token: AuthTokenStatus.token
+                                });
+                        }
+                    });*/
                 }
                 else
                 {
                     //token is valid
-                    verifCallback({isValid:true, isRefreshable: false});
+                    verifCallback(
+                        {
+                            isValid:true, 
+                            isRefreshable: false,
+                            userid: dbResult[0].userID
+                        });
                 }
             }
             else
             {
                 //token is invalid
-                verifCallback({isValid:false, isRefreshable: false});
+                verifCallback(
+                    {
+                        isValid:false, 
+                        isRefreshable: false
+                    });
             }
         });
     }
