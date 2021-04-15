@@ -71,102 +71,16 @@ XerrenDevHTTPComm.POST("users/login", "0000", payload, function(response) {
    	sessionStorage.setItem("token", response.authToken);
 });
 
-localAuthToken = JSON.parse(sessionStorage.getItem("token"));
+localAuthToken = sessionStorage.getItem("token");
 
-XerrenDevHTTPComm.POST("users/getUserInfo", JSON.parse(sessionStorage.getItem("token")), payload, function(response) {
-   	sessionStorage.setItem("token", response.authToken);
+XerrenDevHTTPComm.POST("users/getUserInfo", sessionStorage.getItem("token"), payload, function(response) {
+   	//
 });
 
 
 
 function getAllNotes() {
-	localAuthToken = JSON.parse(sessionStorage.getItem("token"));
-	XerrenDevHTTPComm.GET("note/getAll", localAuthToken, function(response) {
-		if (response.valid == true)
-		{
-			//do stuff with the info
-		}
-		else if (response.valid == false)
-		{
-			XerrenDevHTTPComm.REFRESH("getAllNotes");
-		}
+	XerrenDevHTTPComm.GET("/note/getAll", sessionStorage.getItem("token"), function(response) {
+
 	});
 }
-
-function invalidTokenRefresh(methodName) {
-	localAuthToken = JSON.parse(sessionStorage.getItem("token"));
-	XerrenDevHTTPComm.GET("users/refreshToken", localAuthToken, function(response) {
-		if (response.authAlive == false)
-		{
-			sessionStorage.setItem("token", response.authToken);
-			window[methodName]();
-		}
-		else if (response.authAlive == true)
-		{
-			//This should return error since if the token is valid, but the server says there is an issue, it might be a service disruption.
-			console.log("Error!");
-		}
-	});
-}
-
-
-
-
-
-
-//Example contents of userAllNotes:
-[
-   	{
-      	"subjectName":"subject01",
-      	"studyPeriod":1,
-      	"studyYear":2021,
-      	"noteName":"note01",
-      	"noteDate":1616891799684,
-      	"noteImportance":0,
-      	"noteText":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget accumsan dolor, sed hendrerit diam."
-   	},
-   	{
-      	"subjectName":"subject01",
-      	"studyPeriod":1,
-      	"studyYear":2021,
-      	"noteName":"note04",
-      	"noteDate":1616891799684,
-      	"noteImportance":0,
-      	"noteText":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget accumsan dolor, sed hendrerit diam."
-   	},
-   	{
-      	"subjectName":"subject01",
-      	"studyPeriod":1,
-      	"studyYear":2021,
-      	"noteName":"note05",
-      	"noteDate":1616891799684,
-      	"noteImportance":0,
-      	"noteText":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget accumsan dolor, sed hendrerit diam."
-   	},
-   	{
-      	"subjectName":"subject02",
-      	"studyPeriod":1,
-      	"studyYear":2021,
-      	"noteName":"note02",
-      	"noteDate":1616891799684,
-      	"noteImportance":0,
-      	"noteText":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget accumsan dolor, sed hendrerit diam."
-   	},
-   	{
-      	"subjectName":"subject02",
-      	"studyPeriod":1,
-      	"studyYear":2021,
-      	"noteName":"note03",
-      	"noteDate":1616891799684,
-      	"noteImportance":0,
-      	"noteText":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget accumsan dolor, sed hendrerit diam."
-   	}
-]
-
-//Getting the first entry:
-let note = userAllNotes[0];
-console.debug(note.subjectName);
-console.debug(note.noteText);
-//Or
-console.debug(userAllNotes[0].subjectName);
-console.debug(userAllNotes[0].noteText);
