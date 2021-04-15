@@ -5,6 +5,9 @@ let userEmail = document.querySelector('#userEmail');
 let userPassword = document.querySelector('#userPassword');
 let signInCloseButton = document.querySelector('.fa-times');
 let header = document.querySelector('.header');
+let normalBorder = '#ff9300';
+let errorBorder = 'red';
+let approvedBorder = 'green';
 
 let signInButton = document.createElement('button');
     signInButton.innerHTML = 'Sign-in';
@@ -24,6 +27,8 @@ let errorMessage = document.createElement('p1');
     let wrongUserPassCombo = 'Wrong user/password combination!';
     let emailInUse = 'There is an account with that email!';
     let notMachingRegPasswords = 'Entered passwords do not match!';
+    let shortPassword = 'Password must be at least 8 characters!';
+    let oamkEmail = 'Please, use your OAMK email address!'
 
 let userPasswordRepeat = document.createElement('input');
     userPasswordRepeat.id = 'userPasswordRepeat';
@@ -58,10 +63,10 @@ let haveAccountButton = document.createElement('button');
     haveAccountButton.innerHTML = 'Have account?';
     haveAccountButton.style.opacity = '0';
 
-
+let logRegState = '';
 signInHeaderButton.onclick = () => {
+    logRegState = 'login';
     signInHeaderButton.remove();
-    //signInHeaderButton.style.opacity = '0';
     logRegContainer.append(signInButton, newUserButton);
     logRegContainer.style.top = '30%';
     pageContainer.style.filter = 'blur(5px)';
@@ -82,6 +87,11 @@ signInCloseButton.onclick = () => {
 };
 
 newUserButton.onclick = () => {
+    logRegState = 'register';
+    userPassword.style.borderColor = normalBorder;
+    userPassword.value = '';
+    userEmail.value = '';
+    userPassword.value = '';
     newUserButton.style.transform = 'scale(0.95)' ;
     setTimeout( function() {
         newUserButton.style.transform = 'scale(1)' ;
@@ -107,6 +117,13 @@ newUserButton.onclick = () => {
 };
 
 haveAccountButton.onclick = () => {
+    logRegState = 'login';
+    userEmail.style.borderColor = normalBorder;
+    userEmail.value = '';
+    userPassword.style.borderColor = normalBorder;
+    userPassword.value = '';
+    userPasswordRepeat.style.borderColor = normalBorder;
+    userPasswordRepeat.value = '';
     haveAccountButton.style.transform = 'scale(0.95)' ;
     setTimeout( function() {
         haveAccountButton.style.transform = 'scale(1)' ;
@@ -132,30 +149,4 @@ haveAccountButton.onclick = () => {
             newUserButton.style.opacity = '1';
         }, 300);
     }, 600);
-};
-
-signInButton.onclick = () => {
-    signInButton.style.transform = 'scale(0.95)' ;
-    setTimeout( function() {
-        signInButton.style.transform = 'scale(1)' ;
-    }, 30 ) ;
-    errorMessage.innerHTML = wrongUserPassCombo;
-    logRegContainer.append(br, errorMessage);
-    logRegContainer.style.height = '190px';
-    setTimeout(() => {
-        errorMessage.style.opacity = '1';
-    }, 200);
-};
-
-registerButton.onclick = () => {
-    registerButton.style.transform = 'scale(0.95)' ;
-    setTimeout( function() {
-        registerButton.style.transform = 'scale(1)' ;
-    }, 30 ) ;
-    errorMessage.innerHTML = notMachingRegPasswords;
-    logRegContainer.append(br, errorMessage);
-    logRegContainer.style.height = '335px';
-    setTimeout(() => {
-        errorMessage.style.opacity = '1';
-    }, 200);
 };
