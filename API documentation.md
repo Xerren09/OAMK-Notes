@@ -5,7 +5,6 @@ The OAMK Notes API is the main underlying system powering the OAMK Notes webappl
 The host domain of the API is at [http://xerrendev01uni.azurewebsites.net/](http://xerrendev01uni.azurewebsites.net). All url fragments detailed here can be directly appended to the url.
 
 All of the API responses follow the following format:
-
 ```json
 {
     "status": "fail / error / success",
@@ -23,6 +22,8 @@ Only occurs if the internal database has encountered an error or if the Azure Ap
 The main authentication error, returned when the `authToken` used has expired or does not exists. If the token is still in it's refresh period, the request will be served as normal, and a new token will be returned with the response.
 ###### `credentials_exist` 
 The most specific authentication error, only used during user registration. If this error is returned the given user identifier is already in use.
+###### `key_inuse`
+This fail type code only appears when attempting to delete subjects that are in use (referenced either as for a homework or note). The user should be told that the subject is in use, therefor it can not be deleted.
 
 ## /users/
 
@@ -203,7 +204,7 @@ Response:
     }
 }
 ```
-#### /note/addNote - `POST`
+#### /note/addNew - `POST`
 After a note has been written, sending the following data to this address will save the note to the database. `subjectid` should be passed down from subject category selector (unclided in `/note/frontPage`'s response). The server response will be a simple `status: success` without any payload.
 ```json
 {
@@ -212,6 +213,31 @@ After a note has been written, sending the following data to this address will s
     "notedate": 1618506858941,
     "noteimportance": 0,
     "notetext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tincidunt lacus..."
+}
+```
+#### /note/remove - `POST`
+Used to delete notes by providing the appropriate `noteid` in the request body:
+```json
+{
+    "noteid": 1
+}
+```
+In response the server will return the new array of note details, that can be used to re-build the note cards on the frontpage:
+```json
+{
+    "status": "success",
+    "data": {
+        "frontpagecontent": [
+            {
+                "subjectID": 1,
+                "noteID": 2,
+                "noteName": "note02",
+                "noteDate": 1616891799765,
+                "noteImportance": 0,
+                "noteDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+            },
+        ]
+    }
 }
 ```
 ## /subject/
@@ -250,25 +276,110 @@ As a response the server will return the new ordered list of subjects:
     }
 }
 ```
+#### /subject/remove - `POST`
+Used to delete subjects by providing the appropriate `subjectid` in the request body:
+```json
+{
+    "subjectid": 2
+}
+```
+If the subject has not been associated with any notes or assignments, the server will return the new ordered array of all subjects:
+```json
+{
+    "status": "success",
+    "data": {
+        "subjectselectorcontent": {
+            "2021": {
+                "1": [
+                    {
+                        "subjectID": 1,
+                        "subjectName": "subject01"
+                    }
+                ],
+            }
+        }
+    }
+}
+```
+However if the subject has been already referenced, the server will return a `key_inuse` fail error.
+## /homework/
+The `/homework/` section provides functions related to managing assignments added by the user.
 
-# REVISION - DEPRECATED
-#### /users/refreshToken
-~~This is used to refresh the user's `authToken` if it has expired, by sending the body below. This should be used after a request that should have yielded a valid answer returned an authentication error. After the server provided a new `authToken`, the previous request should be automatically repeated with the updated credentials.~~
+#### /homework/getAll - `GET`
+Sending a `getAll` request will return all assignments added by the user, along with the associated subject, and `homeworkid`:
 ```json
 {
-    "authToken": "51e620608c9be8ccb607182bf4c992aef0144fd35cd6735c14afe976a01e4a997fd87b56b754408ba02863d0b4a51abcd3deb82492440b4b61873748f5d44512"
+    "status": "success",
+    "data": {
+        "dbResult": [
+            {
+                "homeworkID": 1,
+                "subjectName": "subject01",
+                "homeworkName": "Homework1",
+                "homeworkDate": 1616891799684
+            },
+            {
+                "homeworkID": 2,
+                "subjectName": "subject02",
+                "homeworkName": "Homework2",
+                "homeworkDate": 1616891799684
+            }
+        ]
+    }
 }
 ```
-~~In case the token has expired, the server will issue a new one to the user:~~
+#### /homework/addNew - `POST`
+Adding a new assignment can be done by sending the following body:
 ```json
 {
-    "authAlive": false,
-    "authToken": "1a1d6cde1cf0869b4e916561605dac8169e5c7a82eb05014d963c9135213423759e0dbba934259a1bc9946a7b4b1274fdb4f8b737fbbbf36592a6cd9100e7393"
+    "subjectid": 1,
+    "userid": 1,
+    "homeworkname": "Testname",
+    "homeworkdate": 64284,
 }
 ```
-~~Or if the `authToken` is still valid:~~
+The server will return the updated list of all homeworks:
 ```json
 {
-    "authAlive": true,
+    "status": "success",
+    "data": {
+        "dbResult": [
+            {
+                "homeworkID": 2,
+                "subjectName": "subject02",
+                "homeworkName": "Homework2",
+                "homeworkDate": 1616891799684
+            },
+            {
+                "homeworkID": 3,
+                "subjectName": "subject01",
+                "homeworkName": "Homework2",
+                "homeworkDate": 1616891799684
+            }
+        ]
+    }
+}
+```
+#### /homework/remove - `POST`
+Used to delete assignments by providing the appropriate `homeworkid` in the request body:
+```json
+{
+    "homeworkis": 1,
+}
+```
+The server will respond with an updated list of all homeworks:
+```json
+{
+    "status": "success",
+    "data": {
+        "dbResult": [
+            {
+                "homeworkID": 2,
+                "subjectName": "subject02",
+                "homeworkName": "Homework2",
+                "homeworkDate": 1616891799684
+            }
+        ]
+    }
 }
 ```

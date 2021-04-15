@@ -18,6 +18,9 @@ const notesQuery = {
 	},
 	addNewNote: function(subjectID, userID, noteName, noteDate, noteImportance, noteText, callback) {
 		return db.query('INSERT INTO notes(subjectID, userID, noteName, noteDate, noteImportance, noteText) values(?, ?, ?, ?, ?, ?)', [subjectID, userID, noteName, noteDate, noteImportance, noteText], callback);
+	}, 
+	deleteID: function(remid, userid, callback){
+		return db.query('DELETE FROM notes WHERE notes.noteID=? AND notes.userID=?', [remid, userid], callback);
 	}
 };
 module.exports = notesQuery;

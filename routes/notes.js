@@ -8,7 +8,7 @@ router.get('/frontPage', function(req, res) {
 	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.getBasicUserInfo(req.headers.authtoken, function (err, dbResult_ui) {
+			notesData.getBasicUserInfo(AuthTokenStatus.token, function (err, dbResult_ui) {
 				if (err)
 				{
 					console.debug(err);
@@ -22,7 +22,7 @@ router.get('/frontPage', function(req, res) {
 				}
 				else
 				{
-					notesData.getTilesData(req.headers.authtoken, function(err, dbResult_note) {
+					notesData.getTilesData(AuthTokenStatus.token, function(err, dbResult_note) {
 						if (err)
 						{
 							console.debug(err);
@@ -36,7 +36,7 @@ router.get('/frontPage', function(req, res) {
 						}
 						else
 						{
-							notesData.getAllSubjects(req.headers.authtoken, function (err, dbResult_sub) {
+							notesData.getAllSubjects(AuthTokenStatus.token, function (err, dbResult_sub) {
 								if (err)
 								{
 									console.debug(err);
@@ -73,6 +73,10 @@ router.get('/frontPage', function(req, res) {
 											frontpagecontent: dbResult_note 
 										},
 									};
+									if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
+									{
+										serverresponse.data.authtoken = AuthTokenStatus.token;
+									}
 									res.json(serverresponse);
 								}
 							});
@@ -98,7 +102,7 @@ router.post('/getNote', function(req, res) {
 	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.getNoteByID(req.body.noteid, function(err, dbResult){
+			notesData.getNoteByID(AuthTokenStatus.token, function(err, dbResult){
 				if (err) 
 				{
 					console.debug(err);
@@ -116,6 +120,10 @@ router.post('/getNote', function(req, res) {
 						status : "success",
 						data : {dbResult},
 					};
+					if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
+					{
+						serverresponse.data.authtoken = AuthTokenStatus.token;
+					}
 					res.json(serverresponse);
 				}
 			});
@@ -133,7 +141,7 @@ router.post('/getNote', function(req, res) {
 	});
 });
 
-router.post('/addNote', function(req, res) {
+router.post('/addNew', function(req, res) {
 	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
@@ -157,7 +165,70 @@ router.post('/addNote', function(req, res) {
 							
 						},
 					};
+					if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
+					{
+						serverresponse.data.authtoken = AuthTokenStatus.token;
+					}
 					res.json(serverresponse);
+				}
+			});
+		}
+		else
+		{
+			let serverresponse = {
+				status : "fail",
+				data : {
+					type: "credentials_unknown"
+				},
+			};
+			res.json(serverresponse);
+		}
+	});
+});
+
+router.post('/remove', function(req, res) {
+	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
+		if (AuthTokenStatus.isValid == true)
+		{
+			notesData.deleteID(req.body.noteid, AuthTokenStatus.userid, function(err, dbResult_rem) {
+				if (err) 
+				{
+					console.debug(err);
+					let serverresponse = {
+						status : "error",
+						data : {
+							type : "internal_database" 
+						},
+					};
+					res.json(serverresponse);
+				} 
+				else 
+				{
+					notesData.getTilesData(AuthTokenStatus.token, function(err, dbResult_note) {
+						if (err) 
+						{
+							console.debug(err);
+							let serverresponse = {
+								status : "error",
+								data : {
+									type : "internal_database" 
+								},
+							};
+							res.json(serverresponse);
+						} 
+						else 
+						{
+							let serverresponse = {
+								status : "success",
+								data : {dbResult_note},
+							};
+							if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
+							{
+								serverresponse.data.authtoken = AuthTokenStatus.token;
+							}
+							res.json(serverresponse);
+						}
+					});
 				}
 			});
 		}

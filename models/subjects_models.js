@@ -6,6 +6,9 @@ const subjectQuery = {
 	},
 	addNew: function(user, name, period, year, callback) {
 		return db.query('insert into subjects(userID, subjectName, studyPeriod, studyYear) values(?, ?, ?, ?);', [user, name, period, year], callback);
+	}, 
+	deleteID: function(remid, userid, callback) {
+		return db.query('DELETE FROM subjects WHERE subjects.subjectID=? AND subjects.userID=?', [remid, userid], callback);
 	}
 };
 module.exports = subjectQuery;

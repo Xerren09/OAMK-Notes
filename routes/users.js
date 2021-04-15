@@ -25,6 +25,13 @@ router.post('/register', function(req, res) {
 					if (err) 
 					{
 						console.debug(err);
+						let serverresponse = {
+							status : "error",
+							data : {
+								type : "internal_database" 
+							},
+						};
+						res.json(serverresponse);
 					} 
 					else 
 					{
@@ -87,7 +94,7 @@ router.post('/login', function(req, res) {
 						let serverresponse = {
 							status : "fail",
 							data : {
-								type : "credentials_unkown"
+								type : "credentials_unknown"
 							},
 						};
 						res.json(serverresponse);
@@ -99,7 +106,7 @@ router.post('/login', function(req, res) {
 				let serverresponse = {
 					status : "fail",
 					data : {
-						type : "credentials_unkown" 
+						type : "credentials_unknown" 
 					},
 				};
 				res.json(serverresponse);
@@ -108,8 +115,10 @@ router.post('/login', function(req, res) {
 	});
 });
 
-router.get('/refreshToken', function(req, res) {
-	UserAuthorization.RefreshToken(req.headers.authtoken, function (result) {
+router.get('/refreshToken-jiwoonisbigpog', function(req, res) {
+	let serverresponse = "https://cdn.discordapp.com/attachments/703630208607191161/819778506866688000/Screenshot-2021-03-05-at-11.png"
+	res.json(serverresponse);
+	/*UserAuthorization.RefreshToken(req.headers.authtoken, function (result) {
 		if (result.isvalid == true)
 		{
 			let serverresponse = {
@@ -125,26 +134,26 @@ router.get('/refreshToken', function(req, res) {
 			let serverresponse = {
 				status : "fail",
 				data : {
-					type : "credentials_unkown"
+					type : "credentials_unknown"
 				},
 			};
 			res.json(serverresponse);
 		}	
-	});
+	});*/
 });
 
 router.get('/getUserInfo', function(req, res) {
 	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			usersData.getByToken(req.headers.authtoken, function(err, dbResult) {
+			usersData.getByToken(AuthTokenStatus.token, function(err, dbResult) {
 				if (err) 
 				{
 					console.debug(err);
 					let serverresponse = {
 						status : "error",
 						data : {
-							type : "internal_database" 
+							type : "internal_database"
 						},
 					};
 					res.json(serverresponse);
@@ -161,6 +170,10 @@ router.get('/getUserInfo', function(req, res) {
 							userID: dbResult[0].userID
 						},
 					};
+					if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
+					{
+						serverresponse.data.authtoken = AuthTokenStatus.token;
+					}
 					res.json(serverresponse);
 				}
 			});
@@ -170,7 +183,7 @@ router.get('/getUserInfo', function(req, res) {
 			let serverresponse = {
 				status : "fail",
 				data : {
-					type : "credentials_unkown" 
+					type : "credentials_unknown" 
 				},
 			};
 			res.json(serverresponse);

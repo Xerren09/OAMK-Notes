@@ -4,6 +4,10 @@ const XerrenDevHTTPComm = {
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				let requestResponseData = JSON.parse(this.responseText);
+				if (requestResponseData.data.token != undefined)
+				{
+					sessionStorage.setItem("token", requestResponseData.data.token);
+				}
 				callback(requestResponseData);
 			}
 		};
@@ -16,6 +20,10 @@ const XerrenDevHTTPComm = {
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				let requestResponseData = JSON.parse(this.responseText);
+				if (requestResponseData.data.token != undefined)
+				{
+					sessionStorage.setItem("token", requestResponseData.data.token);
+				}
             	callback(requestResponseData);
 			}
 		};
@@ -24,21 +32,6 @@ const XerrenDevHTTPComm = {
 		xhttp.setRequestHeader("authToken", authorizationToken);
 		let json = JSON.stringify(requestBody);
 		xhttp.send(json);
-	}, 
-	REFRESH: function (methodName) {
-		localAuthToken = JSON.parse(sessionStorage.getItem("token"));
-		XerrenDevHTTPComm.GET("users/refreshToken", localAuthToken, function(response) {
-			if (response.authAlive == false)
-			{
-				sessionStorage.setItem("token", response.authToken);
-				window[methodName]();
-			}
-			else if (response.authAlive == true)
-			{
-				//This should return error since if the token is valid, but the server says there is an issue, it might be a service disruption.
-				console.log("Error!");
-			}
-		});
 	}
 };
 

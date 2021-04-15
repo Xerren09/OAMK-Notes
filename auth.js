@@ -44,26 +44,19 @@ const UserAuthorization = {
         }
     },
     RefreshToken: function (requestToken, refreshCallback) {
-        UserAuthorization.VerifyToken(requestToken, function(AuthTokenStatus) {
-            if (AuthTokenStatus.isRefreshable == true)
-            {
-                let authToken = crypto.randomBytes(64).toString('hex');
-                tokenData.refreshToken(authToken, requestToken, function(err, dbResult_refresh) {
-                    //handle error
-                    refreshCallback({isvalid: true, token: authToken});
-                });
-            }
-            else
-            {
-                refreshCallback({isvalid: false});
-            }
+        let authToken = crypto.randomBytes(64).toString('hex');
+        tokenData.refreshToken(authToken, requestToken, function(err, dbResult_refresh) {
+            //handle error
+            refreshCallback({isValid: true, token: authToken});
         });
     },
     VerifyToken: function(requestToken, verifCallback) {
         tokenData.checkTokenDate(requestToken, function (err, dbResult) {
             if (dbResult.length != 0)
             {
-                if ((Date.now()+UserAuthorization.authTokenGracePeriod) >= dbResult[0].authTokenDate)
+                let gracetime = new Date(Date.now().valueOf()+UserAuthorization.authTokenGracePeriod);
+                let tokendate = new Date(dbResult[0].authTokenDate);
+                if (gracetime > tokendate > Date.now())
                 {
                     //token is invalid, can't be refreshed
                     verifCallback(
@@ -72,16 +65,16 @@ const UserAuthorization = {
                             isRefreshable: false
                         });
                 }
-                else if (Date.now() >= dbResult[0].authTokenDate)
+                else if (Date.now() >= tokendate)
                 {
                     //token is invalid, can be refreshed
-                    verifCallback(
+                    /*verifCallback(
                         {
                             isValid:false,
                             isRefreshable: true
-                        });
+                        });*/
                     //auto token refresh code
-                    /*UserAuthorization.RefreshToken(requestToken, function(AuthTokenStatus) {
+                    UserAuthorization.RefreshToken(requestToken, function(AuthTokenStatus) {
                         if (AuthTokenStatus.isValid == true)
                         {
                             verifCallback(
@@ -90,7 +83,7 @@ const UserAuthorization = {
                                     token: AuthTokenStatus.token
                                 });
                         }
-                    });*/
+                    });
                 }
                 else
                 {
@@ -99,7 +92,8 @@ const UserAuthorization = {
                         {
                             isValid:true, 
                             isRefreshable: false,
-                            userid: dbResult[0].userID
+                            userid: dbResult[0].userID,
+                            token: requestToken
                         });
                 }
             }
