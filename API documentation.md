@@ -2,6 +2,8 @@
 
 The OAMK Notes API is the main underlying system powering the OAMK Notes webapplication. This is a documentation of all the API calls and responses the system provides.
 
+The host domain of the API is at [http://xerrendev01uni.azurewebsites.net/](http://xerrendev01uni.azurewebsites.net). All url fragments detailed here can be directly appended to the url.
+
 All of the API responses follow the following format:
 
 ```json
