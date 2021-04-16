@@ -115,7 +115,7 @@ router.post('/login', function(req, res) {
 	});
 });
 
-router.get('/refreshToken-jiwoonisbigpog', function(req, res) {
+router.get('/apiconnectiontest', function(req, res) {
 	let serverresponse = "https://cdn.discordapp.com/attachments/703630208607191161/819778506866688000/Screenshot-2021-03-05-at-11.png"
 	res.json(serverresponse);
 	/*UserAuthorization.RefreshToken(req.headers.authtoken, function (result) {
