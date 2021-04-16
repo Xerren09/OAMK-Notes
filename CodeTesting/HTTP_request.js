@@ -53,3 +53,9 @@ function getUserInfo() {
 		console.log(response);
 	});
 }
+
+function getFrontPage() {
+	XerrenDevHTTPComm.GET("http://xerrendev01uni.azurewebsites.net/note/frontPage", sessionStorage.getItem("token"), function(response) {
+		console.log(response);
+	});
+}
