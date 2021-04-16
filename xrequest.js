@@ -1,4 +1,4 @@
-const XerrenDevHTTPComm = {
+const xrequest = {
 	GET: function (requestURL, authorizationToken, callback) { 
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
@@ -33,4 +33,4 @@ const XerrenDevHTTPComm = {
 		let json = JSON.stringify(requestBody);
 		xhttp.send(json);
 	}
-};
+}
