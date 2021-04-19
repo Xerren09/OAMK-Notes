@@ -1,3 +1,4 @@
+
 var toggler = document.getElementsByClassName("caret");
 var i;
 

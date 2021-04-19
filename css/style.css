@@ -1,55 +1,50 @@
 html {
-    background-color: #fefefe;
-  }
-  
-  body {
-    font-family: "PT Sans Narrow", sans-serif;
-    margin: auto;
-  }
-  
-  .header {
-    position: fixed;
-    top: 0;
-    display: flex;
-    z-index: 2;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    background-color: #ff9300;
-  }
-  
-  .headerBtn {
-    border: none;
-    cursor: pointer;
-    color: #fefefe;
-    background-color: #ff9300;
-    font-size: 20px;
-  }
-  
-  .headerBtn:hover {
-    box-shadow: inset 0 0px 0 white, inset 0 -3px 0 white;
-  }
-  
-  .headerBtn:focus {
-    box-shadow: inset 0 0px 0 white, inset 0 -3px 0 white;
-    outline: none;
-  }
-  
-  .userInfo {
-    display: flex;
-  }
-  
-  .userInfo table {
-    text-align: right;
-    color: white;
-    cursor: default;
-  }
-  
-  #rightSideContainer {
-    display: flex;
-    margin-top: 50px;
-    margin-left: 20%;
-    width: 65%;
-  }
+  background-color: #fefefe;
+}
+body {
+  font-family: "PT Sans Narrow", sans-serif;
+  margin: auto;
+}
+.header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  z-index: 2;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #ff9300;
+}
+.headerBtn {
+  border: none;
+  cursor: pointer;
+  color: #fefefe;
+  background-color: #ff9300;
+  font-size: 20px;
+}
+.headerBtn:hover {
+  box-shadow: inset 0 0px 0 white, inset 0 -3px 0 white;
+}
+.headerBtn:focus {
+  box-shadow: inset 0 0px 0 white, inset 0 -3px 0 white;
+  outline: none;
+}
+.userInfo {
+  display: flex;
+}
+.userInfo table {
+  text-align: right;
+  color: white;
+  cursor: default;
+}
+#userNameHeader {
+  font-size: 18px;
+  font-weight: 600;
+}
+#groupNameHeader {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.9;
+}
