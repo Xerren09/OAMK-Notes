@@ -28,5 +28,9 @@ const userQuery = {
 		var tokendate = (Date.now() + authTokenLifeTime);
 		return db.query('update users set authToken=?, authTokenDate=? where authToken=?', [token, tokendate, tokenOld], callback);
 	},
+
+	connectioncheck: function(callback) {
+		return db.query('SELECT * FROM users WHERE userID=1', callback);
+	},
 };
 module.exports = userQuery;

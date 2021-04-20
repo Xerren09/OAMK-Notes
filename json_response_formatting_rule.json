@@ -22,6 +22,14 @@
 //
 
 var serverresponse = {
+    status : "success",
+    data : {
+        
+    },
+};
+res.json(serverresponse);
+
+var serverresponse = {
     status : "fail",
     data : {
         type : "credentials_taken" 

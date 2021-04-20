@@ -115,31 +115,33 @@ router.post('/login', function(req, res) {
 	});
 });
 
-router.get('/apiconnectiontest', function(req, res) {
-	let serverresponse = "https://cdn.discordapp.com/attachments/703630208607191161/819778506866688000/Screenshot-2021-03-05-at-11.png"
-	res.json(serverresponse);
-	/*UserAuthorization.RefreshToken(req.headers.authtoken, function (result) {
-		if (result.isvalid == true)
+router.get('/apistatus', function(req, res) {
+	usersData.connectioncheck(function(err, dbResult){
+		if (err)
 		{
 			let serverresponse = {
-				status : "success",
+				status : "sucess",
 				data : {
-					token : result.token 
-				},
+					AppServiceStatus : "alive",
+					DatabaseServiceStatus :  "down",
+					Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw=="}
+				}
 			};
 			res.json(serverresponse);
 		}
 		else
 		{
 			let serverresponse = {
-				status : "fail",
+				status : "sucess",
 				data : {
-					type : "credentials_unknown"
-				},
+					AppServiceStatus : "alive",
+					DatabaseServiceStatus :  "alive",
+					Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw==",  content2: "https://tinyurl.com/jiwoonisbigpog"}
+				}
 			};
 			res.json(serverresponse);
-		}	
-	});*/
+		}
+	});
 });
 
 router.get('/getUserInfo', function(req, res) {
