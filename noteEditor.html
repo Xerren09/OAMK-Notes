@@ -16,7 +16,6 @@
             <img src="images/logoWhite.png">
             <a href="notes.html"><button class="headerBtn">NOTES</button></a>
             <a href="homework.html"><button class="headerBtn" a href="">HOMEWORK</button></a>
-            <a href="#"><button class="headerBtn">SCHEDULE</button></a>
             <div class="userInfo">
                 <table>
                     <tr>
@@ -45,7 +44,7 @@
                     <button id="XEditorStrikethrough" onclick="XEditorCommandPalette('s')"><i class="fa fa-strikethrough"></i></button>
                     <fieldset id="XEditorFontGroup">
                         <select id="XEditorFontSelector" onchange="XEditorCommandPalette('cf')">
-                            <option value="'PT Sans Narrow', sans-serif">PT Sans Narrow</option>
+                            <option value="PT Sans Narrow, sans-serif">PT Sans Narrow</option>
                             <option value="Arial">Arial</option>
                             <option value="Helvetica">Helvetica</option>
                             <option value="Times New Roman">Times New Roman</option>
@@ -75,12 +74,12 @@
                     <button id="XEditorAC" onclick="XEditorCommandPalette('ac')"><i class="fa fa-align-center"></i></button>
                     <button id="XEditorAR" onclick="XEditorCommandPalette('ar')"><i class="fa fa-align-right"></i></button>
                     <button id="XEditorUL" onclick="XEditorCommandPalette('ul')"><i class="fa fa-list-ul"></i></button>
-                    <button id="XEditorEX" onclick="XEditorCommandPalette('exps')">SAVE</i></button>		
+                    <button id="XEditorEX" onclick="XEditorCommandPalette('exps')">SAVE</button>		
                 </fieldset>
             </div>
             <div id=noteContainer>
                 <div id="noteTitle"><input type="text" placeholder="Add a Title"></div>
-                <div id="XEditor" contenteditable="true" data-text="Enter comment...."></div>
+                <div id="XEditor" contenteditable="true"></div>
             </div>
         </div>
     </body>

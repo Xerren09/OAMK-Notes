@@ -1,14 +1,18 @@
 .wholePageContainer {
+  margin-top: 50px;
+  width: 100%;
+}
+#XEditorContainer {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 50px;
 }
 #XEditorControls {
   position: fixed;
   display: flex;
   height: 4vh;
-  width: 50vw;
+  width: 50%;
   background-color: #f2f2f2;
   border: none;
   align-items: center;
@@ -22,6 +26,10 @@
   width: 30px;
   border: none;
   background-color: transparent;
+}
+#XEditorEX {
+  width: auto!important;
+  font-weight: bold;
 }
 #XEditorContainer button:hover {
   background-color: lightgray;
@@ -48,23 +56,30 @@
 #noteContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+}
+#noteTitle {
+  width: 50%;
 }
 #noteTitle input{
+  border: 1px solid grey;
+  border-radius: 2px;
   font-family: "PT Sans Narrow", sans-serif;
   font-size: 18px;
   font-weight: bold;
   margin-top: 60px;
-  width: 50vw;
+  width: 100%;
+  padding: 0!important;
 }
 #noteTitle input:focus{
   outline: none;
 }
 #XEditor {
   border: 1px solid grey;
+  border-radius: 2px;
   min-height: 500px;
   height: auto;
-  width: 50vw;
+  width: 50%;
   margin-top: 5px;
   margin-bottom: 40px;
 }
