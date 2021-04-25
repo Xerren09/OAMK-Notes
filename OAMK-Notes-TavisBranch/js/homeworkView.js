@@ -1,3 +1,12 @@
+let addHbutton = document.getElementById('newAssignmentBtn');
+newAssignmentBtn.onclick = () => {
+    addHbutton.style.display = 'none';
+    let newHWInject = document.getElementById('homeworkTarget');
+    newHWInject
+    addHomeworkView();
+}
+
+
 function addHomeworkView(){
     document.getElementById('homeworkTarget').innerHTML +=`
         <div class="newNoteContainerHW">
