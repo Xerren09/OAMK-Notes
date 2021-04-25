@@ -257,7 +257,8 @@ As a response the server will return the new ordered list of subjects:
 {
     "status": "success",
     "data": {
-        "2021": {
+        "subjectselectorcontent": {
+            "2021": {
                 "1": [
                     {
                         "subjectID": 19,
@@ -273,6 +274,7 @@ As a response the server will return the new ordered list of subjects:
                     }
                 ],
             }
+        }
     }
 }
 ```

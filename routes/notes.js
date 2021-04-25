@@ -9,7 +9,7 @@ router.get('/frontPage', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.getBasicUserInfo(AuthTokenStatus.token, function (err, dbResult_ui) {
+			notesData.getBasicUserInfo(AuthTokenStatus.token, function (err, userinfo) {
 				if (err)
 				{
 					console.debug(err);
@@ -48,7 +48,7 @@ router.get('/frontPage', function(req, res) {
 										}
 										subjectselectorcontent[year][period].push({subjectID: dbResult_sub[i].subjectID, subjectName: dbResult_sub[i].subjectName});
 									}
-									xres.success(res, {subjectselectorcontent, frontpagecontent}, AuthTokenStatus.refreshToken);
+									xres.success(res, {userinfo, subjectselectorcontent, frontpagecontent}, AuthTokenStatus.refreshToken);
 								}
 							});
 						}
