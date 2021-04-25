@@ -131,7 +131,7 @@ Sending a request with authentication will return a response with basic user inf
                 "userGroup": "DIN20SP"
             }
         ],
-        "sidebarcontent": {
+        "subjectselectorcontent": {
             "2021": {
                 "1": [
                     {

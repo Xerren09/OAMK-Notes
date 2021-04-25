@@ -4,11 +4,11 @@ const authTokenLifeTime = 21600000;
 
 const userQuery = {
 	getByEmail: function(email, callback) {
-		return db.query('SELECT * FROM users WHERE userEmail=?;', [email], callback);
+		return db.query('SELECT * FROM users WHERE userEmail=?', [email], callback);
 	},
 	
-	registerNewUser: function(data, auth, callback) {
-		return db.query('insert into users (userName, userEmail, userPassword, userGroup, authst, authTokenDate, authToken) values(?,?,?,?,?,?,?)', [data.userName, data.userEmail, auth.pass, data.userGroup, auth.salt, auth.tokenDate, auth.token], callback);;
+	registerAdditionalUserInfo: function(data, token, callback) {
+		return db.query('UPDATE users SET userName=?, userGroup=? WHERE authToken=?', [data.userName, data.userGroup, token], callback);;
 	},
 	
 	addToken: function(token, email, callback) {

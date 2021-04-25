@@ -1,23 +1,18 @@
 var express = require('express');
 var router = express.Router();
 const subjectData = require('../models/subjects_models');
-const UserAuthorization = require('../auth');
+const UserAuthorization = require('../xauth');
+const xres = require('../xresponse');
 
 router.post('/addNew', function(req, res) {
-	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
+	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
 			subjectData.addNew(AuthTokenStatus.userid, req.body.subjectname, req.body.subjectperiod, req.body.subjectyear, function(err, dbResult){
 				if (err) 
 				{
 					console.debug(err);
-					let serverresponse = {
-						status : "error",
-						data : {
-							type : "internal_database" 
-						},
-					};
-					res.json(serverresponse);
+					xres.error(res, "internal_database");
 				} 
 				else 
 				{
@@ -25,13 +20,7 @@ router.post('/addNew', function(req, res) {
 						if (err)
 						{
 							console.debug(err);
-							let serverresponse = {
-								status : "error",
-								data : {
-									type : "internal_database" 
-								},
-							};
-							res.json(serverresponse);
+							xres.error(res, "internal_database");
 						}
 						else
 						{
@@ -50,15 +39,7 @@ router.post('/addNew', function(req, res) {
 								}
 								subjectselectorcontent[year][period].push({subjectID: dbResult_sub[i].subjectID, subjectName: dbResult_sub[i].subjectName});
 							}
-							let serverresponse = {
-								status : "success",
-								data : {subjectselectorcontent},
-							};
-							if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
-							{
-								serverresponse.data.authtoken = AuthTokenStatus.token;
-							}
-							res.json(serverresponse);
+							xres.success(res, subjectselectorcontent, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
@@ -66,19 +47,13 @@ router.post('/addNew', function(req, res) {
 		}
 		else
 		{
-			let serverresponse = {
-				status : "fail",
-				data : {
-					type: "credentials_unknown"
-				},
-			};
-			res.json(serverresponse);
+			xres.fail(res, "credentials_unknown");
 		}
 	});
 });
 
 router.post('/remove', function(req, res) {
-	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
+	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
 			subjectData.deleteID(req.body.subjectid, AuthTokenStatus.userid, function(err, dbResult_rem) {
@@ -87,23 +62,12 @@ router.post('/remove', function(req, res) {
 					console.debug(err);
 					if (err.sqlState == 23000)
 					{
-						let serverresponse = {
-							status : "fail",
-							data : {
-								type : "key_inuse" 
-							},
-						};
-						res.json(serverresponse);
+						xres.fail(res, "key_inuse");
 					}
 					else
 					{
-						let serverresponse = {
-							status : "error",
-							data : {
-								type : "internal_database" 
-							},
-						};
-						res.json(serverresponse);
+						console.debug(err);
+						xres.error(res, "internal_database");
 					}
 				} 
 				else 
@@ -112,13 +76,7 @@ router.post('/remove', function(req, res) {
 						if (err)
 						{
 							console.debug(err);
-							let serverresponse = {
-								status : "error",
-								data : {
-									type : "internal_database" 
-								},
-							};
-							res.json(serverresponse);
+							xres.error(res, "internal_database");
 						}
 						else
 						{
@@ -137,15 +95,7 @@ router.post('/remove', function(req, res) {
 								}
 								subjectselectorcontent[year][period].push({subjectID: dbResult_sub[i].subjectID, subjectName: dbResult_sub[i].subjectName});
 							}
-							let serverresponse = {
-								status : "success",
-								data : {subjectselectorcontent},
-							};
-							if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
-							{
-								serverresponse.data.authtoken = AuthTokenStatus.token;
-							}
-							res.json(serverresponse);
+							xres.success(res, subjectselectorcontent, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
@@ -153,13 +103,7 @@ router.post('/remove', function(req, res) {
 		}
 		else
 		{
-			let serverresponse = {
-				status : "fail",
-				data : {
-					type: "credentials_unknown"
-				},
-			};
-			res.json(serverresponse);
+			xres.fail(res, "credentials_unknown");
 		}
 	});
 });

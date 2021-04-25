@@ -1,116 +1,49 @@
 var express = require('express');
 var router = express.Router();
 const usersData = require('../models/users_models');
-const UserAuthorization = require('../auth');
+const UserAuthorization = require('../xauth');
+const xres = require('../xresponse');
 
 router.post('/register', function(req, res) {
-	usersData.getByEmail(req.body.userEmail, function(err, dbResult) {
-		if (err) 
+	UserAuthorization.Register(req.body.userPassword, req.body.userEmail, function(regResult) {
+		if(regResult == "internal_database")
 		{
-			console.debug(err);
-			let serverresponse = {
-				status : "error",
-				data : {
-					type : "internal_database" 
-				},
-			};
-			res.json(serverresponse);
-		} 
-		else 
+			xres.error(res, "internal_database");
+		}
+		else if (regResult.registrationValid == true)
 		{
-			if (dbResult.length == 0)
-			{
-				var authReg = UserAuthorization.Create(req.body.userPassword);
-				usersData.registerNewUser(req.body, authReg, function(err, dbResult) {
-					if (err) 
-					{
-						console.debug(err);
-						let serverresponse = {
-							status : "error",
-							data : {
-								type : "internal_database" 
-							},
-						};
-						res.json(serverresponse);
-					} 
-					else 
-					{
-						//User successfully registered
-						let serverresponse = {
-							status : "success",
-							data : {
-								token : authReg.token
-							},
-						};
-						res.json(serverresponse);
-					}
-				});
-			}
-			else
-			{
-				//username is already taken
-				let serverresponse = {
-					status : "fail",
-					data : {
-						type : "credentials_exist" 
-					},
-				};
-				res.json(serverresponse);
-			}
+			usersData.registerAdditionalUserInfo(req.body, regResult.userToken, function(err, dbResult) {
+				if (err) 
+				{
+					console.debug(err);
+					xres.error(res, "internal_database");
+				} 
+				else 
+				{
+					xres.success(res, "no_content", regResult.userToken);
+				}
+			});
+		}
+		else
+		{
+			xres.fail(res, "credentials_exist");
 		}
 	});
 });
 
 router.post('/login', function(req, res) {
-	usersData.getByEmail(req.body.userEmail, function(err, dbResult) {
-		if (err) 
+	UserAuthorization.Login(req.body.userPassword, req.body.userEmail, function (token="0000") {
+		if (token == "internal_database")
 		{
-			console.debug(err);
-			let serverresponse = {
-				status : "error",
-				data : {
-					type : "internal_database" 
-				},
-			};
-			res.json(serverresponse);
-		} 
-		else 
+			xres.error(res, "internal_database");
+		}
+		else if (token != "0000")
 		{
-			if (dbResult.length != 0)
-			{
-				UserAuthorization.Verify(req.body.userPassword, req.body.userEmail, dbResult, function (token="0000") {
-					if (token != "0000")
-					{
-						let serverresponse = {
-							status : "sucess",
-							data : {
-								token : token
-							},
-						};
-						res.json(serverresponse);
-					}
-					else
-					{
-						let serverresponse = {
-							status : "fail",
-							data : {
-								type : "credentials_unknown"
-							},
-						};
-						res.json(serverresponse);
-					}
-				});
-			}
-			else
-			{
-				let serverresponse = {
-					status : "fail",
-					data : {
-						type : "credentials_unknown" 
-					},
-				};
-				res.json(serverresponse);
-			}
+			xres.success(res, "no_content", token);
+		}
+		else
+		{
+			xres.fail(res, "credentials_unknown");
 		}
 	});
 });
@@ -119,76 +52,48 @@ router.get('/apistatus', function(req, res) {
 	usersData.connectioncheck(function(err, dbResult){
 		if (err)
 		{
-			let serverresponse = {
-				status : "sucess",
-				data : {
-					AppServiceStatus : "alive",
-					DatabaseServiceStatus :  "down",
-					Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw=="}
-				}
-			};
-			res.json(serverresponse);
+			xres.success(res, {
+				AppServiceStatus : "alive",
+				DatabaseServiceStatus :  "down",
+				Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw=="}
+			});
 		}
 		else
 		{
-			let serverresponse = {
-				status : "sucess",
-				data : {
-					AppServiceStatus : "alive",
-					DatabaseServiceStatus :  "alive",
-					Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw==",  content2: "https://tinyurl.com/jiwoonisbigpog"}
-				}
-			};
-			res.json(serverresponse);
+			xres.success(res, {
+				AppServiceStatus : "alive",
+				DatabaseServiceStatus :  "alive",
+				Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw==",  content2: "https://tinyurl.com/jiwoonisbigpog"}
+			});
 		}
 	});
 });
 
 router.get('/getUserInfo', function(req, res) {
-	UserAuthorization.VerifyToken(req.headers.authtoken, function (AuthTokenStatus) {
+	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
 			usersData.getByToken(AuthTokenStatus.token, function(err, dbResult) {
 				if (err) 
 				{
 					console.debug(err);
-					let serverresponse = {
-						status : "error",
-						data : {
-							type : "internal_database"
-						},
-					};
-					res.json(serverresponse);
+					xres.error(res, "internal_database");
 				} 
 				else 
 				{
-					let serverresponse = {
-						status : "success",
-						data : {
-							userName : dbResult[0].userName ,
-							userEmail: dbResult[0].userEmail,
-							userGroup: dbResult[0].userGroup,
-							userPassword: "************",
-							userID: dbResult[0].userID
-						},
-					};
-					if (AuthTokenStatus.token != undefined && AuthTokenStatus.token != req.headers.authtoken)
-					{
-						serverresponse.data.authtoken = AuthTokenStatus.token;
-					}
-					res.json(serverresponse);
+					xres.success(res, {
+						userName : dbResult[0].userName ,
+						userEmail: dbResult[0].userEmail,
+						userGroup: dbResult[0].userGroup,
+						userPassword: "************",
+						userID: dbResult[0].userID
+					}, AuthTokenStatus.refreshToken);
 				}
 			});
 		}
 		else
 		{
-			let serverresponse = {
-				status : "fail",
-				data : {
-					type : "credentials_unknown" 
-				},
-			};
-			res.json(serverresponse);
+			xres.fail(res, "credentials_unknown");
 		}
 	});
 });
