@@ -30,6 +30,7 @@
 #XEditorEX {
   width: auto!important;
   font-weight: bold;
+  color: #ff9300;
 }
 #XEditorContainer button:hover {
   background-color: lightgray;

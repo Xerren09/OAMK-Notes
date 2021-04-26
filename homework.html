@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/addSubject.css">
         <script type="text/javascript" src="./js/addSubject.js"></script>
         <script type="text/javascript" src="./js/subjectTree.js"></script>
-        <script type="text/javascript" src="./js/homeworkView.js"></script>
         <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
@@ -43,7 +42,6 @@
             <div class="sideDisplayContainer">
                 <div class="sideMenuHeader">
                     <h1>Courses:</h1>
-                    <input class="searchCourse" placeholder="Search.."></input>
                 </div>
                 <div class="sideMenuContainer">
                     <ul class="sideMenuList">
@@ -208,12 +206,13 @@
             </div>
             <div class="homeworkContainer">
                 <h1>All assignments</h1>
-                <h2>Current assignments <button id="newAssignmentBtn" onclick="addHomeworkView()">New assignment +</button></h2>
+                <h2>Current assignments <button id="newAssignmentBtn">New assignment +</button></h2>
                 <div id="homeworkTarget"></div>
                 <div class="newHomework">
                     <button>Web programming</button>
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="./js/homeworkView.js"></script>
     </body>
 </html>

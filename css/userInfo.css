@@ -15,10 +15,10 @@
   width: 50%;
 }
 .userInfoHeaders{
-    font-weight: 400;
-    font-size: 22px;
-    width: 50%;
-    table-layout: fixed;
+  font-weight: 400;
+  font-size: 22px;
+  width: 50%;
+  table-layout: fixed;
 }
 .userInfoHeaders td:nth-child(1) {
   width: 20%;
@@ -30,4 +30,19 @@
   border-radius: 5px;
   border: 1px solid #8d8d8d;
   outline: none
+}
+.userInfoHeaders button:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+input{
+  outline: none;
+  width: 50%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  font-size: 14px;
+}
+#passwordChange {
+  display: flex;
+  flex-direction: column;
 }
