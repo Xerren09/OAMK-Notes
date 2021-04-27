@@ -6,7 +6,7 @@
 	<link type="text/css" rel="stylesheet" href="custom-text-editor.css"/>
 	<link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
 </head>
-<body>
+<body onload="XEditorCommandPalette('imps')">
 	<div id="XEditorContainer" >
 		<fieldset id="XEditorControls">
 			<button id="XEditorItalic" onclick="XEditorCommandPalette('i')"><i class="fa fa-italic"></i></button>
@@ -44,7 +44,7 @@
 			<button id="XEditorAC" onclick="XEditorCommandPalette('ac')"><i class="fa fa-align-center"></i></button>
 			<button id="XEditorAR" onclick="XEditorCommandPalette('ar')"><i class="fa fa-align-right"></i></button>
 			<button id="XEditorUL" onclick="XEditorCommandPalette('ul')"><i class="fa fa-list-ul"></i></button>
-			<button id="XEditorEX" onclick="XEditorCommandPalette('exps')"><i class="fa fa-file-export"></i></button>		
+			<button id="XEditorEX" onclick="XEditorCommandPalette('exps')"><i class="fa fa-file-export"></i></button>
 		</fieldset>
 		<div id="XEditor" contenteditable="true" data-text="Enter comment....">
 

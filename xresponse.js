@@ -10,7 +10,7 @@ const xresponse = {
         {
             xresponse_content.data.token = token;
         }
-        if (contents != "no_content")
+        if (contents != "no_content" || contents != undefined || contents != null)
         {
             for (const [key, value] of Object.entries(contents)) {
                 xresponse_content.data[key] = value;
