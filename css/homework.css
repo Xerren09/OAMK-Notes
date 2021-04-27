@@ -1,124 +1,131 @@
 .wholePageContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.homeworkViewContainer {
-    font-size: 30px;
-    height: 100%;
-}
-#homeworkViewer {
-    width: 100%;
-    margin-left: 0px;
-    font-size: 20px;
-    height: 100%;
-    border: none;
-    border-top: 2px solid #f18800;
-    border-bottom: none;
-    border: 2px solid #f18800;
-    overflow-y: auto;
-}
-#homeworkViewer:focus {
-    outline: none;
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .homeworkContainer {
-    margin-top: 50px;
-    margin-left: 20%;
-    width: 65%;
+  margin-top: 50px;
+  margin-left: 20%;
+  width: 65%;
 }
 .homeworkContainer h2 {
-    border-bottom: 1px solid black;
+border-bottom: 1px solid black;
 }
 #newAssignmentBtn {
-    padding: 5px;
-    margin-bottom: 5px;
-    margin-left: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    outline: none;
-    text-align: center;
-    background-color: #fefefe;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	background-color: #fefefe;
+	border: 2px solid #ccc;
+	border-radius: 5px;
 }
 #newAssignmentBtn:hover {
-    background-color: #e2e2e2;
-}
-.newHomework button {
-    font-size: 20px;
-    font-weight: bolder;
-    outline: none;
-    cursor: pointer;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #fefefe;
-    margin-right: 5px;
-    width: 100%;
-    height: 50px;
-    text-align: left;
-}
-.newHomework button:hover {
-    background-color: #e2e2e2;
+	background-color: #e2e2e2;
 }
 .newHomework {
-    display: flex;
-    flex-direction: row;
+	margin-bottom: 10px;
 }
-.newHomework h6 {
-    font-size: 15px;
-    font-weight: 300;
-    text-align: left;
+#newAssignment {
+	display: flex;
+	outline: none;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: #fefefe;
+	margin-right: 5px;
+	width: 100%;
+	min-height: 50px;
+	height: auto;
+	text-align: left;
 }
-.newHomework p {
-    font-size: 5px;
+#newAssignment:hover {
+	background-color: #e2e2e2;
 }
-.noteWrite{
-    height: 400px;
+#newAssignment:hover #homeworkRemoveBtn {
+	display: block;
+}
+.assignmentLayout {
+	width: 100%;
+}
+#courseName {
+	font-size: 20px;
+	font-weight: bold;
+	width: 20%;
+}
+#homeworkText {
+	font-size: 14px;
+	font-weight: 300;
+	width: 60%;
+}
+#homeworkDeadline {
+	font-size: 18px;
+	font-weight: bold;
+	width: 15%;
+	text-align: center;
+}
+#homeworkImportant {
+	color: red;
+	text-align: center;
+	width: 20%;
+}
+#homeworkRemoveBtn {
+	display: none;
+	background-color: #fefefe00;
+	border: none;
+	cursor: pointer;
+	align-items: flex-end;
+}
+.newHomework {
+	display: flex;
+	flex-direction: row;
 }
 .newNoteContainerHW {
-    width: 50%;
-    margin-bottom: 30px;
+	width: 50%;
+	margin-bottom: 30px;
 }
 .newNoteContainerHW button {
-    font-weight: bolder;
-    font-size: 15px;
-    outline: none;
-    cursor: pointer;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    background-color: #fefefe;
-    padding: 10px;
-    margin-top: 20px;
+	font-weight: bolder;
+	font-size: 15px;
+	outline: none;
+	cursor: pointer;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	background-color: #fefefe;
+	padding: 10px;
+	margin-top: 20px;
 }
 .newNoteContainerHW button:hover {
-    background-color: #e2e2e2;
+	background-color: #e2e2e2;
 }
 .homeworkWrite{
-    border: 2px solid #cccc;
-    border-radius: 5px;
-    margin-top: 10px;
+	border: 2px solid #cccc;
+	border-radius: 5px;
+	margin-top: 10px;
 }
 .newNoteContainerHW h2 {
-    border-bottom: 1px solid black;
-    outline: none;
+	border-bottom: 1px solid black;
+	outline: none;
 }
 .newNoteContainerHW input {
-    outline: none;
+	outline: none;
 }
 .inputFieldHW{
-    outline: none;
-    border: none;
-    width: 90%;
+	outline: none;
+	border: none;
+	width: 90%;
 }
 input[type="checkbox"] { 
-    filter: hue-rotate(160deg);
+	filter: hue-rotate(160deg);
 }
 #borderForAssignment{
-    width: 200%;
-    border-bottom: 1px solid black;
+	width: 200%;
+	border-bottom: 1px solid black;
 }
 #borderForAssignment button{
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
