@@ -13,7 +13,7 @@ function addHomeworkView(){
             <div class="homeworkWrite">
                 <input type="text" class="inputFieldHW" placeholder="Click here to add text">
             </div>
-            <h3>Deadline:<input type="date"></h3>
+            <h3>Deadline:<input class="dateInput" type="date"></h3>
             <h3>Important:<input type="checkbox"></h3>
             <div id="borderForAssignment">
                 <button class="submitNoteButton">Add assignment</button>
