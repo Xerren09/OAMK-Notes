@@ -1,3 +1,7 @@
+#pageContainer {
+    margin-top: 2%;
+}
+
 .aboutContainer {
     display: flex;
     flex-direction: column;

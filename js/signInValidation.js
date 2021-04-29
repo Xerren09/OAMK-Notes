@@ -1,3 +1,4 @@
+//function validation() {
 let correctEmail = false;
 let correctPassLength = false;
 let matchingPasswords = false;
@@ -38,6 +39,7 @@ function registerValidation() {
             logRegContainer.append(br, errorMessage);
             logRegContainer.style.height = '335px';
             matchingPasswords = false;
+            console.log(matchingPasswords);
             setTimeout(() => {
                 errorMessage.style.opacity = '1';
             }, 200);
@@ -47,6 +49,7 @@ function registerValidation() {
             errorMessage.remove();
             logRegContainer.style.height = '315px';
             matchingPasswords = true;
+            console.log(matchingPasswords);
         };
     };
 
@@ -98,33 +101,112 @@ function registerValidation() {
 };
 registerValidation();
 
-signInButton.onclick = () => {
-    signInButton.style.transform = 'scale(0.95)' ;
-    setTimeout( function() {
-        signInButton.style.transform = 'scale(1)' ;
-    }, 30 ) ;
-    errorMessage.innerHTML = wrongUserPassCombo;
-    logRegContainer.append(br, errorMessage);
-    logRegContainer.style.height = '190px';
-    setTimeout(() => {
-        errorMessage.style.opacity = '1';
-    }, 200);
-};
+function register() {
+    registerButton.disabled = true;
+    haveAccountButton.disabled = true;
+    if (correctEmail && correctPassLength && matchingPasswords && correctUserName && correctGroupCode) {
+        let payload = {
+            userPassword: document.getElementById("userPassword").value,
+            userEmail: document.getElementById("userEmail").value,
+            userName: document.getElementById("userName").value,
+            userGroup: document.getElementById("userGroupCode").value
+        }
+        xrequest.POST("http://xerrendev01uni.azurewebsites.net/users/register", "0000", payload, function(response) {	
+            console.log(response);
+            if (response.status == "success")
+            {
+                let token = response.data.token;
+                sessionStorage.setItem('token', token);
+                let payload = {
+                    "subjectname" : "General Notes",
+                    "subjectyear" : 0,
+                    "subjectperiod" : 0
+                }
+                xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
+                console.log(response);
+                window.location.href = "/notes.html";
+            })
+                //redirect!
+                //window.location.href = "/notes.html";
+            }             
+            else if (response.status == "fail" && response.data.type == "credentials_exist")
+            {
+                errorMessage.innerHTML = "The provided email address is already in use.";
+                logRegContainer.append(br, errorMessage);
+                logRegContainer.style.height = '335px';
+                setTimeout(() => {
+                    errorMessage.style.opacity = '1';
+                }, 200);
+                document.getElementById("registerButton").disabled = false;
+                document.getElementById("haveAccountButton").disabled = false;
+            }
+            else if (response.status == "error" && response.data.type == "internal_database")
+            {
+                errorMessage.innerHTML = "Internal error, please try again later.";
+                logRegContainer.append(br, errorMessage);
+                logRegContainer.style.height = '190px';
+                setTimeout(() => {
+                    errorMessage.style.opacity = '1';
+                }, 200);
+                document.getElementById("registerButton").disabled = false;
+                document.getElementById("haveAccountButton").disabled = false;
+            }
+        });
+    } else {
+        errorMessage.innerHTML = "Please check all input fields!";
+                logRegContainer.append(br, errorMessage);
+                logRegContainer.style.height = '335px';
+                setTimeout(() => {
+                    errorMessage.style.opacity = '1';
+                }, 200);
+                document.getElementById("registerButton").disabled = false;
+                document.getElementById("haveAccountButton").disabled = false;
+    }
+}
 
-registerButton.onclick = () => {
-    /*
-    errorMessage.innerHTML = notMachingRegPasswords;
-    logRegContainer.append(br, errorMessage);
-    logRegContainer.style.height = '335px';
-    setTimeout(() => {
-        errorMessage.style.opacity = '1';
-    }, 200);
-    */
-    registerButton.style.transform = 'scale(0.95)' ;
-    setTimeout( function() {
-        registerButton.style.transform = 'scale(1)' ;
-    }, 30 ) ;
-   if (correctEmail && correctPassLength && matchingPasswords && correctUserName && correctGroupCode){
-       console.log('All fields are valid');
-   };
-};
+registerButton.onclick = register;
+
+function login() {
+    document.getElementById("signInButton").disabled = true;
+    document.getElementById("newUserButton").disabled = true;
+    let payload = {
+        userPassword: document.getElementById("userPassword").value,
+        userEmail: document.getElementById("userEmail").value
+    }
+    xrequest.POST("http://xerrendev01uni.azurewebsites.net/users/login", "0000", payload, function(response) {	
+        console.log(response);
+        if (response.status == "success")
+        {
+            let token = response.data.token;
+            sessionStorage.setItem('token', token);
+            //redirect!
+            window.location.href = "/notes.html";
+        }
+        else if (response.status == "fail" && response.data.type == "credentials_unknown")
+        {
+            errorMessage.innerHTML = "You have entered an invalid username or password.";
+            logRegContainer.append(br, errorMessage);
+            logRegContainer.style.height = '190px';
+            setTimeout(() => {
+                errorMessage.style.opacity = '1';
+            }, 200);
+            document.getElementById("signInButton").disabled = false;
+            document.getElementById("newUserButton").disabled = false;
+        }
+        else if (response.status == "error" && response.data.type == "internal_database")
+        {
+            errorMessage.innerHTML = "Internal error, please try again later.";
+            logRegContainer.append(br, errorMessage);
+            logRegContainer.style.height = '190px';
+            setTimeout(() => {
+                errorMessage.style.opacity = '1';
+            }, 200);
+            document.getElementById("signInButton").disabled = false;
+            document.getElementById("newUserButton").disabled = false;
+        }
+    });
+}
+
+signInButton.onclick = login;
+//};
+//window.onload = validation;

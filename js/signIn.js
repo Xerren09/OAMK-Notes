@@ -1,3 +1,4 @@
+//function signIn() {
 let pageContainer = document.querySelector('#pageContainer');
 let signInHeaderButton = document.querySelector("#signInHeaderButton");
 let logRegContainer = document.querySelector('#logRegContainer');
@@ -92,6 +93,12 @@ newUserButton.onclick = () => {
     userPassword.value = '';
     userEmail.value = '';
     userPassword.value = '';
+    userPasswordRepeat.style.borderColor = normalBorder;
+    userPasswordRepeat.value = '';
+    userName.style.borderColor = normalBorder;
+    userName.value = '';
+    userGroupCode.style.borderColor = normalBorder;
+    userGroupCode.value = '';
     newUserButton.style.transform = 'scale(0.95)' ;
     setTimeout( function() {
         newUserButton.style.transform = 'scale(1)' ;
@@ -150,3 +157,5 @@ haveAccountButton.onclick = () => {
         }, 300);
     }, 600);
 };
+//}
+//window.onload = signIn;

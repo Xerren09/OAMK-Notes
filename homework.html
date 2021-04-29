@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="css/sideMenu.css">
         <link rel="stylesheet" href="css/homework.css">
         <link rel="stylesheet" href="css/addSubject.css">
+        <script type="text/javascript" src="./js/addSubject.js"></script>
+        <script type="text/javascript" src="./js/subjectTree.js"></script>
+        <script type="text/javascript" src="./js/homeworkView.js"></script>
         <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
@@ -15,23 +18,22 @@
     <body>
         <div class="header">
             <img src="images/logoWhite.png">
-            <button class="headerBtn">NOTES</button>
-            <button class="headerBtn">HOMEWORK</button>
-            <button class="headerBtn">SCHEDULE</button>
+            <a href="notes.html"><button class="headerBtn">NOTES</button></a>
+            <a href="homework.html"><button class="headerBtn" a href="">HOMEWORK</button></a>
             <div class="userInfo">
                 <table>
                     <tr>
-                        <td>User Name</td>
+                        <td id="userNameHeader">User Name</td>
                     </tr>
                     <tr>
-                        <td>Group Number</td>
+                        <td id="groupNameHeader">Group Number</td>
                     </tr>
                 </table>
                 <div class="dropDown">
                     <button class="dropBtn"><i class="fas fa-bars fa-2x"></i></button>
                     <div class="dropDownMenu">
-                        <a href="#">About Us</a>
-                        <a href="#">User Settings</a>
+                        <a href="about.html">About Us</a>
+                        <a href="userInfo.html">User Settings</a>
                         <a href="#">Logout</a>
                     </div>
                 </div>
@@ -213,8 +215,5 @@
                 </div>
             </div>
         </div>
-        <script src="./js/addSubject.js"></script>
-        <script src="./js/subjectTree.js"></script>
-        <script src="./js/homeworkView.js"></script>
     </body>
 </html>
