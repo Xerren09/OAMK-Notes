@@ -20,7 +20,7 @@ router.post('/register', function(req, res) {
 				} 
 				else 
 				{
-					xres.success(res, "no_content", regResult.userToken);
+					xres.success(res, null, regResult.userToken);
 				}
 			});
 		}
@@ -39,7 +39,7 @@ router.post('/login', function(req, res) {
 		}
 		else if (token != "0000")
 		{
-			xres.success(res, "no_content", token);
+			xres.success(res, null, token);
 		}
 		else
 		{

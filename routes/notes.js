@@ -67,7 +67,7 @@ router.post('/getNote', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.getNoteByID(AuthTokenStatus.token, function(err, dbResult){
+			notesData.getNoteByID(req.body.noteid, function(err, dbResult){
 				if (err) 
 				{
 					console.debug(err);
@@ -98,7 +98,7 @@ router.post('/addNew', function(req, res) {
 				} 
 				else 
 				{
-					xres.success(res, "no_content", AuthTokenStatus.refreshToken);
+					xres.success(res, null, AuthTokenStatus.refreshToken);
 				}
 			});
 		}

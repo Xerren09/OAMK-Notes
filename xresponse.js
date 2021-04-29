@@ -1,7 +1,7 @@
 //SPDX-FileCopyrightText: © 2021 Bars Margetsch <barsmargetsch@outlook.com>
 //SPDX-License-Identifier: BSD 3-Clause
 const xresponse = {
-    success: function(res, contents="no_content", token) {
+    success: function(res, contents, token) {
         let xresponse_content = {
             status: "success",
             data: {}
@@ -10,7 +10,7 @@ const xresponse = {
         {
             xresponse_content.data.token = token;
         }
-        if (contents != "no_content" || contents != undefined || contents != null)
+        if (contents != null)
         {
             for (const [key, value] of Object.entries(contents)) {
                 xresponse_content.data[key] = value;
