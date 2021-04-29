@@ -13,16 +13,6 @@
     flex-direction: row;
     align-items: center;
 }
-.searchCourse {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 18px;
-    height: 20px;
-    width: 70%;
-    margin-left: 2px;
-}
-.searchCourse:focus {
-    outline: none;
-}
 .sideMenuHeader h1 {
     color: black;
     font-size: 22px;

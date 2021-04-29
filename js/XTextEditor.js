@@ -1,4 +1,6 @@
-function XEditorCommandPalette(cmdID) {
+const xresponse = require("../xresponse");
+
+function XEditorCommandPalette(cmdID, textcontent=undefined) {
     switch(cmdID)
     {
         case "i":   //italic
@@ -40,7 +42,17 @@ function XEditorCommandPalette(cmdID) {
         case "exps": //export to string
             let editorArea = document.getElementById("XEditor");
             let htmlstr = editorArea.innerHTML.toString();
-            console.debug(htmlstr);
+            xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/addNew", sessionStorage.getItem("token"), htmlstr, function(response){
+                //error handling here!
+            });
+            break;
+        case "imps": //import from string
+        textcontent = "<div><b>asd so this is also bold.</b> this is no longer bold.</div><div>&lt;script&gt; let randomtext=\"011101\"; console.log(randomtext); &lt;/script&gt;<br></div>";
+            xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/getNote", sessionStorage.getItem("token"), {noteid: sessionStorage.getItem("redirectnoteid")}, function(response){
+                let editorArea = document.getElementById("XEditor");    
+                editorArea.innerHTML = textcontent;
+                //error handling here!
+            }); 
             break;
         default:    //escape for invalid code
             break;
