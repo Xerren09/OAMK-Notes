@@ -8,7 +8,7 @@ router.post('/addNew', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			subjectData.addNew(AuthTokenStatus.userid, req.body.subjectname, req.body.subjectperiod, req.body.subjectyear, function(err, dbResult){
+			subjectData.addNew(AuthTokenStatus.userid, req.body.subjectName, req.body.subjectPeriod, req.body.subjectYear, function(err, dbResult){
 				if (err) 
 				{
 					console.debug(err);
@@ -56,7 +56,7 @@ router.post('/remove', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			subjectData.deleteID(req.body.subjectid, AuthTokenStatus.userid, function(err, dbResult_rem) {
+			subjectData.deleteID(req.body.subjectID, AuthTokenStatus.userid, function(err, dbResult_rem) {
 				if (err) 
 				{
 					console.debug(err);

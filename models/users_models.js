@@ -32,5 +32,10 @@ const userQuery = {
 	connectioncheck: function(callback) {
 		return db.query('SELECT * FROM users WHERE userID=1', callback);
 	},
+
+	updateGroup: function(userGroup, userID, callback) {
+		return db.query('UPDATE users SET users.userGroup=? WHERE users.userID=?', [userGroup, userID], callback);
+	},
+	//;
 };
 module.exports = userQuery;

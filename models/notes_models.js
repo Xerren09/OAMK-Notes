@@ -21,6 +21,9 @@ const notesQuery = {
 	}, 
 	deleteID: function(remid, userid, callback){
 		return db.query('DELETE FROM notes WHERE notes.noteID=? AND notes.userID=?', [remid, userid], callback);
+	},
+	updateNote: function(noteid, notetext, callback){
+		return db.query('UPDATE notes SET notes.noteText=? WHERE notes.noteID=?', [notetext, noteid], callback);
 	}
 };
 module.exports = notesQuery;

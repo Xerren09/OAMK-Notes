@@ -8,7 +8,7 @@ const homeworkQuery = {
 		return db.query('DELETE FROM homeworks WHERE homeworks.homeworkID=? AND homeworks.userID=?', [remid, userid], callback);
 	},
 	addNew: function(body, callback){
-		return db.query('INSERT INTO homeworks(subjectID, userID, homeworkName, homeworkDate) values(?, ?, ?, ?);', [body.subjectid, body.userid, body.homeworkname, body.homeworkdate], callback);
+		return db.query('INSERT INTO homeworks(subjectID, userID, homeworkName, homeworkDate) values(?, ?, ?, ?);', [body.subjectID, body.userID, body.homeworkName, body.homeworkDate], callback);
 	}
 };
 module.exports = homeworkQuery;

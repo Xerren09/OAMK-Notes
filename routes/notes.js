@@ -67,7 +67,7 @@ router.post('/getNote', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.getNoteByID(req.body.noteid, function(err, dbResult){
+			notesData.getNoteByID(req.body.noteID, function(err, noteData){
 				if (err) 
 				{
 					console.debug(err);
@@ -75,7 +75,7 @@ router.post('/getNote', function(req, res) {
 				} 
 				else 
 				{
-					xres.success(res, dbResult, AuthTokenStatus.refreshToken);
+					xres.success(res, noteData, AuthTokenStatus.refreshToken);
 				}
 			});
 		}
@@ -90,7 +90,30 @@ router.post('/addNew', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.addNewNote(req.body.subjectid, AuthTokenStatus.userid, req.body.notename, req.body.notedate, req.body.noteimportance, req.body.notetext, function(err, dbResult){
+			notesData.addNewNote(req.body.subjectID, AuthTokenStatus.userID, req.body.noteName, req.body.noteDate, req.body.noteImportance, req.body.noteText, function(err, dbResult){
+				if (err) 
+				{
+					console.debug(err);
+					xres.error(res, "internal_database");
+				} 
+				else 
+				{
+					xres.success(res, null, AuthTokenStatus.refreshToken);
+				}
+			});
+		}
+		else
+		{
+			xres.fail(res, "credentials_unknown");
+		}
+	});
+});
+
+router.post('/updateNote', function(req, res) {
+	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
+		if (AuthTokenStatus.isValid == true)
+		{
+			notesData.updateNote(req.body.noteID, req.body.noteText, function(err, dbResult){
 				if (err) 
 				{
 					console.debug(err);
@@ -113,7 +136,7 @@ router.post('/remove', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.deleteID(req.body.noteid, AuthTokenStatus.userid, function(err, dbResult_rem) {
+			notesData.deleteID(req.body.noteID, AuthTokenStatus.userid, function(err, dbResult_rem) {
 				if (err) 
 				{
 					console.debug(err);
@@ -121,7 +144,7 @@ router.post('/remove', function(req, res) {
 				} 
 				else 
 				{
-					notesData.getTilesData(AuthTokenStatus.token, function(err, dbResult_note) {
+					notesData.getTilesData(AuthTokenStatus.token, function(err, frontpagecontent) {
 						if (err) 
 						{
 							console.debug(err);
@@ -129,7 +152,7 @@ router.post('/remove', function(req, res) {
 						} 
 						else 
 						{
-							xres.success(res, dbResult_note, AuthTokenStatus.refreshToken);
+							xres.success(res, frontpagecontent, AuthTokenStatus.refreshToken);
 						}
 					});
 				}

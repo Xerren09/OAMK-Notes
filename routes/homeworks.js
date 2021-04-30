@@ -8,7 +8,7 @@ router.get('/getAll', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			homeworkData.getAll(AuthTokenStatus.token, function(err, dbResult) {
+			homeworkData.getAll(AuthTokenStatus.token, function(err, assignmentlist) {
 				if (err) 
 				{
 					console.debug(err);
@@ -16,7 +16,7 @@ router.get('/getAll', function(req, res) {
 				} 
 				else 
 				{
-					xres.success(res, dbResult, AuthTokenStatus.refreshToken);
+					xres.success(res, assignmentlist, AuthTokenStatus.refreshToken);
 				}
 			});
 		}
@@ -31,7 +31,7 @@ router.post('/remove', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			homeworkData.deleteID(req.body.homeworkid, AuthTokenStatus.userid, function(err, dbResult_rem) {
+			homeworkData.deleteID(req.body.homeworkID, AuthTokenStatus.userid, function(err, dbResult_rem) {
 				if (err) 
 				{
 					console.debug(err);
@@ -39,7 +39,7 @@ router.post('/remove', function(req, res) {
 				} 
 				else 
 				{
-					homeworkData.getAll(AuthTokenStatus.token, function(err, dbResult) {
+					homeworkData.getAll(AuthTokenStatus.token, function(err, assignmentlist) {
 						if (err) 
 						{
 							console.debug(err);
@@ -47,7 +47,7 @@ router.post('/remove', function(req, res) {
 						} 
 						else 
 						{
-							xres.success(res, dbResult, AuthTokenStatus.refreshToken);
+							xres.success(res, assignmentlist, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
@@ -72,7 +72,7 @@ router.post('/addNew', function(req, res) {
 				} 
 				else 
 				{
-					homeworkData.getAll(AuthTokenStatus.token, function(err, dbResult) {
+					homeworkData.getAll(AuthTokenStatus.token, function(err, assignmentlist) {
 						if (err) 
 						{
 							console.debug(err);
@@ -80,7 +80,7 @@ router.post('/addNew', function(req, res) {
 						} 
 						else 
 						{
-							xres.success(res, dbResult, AuthTokenStatus.refreshToken);
+							xres.success(res, assignmentlist, AuthTokenStatus.refreshToken);
 						}
 					});
 				}

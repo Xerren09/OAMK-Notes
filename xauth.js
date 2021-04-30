@@ -22,7 +22,10 @@ const xauth_queries = {
     addToken: function(token, email, callback) {
         var tokendate = (Date.now() + xauth_hidden.authTokenLifeTime);
         return db.query('UPDATE users SET authToken=?, authTokenDate=? WHERE userEmail=?', [token, tokendate, email], callback);
-    }
+    },
+    updateUserCredentials: function(data, callback) {
+        return db.query('UPDATE users SET userPassword=?, authst=?, authTokenDate=?, authToken=? WHERE userEmail=?', [data.userPassword, data.userSalt, data.userTokenLifeTime, data.userToken, data.userEmail], callback);
+    },
 };
 const xauth_hidden = {
     authSaltLength: 32,
@@ -73,7 +76,6 @@ const xauth_exposed = {
         xauth_queries.searchForEmail(userIdentifier, function(err, dbResult){
             if (err)
             {
-                //Handle error.
                 console.debug(err);
                 registerCallback("internal_database");
             }
@@ -176,6 +178,7 @@ const xauth_exposed = {
                         {
                             verifCallback({
                                     isValid:true,
+                                    userid: dbResult[0].userID,
                                     token: AuthTokenStatus.token,
                                     refreshToken: AuthTokenStatus.token
                                 });
@@ -199,5 +202,49 @@ const xauth_exposed = {
             }
         });
     },
+    Update: function(userPassword, userIdentifier, updateCallback) {
+        xauth_queries.searchForEmail(userIdentifier, function(err, dbResult){
+            if (err)
+            {
+                console.debug(err);
+                updateCallback("internal_database");
+            }
+            else if (dbResult.length == 0)
+            {
+                //User does not exist.
+                updateCallback({updateValid: false});
+            }
+            else
+            {
+                //User exists.
+                let userPassword_RAW = userPassword.toString().trim();
+                xauth_hidden.GenerateSalt(function(salt){
+                    let userPasswordSalted_RAW = (userPassword_RAW + salt);
+                    let userPasswordSalted_SHA = crypto.createHash('sha256').update(userPasswordSalted_RAW).digest('hex');
+                    xauth_hidden.GenerateToken(function(token){
+                        xauth_queries.updateUserCredentials({
+                            userEmail: userIdentifier,
+                            userPassword: userPasswordSalted_SHA,
+                            userSalt: salt,
+                            userToken: token,
+                            userTokenLifeTime: (Date.now() + xauth_hidden.authTokenLifeTime)
+                        }, function(err, regResult){
+                            if (err)
+                            {
+                                updateCallback("internal_database");
+                            }
+                            else
+                            {
+                                updateCallback({
+                                    updateValid: true,
+                                    userToken: token
+                                });
+                            }
+                        });
+                    });	
+                });
+            }
+        });
+    }
 };
 module.exports = xauth_exposed;

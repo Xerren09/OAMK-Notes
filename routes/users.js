@@ -98,4 +98,53 @@ router.get('/getUserInfo', function(req, res) {
 	});
 });
 
+router.post('/updateGroupCode', function(req, res) {
+	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
+		if (AuthTokenStatus.isValid == true)
+		{
+			usersData.updateGroup(req.body.userGroup, AuthTokenStatus.userid, function(err, dbResult) {
+				if (err) 
+				{
+					console.debug(err);
+					xres.error(res, "internal_database");
+				} 
+				else 
+				{
+					xres.success(res, {userGroup: req.body.usergroup}, AuthTokenStatus.refreshToken);
+				}
+			});
+		}
+		else
+		{
+			xres.fail(res, "credentials_unknown");
+		}
+	});
+});
+
+router.post('/updatePassword', function(req, res) {
+	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
+		if (AuthTokenStatus.isValid == true)
+		{
+			UserAuthorization.Update(req.body.userPassword, req.body.userEmail, function (updateResult) {
+				if(updateResult == "internal_database")
+				{
+					xres.error(res, "internal_database");
+				}
+				else if (updateResult.updateValid == true)
+				{
+					xres.success(res, null, updateResult.userToken);
+				}
+				else
+				{
+					xres.fail(res, "credentials_unknown");
+				}
+			});
+		}
+		else
+		{
+			xres.fail(res, "credentials_unknown");
+		}
+	});
+});
+
 module.exports = router;
