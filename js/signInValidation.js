@@ -124,7 +124,7 @@ function register() {
                 }
                 xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
                 console.log(response);
-                window.location.href = "/notes.html";
+                window.location.href = "./notes.html";
             })
                 //redirect!
                 //window.location.href = "/notes.html";
@@ -180,7 +180,7 @@ function login() {
             let token = response.data.token;
             sessionStorage.setItem('token', token);
             //redirect!
-            window.location.href = "/notes.html";
+            window.location.href = "./notes.html";
         }
         else if (response.status == "fail" && response.data.type == "credentials_unknown")
         {

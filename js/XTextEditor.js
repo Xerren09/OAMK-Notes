@@ -40,7 +40,22 @@ function XEditorCommandPalette(cmdID) {
         case "exps": //export to string
             let editorArea = document.getElementById("XEditor");
             let htmlstr = editorArea.innerHTML.toString();
-            console.debug(htmlstr);
+            let noteTitle = document.querySelector('#addTitle').value.toString();
+            let timestamp = Date.now();
+            console.log(htmlstr);
+            console.log(noteTitle);
+            let payload = {
+                "subjectid": sessionStorage.getItem('subjectId'),
+                "notename": noteTitle,
+                "notedate": timestamp,
+                "noteimportance": 0,
+                "notetext": htmlstr
+            };
+            xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/addNew", sessionStorage.getItem("token"), payload, function(response){
+                //error handling here!
+                console.log(response);
+                window.location.href = './notes.html';
+            });
             break;
         default:    //escape for invalid code
             break;

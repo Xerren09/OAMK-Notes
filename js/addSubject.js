@@ -58,6 +58,8 @@ function addNewSubject() {
         let authToken = sessionStorage.getItem('token');
         xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", authToken, payload, function(response) {
             console.log(response);
+            //let subjectSelector = response.data;
+            //subjectTreeBuild(subjectSelector);
             let yearPeriod = document.querySelector('#year'+subjectYear+'Period'+subjectPeriod);
             let li = document.createElement('li');
             let subjectButton = document.createElement('button');
@@ -73,6 +75,9 @@ function addNewSubject() {
             let courseName = document.querySelector('#courseName');
             subjectButton.onclick = () => {
                 courseName.innerHTML = subjectName;
+                displaySubjectNotes(subjectButton.id);
+                sessionStorage.setItem('subjectName', subjectName);
+                sessionStorage.setItem('subjectId', subjectButton.id);
               };
             addSubjectPlusButton.style.transform = 'rotate(0deg)' ;
             addSubjectContainer.classList.add('hidden');
