@@ -171,41 +171,29 @@
                 </div>
             </div>
             <div class="newNoteContainer">
-                <h1 id="courseName">General Notes</h1>
+                <div class="courseHeader">
+                    <h1 id="courseName">General Notes</h1>
+                    <button id="removeCourse">Remove Course</button>
+                </div>
                 <h2>Notes</h2>
                 <div class="noteHolder">
-                    <div class="addNewNote">
-                        <button>New Note<br>+</button>
-                    </div>
+                    <button id="addNewNote">New Note<br>+</button>
                     <div class="newNote">
-                        <button>
-                            <table>
-                                <tr class="noteTitle">
-                                    <h1>Note Title</h1>
-                                </tr>
-                                <tr class="noteText">
-                                    <p>Preview text of the note, blah blah blah blah blah blah</p>
-                                </tr>
-                                <tr class="noteDate">
-                                    <p>12.4.2021 23:49</p>
-                                </tr>
-                            </table>
-                        </button>
-                    </div>
-                    <div class="newNote">
-                        <button>
-                            <table>
-                                <tr class="noteTitle">
-                                    <h1>Note Title</h1>
-                                </tr>
-                                <tr class="noteText">
-                                    <p>Preview text of the note, blah blah blah blah blah blah</p>
-                                </tr>
-                                <tr class="noteDate">
-                                    <p>12.4.2021 23:49</p>
-                                </tr>
-                            </table>
-                        </button>
+                        <table>
+                            <tr class="noteTitle">
+                                <h1>Note Title</h1>
+                            </tr>
+                            <tr class="noteText">
+                                <p>Preview text of the note, blah blah blah blah blah blah</p>
+                            </tr>
+                            <tr class="noteDate">
+                                <p>12.4.2021 23:49</p>
+                            </tr>
+                            <tr class="noteBtn">
+                                <button id="openNote"><i class="far fa-edit fa-2x"></i></button>
+                                <button id="removeNote"><i class="fas fa-trash fa-2x"></i></button>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

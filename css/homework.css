@@ -18,11 +18,11 @@
 	margin-bottom: 10px;
 }
 #newAssignmentBtn {
-  	padding: 5px;
+	font-family: "PT Sans Narrow", sans-serif;
+	font-size: 18px;
   	margin-bottom: 5px;
   	margin-left: 15px;
 	font-weight: 600;
-	cursor: pointer;
 	outline: none;
 	text-align: center;
 	background-color: #fefefe;
@@ -32,6 +32,7 @@
 }
 #newAssignmentBtn:hover {
 	background-color: #e2e2e2;
+	cursor: pointer;
 }
 .newHomework {
 	margin-bottom: 10px;
