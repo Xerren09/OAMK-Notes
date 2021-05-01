@@ -178,7 +178,7 @@ const xauth_exposed = {
                         {
                             verifCallback({
                                     isValid:true,
-                                    userid: dbResult[0].userID,
+                                    userID: dbResult[0].userID,
                                     token: AuthTokenStatus.token,
                                     refreshToken: AuthTokenStatus.token
                                 });
@@ -190,7 +190,7 @@ const xauth_exposed = {
                     //Token is valid.
                     verifCallback({
                             isValid:true,
-                            userid: dbResult[0].userID,
+                            userID: dbResult[0].userID,
                             token: requestToken
                         });
                 }
