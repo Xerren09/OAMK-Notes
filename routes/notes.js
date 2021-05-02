@@ -152,7 +152,7 @@ router.post('/remove', function(req, res) {
 						} 
 						else 
 						{
-							xres.success(res, frontpagecontent, AuthTokenStatus.refreshToken);
+							xres.success(res, {frontpagecontent}, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
