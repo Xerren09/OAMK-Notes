@@ -379,7 +379,6 @@ Adding a new assignment can be done by sending the following body:
 ```json
 {
     "subjectID": 1,
-    "userID": 1,
     "homeworkName": "Testname",
     "homeworkDate": 64284,
 }

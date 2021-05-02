@@ -136,7 +136,7 @@ router.post('/remove', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.deleteID(req.body.noteID, AuthTokenStatus.userid, function(err, dbResult_rem) {
+			notesData.deleteID(req.body.noteID, AuthTokenStatus.userID, function(err, dbResult_rem) {
 				if (err) 
 				{
 					console.debug(err);

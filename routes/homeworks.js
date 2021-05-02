@@ -31,7 +31,7 @@ router.post('/remove', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			homeworkData.deleteID(req.body.homeworkID, AuthTokenStatus.userid, function(err, dbResult_rem) {
+			homeworkData.deleteID(req.body.homeworkID, AuthTokenStatus.userID, function(err, dbResult_rem) {
 				if (err) 
 				{
 					console.debug(err);
@@ -64,7 +64,7 @@ router.post('/addNew', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			homeworkData.addNew(req.body, function(err, dbResult_new) {
+			homeworkData.addNew(req.body.subjectID, AuthTokenStatus.userID, req.body.homeworkName, req.body.homeworkDate, function(err, dbResult_new) {
 				if (err) 
 				{
 					console.debug(err);

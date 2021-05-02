@@ -102,7 +102,7 @@ router.post('/updateGroupCode', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			usersData.updateGroup(req.body.userGroup, AuthTokenStatus.userid, function(err, dbResult) {
+			usersData.updateGroup(req.body.userGroup, AuthTokenStatus.userID, function(err, dbResult) {
 				if (err) 
 				{
 					console.debug(err);
