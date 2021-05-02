@@ -65,12 +65,15 @@
 #courseNameHolder {
   	margin-top: 50px;
   	width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 #noteTitle input{
 	border: 1px solid grey;
 	border-radius: 2px;
 	font-family: "PT Sans Narrow", sans-serif;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	width: 100%;
 	padding: 0!important;
@@ -89,4 +92,7 @@
 }
 #XEditor:focus {
   	outline: none;
+}
+input[type="checkbox"] { 
+	filter: hue-rotate(160deg);
 }
