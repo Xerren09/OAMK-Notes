@@ -1,6 +1,7 @@
 let token = sessionStorage.getItem('token');
 xrequest.GET("http://xerrendev01uni.azurewebsites.net/note/frontPage", token, function(response) {
     if (response.status == 'success') {
+        console.log(response);
         let userInfo = response.data.userinfo;
         sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
         userInfoo = userInfo;
@@ -9,8 +10,8 @@ xrequest.GET("http://xerrendev01uni.azurewebsites.net/note/frontPage", token, fu
         let frontPageContent = response.data.frontpagecontent;
         sessionStorage.setItem('frontPageContent', JSON.stringify(frontPageContent));
         sessionStorage.setItem('generalNotes', JSON.stringify(subjectSelector[0][0][0]));
-        console.log(subjectSelector);
-        console.log(frontPageContent);
+        //console.log(subjectSelector);
+        //console.log(frontPageContent);
         let userNameHeader = document.querySelector('#userNameHeader');
         let groupNameHeader = document.querySelector('#groupNameHeader');
         userNameHeader.innerHTML = userInfo[0].userName;

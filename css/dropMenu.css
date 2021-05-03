@@ -2,7 +2,6 @@
     position: relative;
     display: inline-block;
 }
-
 .dropBtn {
     background: none;
     border: none;
@@ -10,11 +9,9 @@
     height: 50px;
     color: #fefefe;
 }
-
 .dropBtn:focus {
     outline: none;
 }
-
 .dropDownMenu {
     display: none;
     position: absolute;
@@ -24,7 +21,6 @@
     z-index: 1;
     right: 0;
 }
-
 .dropDownMenu a {
     color: white;
     padding: 12px 16px;
@@ -32,15 +28,12 @@
     display: block;
     font-size: 20px;
 }
-
 .dropDownMenu a:hover {
     outline: 1px solid black;
 }
-
 .dropDown:hover .dropDownMenu {
     display: block;
 }
-
 .dropDown:focus-within .dropDownMenu {
     display: block;
 }

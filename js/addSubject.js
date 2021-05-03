@@ -51,9 +51,9 @@ function addNewSubject() {
     }, 50 ) ;
     if (subjectName && subjectYear && subjectPeriod) {
         let payload = {
-            "subjectname": subjectName,
-            "subjectyear": subjectYear,
-            "subjectperiod": subjectPeriod
+            "subjectName": subjectName,
+            "subjectYear": subjectYear,
+            "subjectPeriod": subjectPeriod
         }
         let authToken = sessionStorage.getItem('token');
         xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", authToken, payload, function(response) {

@@ -12,6 +12,23 @@ function subjectCaret() {
 
 subjectCaret();
 
+let courseHeader = document.querySelector('.courseHeader');
+let removeCourse = document.createElement('button');
+removeCourse.id = 'removeCourse';
+removeCourse.innerHTML = 'Remove Course';
+removeCourse.onclick = () => {
+    deleteSubject();
+};
+
+function deleteSubject() {
+    let payload = {
+        "subjectID": sessionStorage.getItem('subjectId')
+    };
+    xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/remove", token, payload, function(response){
+        console.log(response);
+    });
+};
+
 function generalNotes() {
     let genralNotesButton = document.querySelector('.generalNotes');
     let generalNotesObject = JSON.parse(sessionStorage.getItem('generalNotes'));
@@ -20,9 +37,11 @@ function generalNotes() {
     sessionStorage.setItem('subjectId', genralNotesButton.id);
     let courseName = document.querySelector('#courseName');
     displaySubjectNotes(genralNotesButton.id);
+    removeCourse.remove();
     genralNotesButton.onclick = () => {
         courseName.innerHTML = generalNotesObject.subjectName;
         displaySubjectNotes(genralNotesButton.id);
+        removeCourse.remove();
         sessionStorage.setItem('subjectName', generalNotesObject.subjectName);
         sessionStorage.setItem('subjectId', genralNotesButton.id);
     };
@@ -31,24 +50,28 @@ function generalNotes() {
 function subjectTreeBuild(subjects) {
     for (let i = 0; i < 4; i ++) {
         let year = subjects[i+1];
-        for(let l = 0; l < 4; l ++) {
-            let period = year[l+1];
-            for(let k = 0; k < period.length; k ++){
-                let subject = period[k];
-                let yearPeriod = document.querySelector('#year'+(i+1)+'Period'+(l+1));
-                let li = document.createElement('li');
-                let subjectButton = document.createElement('button');
-                subjectButton.innerHTML = subject.subjectName;
-                subjectButton.id = subject.subjectID;
-                li.append(subjectButton);
-                yearPeriod.append(li);
-                let courseName = document.querySelector('#courseName');
-                subjectButton.onclick = () => {
-                  courseName.innerHTML = subject.subjectName;
-                  displaySubjectNotes(subjectButton.id);
-                  sessionStorage.setItem('subjectId', subjectButton.id);
-                  sessionStorage.setItem('subjectName', subject.subjectName);
-                }
+        if(year) {
+            for(let l = 0; l < 4; l ++) {
+                let period = year[l+1];
+                if(period) {
+                    for(let k = 0; k < period.length; k ++){
+                        let subject = period[k];
+                        let yearPeriod = document.querySelector('#year'+(i+1)+'Period'+(l+1));
+                        let li = document.createElement('li');
+                        let subjectButton = document.createElement('button');
+                        subjectButton.innerHTML = subject.subjectName;
+                        subjectButton.id = subject.subjectID;
+                        li.append(subjectButton);
+                        yearPeriod.append(li);
+                        subjectButton.onclick = () => {
+                            courseHeader.append(removeCourse);
+                            courseName.innerHTML = subject.subjectName;
+                            displaySubjectNotes(subjectButton.id);
+                            sessionStorage.setItem('subjectId', subjectButton.id);
+                            sessionStorage.setItem('subjectName', subject.subjectName);
+                        };
+                    };
+                };
             };
         };
     };
@@ -57,25 +80,24 @@ function subjectTreeBuild(subjects) {
 function displaySubjectNotes(subjectId) {
   let frontPageContent = JSON.parse(sessionStorage.getItem('frontPageContent'));
   let noteHolder = document.querySelector('.noteHolder');
-  console.log(frontPageContent);
+  //console.log(frontPageContent);
   noteHolder.innerHTML = '';
-  let addNoteDiv = document.createElement('div');
-  addNoteDiv.classList.add('addNewNote');
   let addNoteButton = document.createElement('button');
+  addNoteButton.id = 'addNewNote';
   addNoteButton.innerHTML = 'New Note<br>+';
   addNoteButton.onclick = () => {
       sessionStorage.setItem('noteText', '');
       sessionStorage.setItem('noteName', '');
+      sessionStorage.setItem('noteId', 'newNote');
       window.location.href = './noteEditor.html';
   }
-  addNoteDiv.append(addNoteButton);
-  noteHolder.append(addNoteDiv);
+  noteHolder.append(addNoteButton);
   for (let i = 0; i < frontPageContent.length; i ++) {
       if(frontPageContent[i].subjectID == subjectId) {
           let noteId = frontPageContent[i].noteID;
           let noteDiv = document.createElement('div');
           noteDiv.classList.add('newNote');
-          let noteButton = document.createElement('button');
+          //let noteButton = document.createElement('button');
           let noteTable = document.createElement('table');
           let noteTitle = document.createElement('tr');
           noteTitle.classList.add('noteTitle');
@@ -99,22 +121,56 @@ function displaySubjectNotes(subjectId) {
                       ":"+date.getMinutes()+
                       ":"+date.getSeconds();
           noteDate.append(p2);
-          noteTable.append(noteTitle, noteText, noteDate);
-          noteButton.append(noteTable);
-          noteDiv.append(noteButton);
+          let noteBtn = document.createElement('tr');
+          noteBtn.classList.add('noteBtn');
+          let openNote = document.createElement('button');
+          openNote.classList.add('openNote');
+          openNote.innerHTML = '<i class="far fa-edit fa-2x"></i>';
+          let openNoteRemove = document.createElement('button');
+          openNoteRemove.classList.add('removeNote');
+          openNoteRemove.innerHTML = '<i class="fas fa-trash fa-2x"></i>';
+          noteBtn.append(openNote, openNoteRemove);
+          noteTable.append(noteTitle, noteText, noteDate, noteBtn);
+          //noteButton.append(noteTable);
+          noteDiv.append(noteTable);
           noteHolder.append(noteDiv);
-          noteButton.onclick = () => {
-              let payload = {
-                  "noteid" : noteId
-              }
-              xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/getNote", token, payload, function(response){
-                  console.log(response);
-                  sessionStorage.setItem('noteText', response.data[0].noteText);
-                  sessionStorage.setItem('noteName', response.data[0].noteName);
-                  window.location.href = './noteEditor.html';
-              });
+          if(frontPageContent[i].noteImportance == 1) {
+              noteDiv.classList.add('newNoteImportant');
           }
+          openNote.onclick = () => {
+              noteOpen(noteId);
+          };
+          openNoteRemove.onclick = () => {
+              noteRemove(noteId);
+          };
       };
   };
 };
 
+function noteOpen(noteId) {
+    let payload = {
+        "noteID" : noteId
+    }
+    xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/getNote", token, payload, function(response){
+        console.log(response);
+        sessionStorage.setItem('noteText', response.data[0].noteText);
+        sessionStorage.setItem('noteName', response.data[0].noteName);
+        sessionStorage.setItem('noteId', response.data[0].noteID);
+        window.location.href = './noteEditor.html';
+    });
+};
+
+function noteRemove(noteId) {
+    let userConfirm = confirm('Are you sure you want to delete this note?');
+    if (userConfirm) {
+        console.log('ok');
+        let payload = {
+            "noteID": noteId
+        };
+        xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/remove", token, payload, function(response){
+            console.log(response);
+            sessionStorage.setItem('frontPageContent', JSON.stringify(response.data.frontpagecontent));
+            displaySubjectNotes(sessionStorage.getItem('subjectId'));
+        });
+    };
+};

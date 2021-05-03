@@ -18,16 +18,16 @@
             <div class="userInfo">
                 <table>
                     <tr>
-                        <td>User Name</td>
+                        <td id="userNameHeader"></td>
                     </tr>
                     <tr>
-                        <td>Group Number</td>
+                        <td id="groupNameHeader"></td>
                     </tr>
                 </table>
                 <div class="dropDown">
                     <button class="dropBtn"><i class="fas fa-bars fa-2x"></i></button>
                     <div class="dropDownMenu">
-                        <a href="#">About Us</a>
+                        <a href="about.html">About Us</a>
                         <a href="#">Logout</a>
                     </div>
                 </div>
@@ -39,28 +39,25 @@
                 <table class="userInfoHeaders">
                     <tr>
                         <td>E-mail address:</td>
-                        <td>kaiora@fakemail.com</td>
+                        <td id="userEmail"></td>
                     </tr>
                     <tr>
                         <td>Username:</td>
-                        <td>kaiora199</td>
+                        <td id="userName"></td>
                     </tr>
                     <tr>
                         <td>Group code:</td>
-                        <td>Din20sp</td>
-                        <td><button>Change Group Code</button></td>
+                        <td id="groupCodeTarget"></td>
+                        <td><button id="groupButton">Change Group Code</button></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td>*************</td>
-                        <td><button>Change Password</button></td>
-                    </tr>
-                    <tr>
-                        <td>Internal ID:</td>
-                        <td>132</td>
+                        <td id="userPasswordTarget"></td>
+                        <td><button id="passwordButton">Change Password</button></td>
                     </tr>
                 </table>
             </div>    
         </div>
+        <script type="text/javascript" src="./js/userPage.js"></script>
     </body>
 </html>

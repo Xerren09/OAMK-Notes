@@ -28,7 +28,7 @@
   background-color: transparent;
 }
 #XEditorEX {
-  width: auto!important;
+  width: auto !important;
   font-weight: bold;
   color: #ff9300;
 }
@@ -66,16 +66,16 @@
   margin-top: 50px;
   width: 50%;
 }
-#noteTitle input{
+#noteTitle input {
   border: 1px solid grey;
   border-radius: 2px;
   font-family: "PT Sans Narrow", sans-serif;
   font-size: 18px;
   font-weight: bold;
   width: 100%;
-  padding: 0!important;
+  padding: 0 !important;
 }
-#noteTitle input:focus{
+#noteTitle input:focus {
   outline: none;
 }
 #XEditor {
@@ -89,4 +89,26 @@
 }
 #XEditor:focus {
   outline: none;
+}
+
+input[type="checkbox"] {
+  filter: hue-rotate(160deg);
+}
+
+#noteTitle input {
+  border: 1px solid grey;
+  border-radius: 2px;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 !important;
+}
+
+#courseNameHolder {
+  margin-top: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

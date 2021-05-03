@@ -164,48 +164,36 @@
                 <div id="addSubjectContainer" class='hidden'>
                     <i class="fas fa-plus fa-2x"></i><br>
                     <input type="text" placeholder="Subject name" class='addSubjectInput' id="subjectName">
-                    <input type="number" placeholder="Study year (1-4)" class='addSubjectInput' id="studyYear" oninput="subjectYearValidation()">
-                    <input type="number" placeholder="Study period (1-4)" class='addSubjectInput' id="studyPeriod" oninput="subjectPeriodValidation()">
+                    <input type="number" placeholder="Study year (1-4)" class='addSubjectInput' id="studyYear">
+                    <input type="number" placeholder="Study period (1-4)" class='addSubjectInput' id="studyPeriod">
                     <button id='addSubjectButton'>ADD</button><br>
                     <p1 id='addSubjectError'></p1>
                 </div>
             </div>
             <div class="newNoteContainer">
-                <h1 id="courseName">General Notes</h1>
+                <div class="courseHeader">
+                    <h1 id="courseName">General Notes</h1>
+                    
+                </div>
                 <h2>Notes</h2>
                 <div class="noteHolder">
-                    <div class="addNewNote">
-                        <button>New Note<br>+</button>
-                    </div>
+                    <button id="addNewNote">New Note<br>+</button>
                     <div class="newNote">
-                        <button>
-                            <table>
-                                <tr class="noteTitle">
-                                    <h1>Note Title</h1>
-                                </tr>
-                                <tr class="noteText">
-                                    <p>Preview text of the note, blah blah blah blah blah blah</p>
-                                </tr>
-                                <tr class="noteDate">
-                                    <p>12.4.2021 23:49</p>
-                                </tr>
-                            </table>
-                        </button>
-                    </div>
-                    <div class="newNote">
-                        <button>
-                            <table>
-                                <tr class="noteTitle">
-                                    <h1>Note Title</h1>
-                                </tr>
-                                <tr class="noteText">
-                                    <p>Preview text of the note, blah blah blah blah blah blah</p>
-                                </tr>
-                                <tr class="noteDate">
-                                    <p>12.4.2021 23:49</p>
-                                </tr>
-                            </table>
-                        </button>
+                        <table>
+                            <tr class="noteTitle">
+                                <h1>Note Title</h1>
+                            </tr>
+                            <tr class="noteText">
+                                <p>Preview text of the note, blah blah blah blah blah blah</p>
+                            </tr>
+                            <tr class="noteDate">
+                                <p>12.4.2021 23:49</p>
+                            </tr>
+                            <tr class="noteBtn">
+                                <button class="openNote"><i class="far fa-edit fa-2x"></i></button>
+                                <button class="removeNote"><i class="fas fa-trash fa-2x"></i></button>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -214,5 +202,5 @@
         <script type="text/javascript" src="./js/subjectTree.js"></script>
         <script type="text/javascript" src="./js/xrequest.js"></script>
         <script type="text/javascript" src="./js/notesFrontPage.js"></script>
-    </body>    
+    </body>
 </html>

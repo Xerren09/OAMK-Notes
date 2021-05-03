@@ -41,21 +41,40 @@ function XEditorCommandPalette(cmdID) {
             let editorArea = document.getElementById("XEditor");
             let htmlstr = editorArea.innerHTML.toString();
             let noteTitle = document.querySelector('#addTitle').value.toString();
-            let timestamp = Date.now();
-            console.log(htmlstr);
-            console.log(noteTitle);
-            let payload = {
-                "subjectid": sessionStorage.getItem('subjectId'),
-                "notename": noteTitle,
-                "notedate": timestamp,
-                "noteimportance": 0,
-                "notetext": htmlstr
+            let noteId = sessionStorage.getItem('noteId');
+            let important = document.querySelector('#important');
+            var isImportant;
+            if(important.checked) {
+                isImportant = 1;
+            } else {
+                isImportant = 0;
             };
-            xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/addNew", sessionStorage.getItem("token"), payload, function(response){
-                //error handling here!
-                console.log(response);
-                window.location.href = './notes.html';
-            });
+            let timestamp = Date.now();
+            let newNoteUrl = 'http://xerrendev01uni.azurewebsites.net/note/addNew';
+            let updateUrl = 'http://xerrendev01uni.azurewebsites.net/note/updateNote';
+            if (noteId == 'newNote') {
+                let payload = {
+                    "subjectID": sessionStorage.getItem('subjectId'),
+                    "noteName": noteTitle,
+                    "noteDate": timestamp,
+                    "noteImportance": isImportant,
+                    "noteText": htmlstr
+                };
+                xrequest.POST(newNoteUrl, sessionStorage.getItem("token"), payload, function(response){
+                    console.log(response);
+                    window.location.href = './notes.html';
+                    console.log(isImportant);
+                });
+            } else {
+                let payload = {
+                    "noteID": noteId,
+                    "noteText": htmlstr
+                };
+                xrequest.POST(updateUrl, sessionStorage.getItem("token"), payload, function(response){
+                    //console.log(response);
+                    window.location.href = './notes.html';
+                });
+            }
             break;
         default:    //escape for invalid code
             break;

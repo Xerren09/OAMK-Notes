@@ -118,9 +118,9 @@ function register() {
                 let token = response.data.token;
                 sessionStorage.setItem('token', token);
                 let payload = {
-                    "subjectname" : "General Notes",
-                    "subjectyear" : 0,
-                    "subjectperiod" : 0
+                    "subjectName" : "General Notes",
+                    "subjectYear" : 0,
+                    "subjectPeriod" : 0
                 }
                 xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
                 console.log(response);
