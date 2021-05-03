@@ -10,6 +10,7 @@ router.get('/get', function(req, res) {
         var headers_dev = response.headers;
         var cookie_header = headers_dev['set-cookie'].toString();
         var cookie = cookie_header.match('\=(.*?)\;')[1];
+        var date = "";
         https.get({
             hostname: 'lukkarit.oamk.fi',
             path: '/kalenteri.php?date=2021-04-19&delta=+1week',
@@ -19,7 +20,7 @@ router.get('/get', function(req, res) {
             }
         }, function(http_res) {
             var data = "";
-            http_res.on("data", function (chunk) {data += chunk;});
+            http_res.on("data", function (chunk) {data+=chunk;});
             http_res.on("end", function () {
                 //console.log(data);
                 //<dt(.*?)<\/dd/g       <-- gets the course info (time, name, ID, Group, Teachers)
@@ -49,9 +50,12 @@ router.get('/get', function(req, res) {
                 //console.log(coursetime[1]);
                 for (const m of coursetime) {
                     console.log(m);
-                  }
+                }
                 console.log(learnmode);
                 console.log(coursename);
+                for (const m of coursename) {
+                    console.log(m);
+                }
             });
         });
     });
