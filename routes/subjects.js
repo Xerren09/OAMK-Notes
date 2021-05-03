@@ -39,7 +39,7 @@ router.post('/addNew', function(req, res) {
 								}
 								subjectselectorcontent[year][period].push({subjectID: dbResult_sub[i].subjectID, subjectName: dbResult_sub[i].subjectName});
 							}
-							xres.success(res, subjectselectorcontent, AuthTokenStatus.refreshToken);
+							xres.success(res, {subjectselectorcontent}, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
@@ -95,7 +95,7 @@ router.post('/remove', function(req, res) {
 								}
 								subjectselectorcontent[year][period].push({subjectID: dbResult_sub[i].subjectID, subjectName: dbResult_sub[i].subjectName});
 							}
-							xres.success(res, subjectselectorcontent, AuthTokenStatus.refreshToken);
+							xres.success(res, {subjectselectorcontent}, AuthTokenStatus.refreshToken);
 						}
 					});
 				}

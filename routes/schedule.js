@@ -49,12 +49,12 @@ router.get('/get', function(req, res) {
                 console.log(daytimes);
                 //console.log(coursetime[1]);
                 for (const m of coursetime) {
-                    console.log(m);
+                    console.log(m[1]);
                 }
                 console.log(learnmode);
                 console.log(coursename);
                 for (const m of coursename) {
-                    console.log(m);
+                    console.log(m[1]);
                 }
             });
         });
