@@ -43,11 +43,11 @@ const xresponse = {
 }
 module.exports = xresponse;
 /* 
-This Module follows the sjson response format:
+This module is based on the JSend  response format:
 {
     status : "success",
     data : {
-        
+        <content-key> : <content-value>
     },
 }
 OR

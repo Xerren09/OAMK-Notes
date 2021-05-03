@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var subjectRouter = require('./routes/subjects');
 var homeworkRouter = require('./routes/homeworks');
 var noteRouter = require('./routes/notes');
-var scheduleRouter = require('./routes/schedule');
+var statusRouter = require('./routes/statusCheck');
 //
 var app = express();
 //
@@ -25,6 +25,6 @@ app.use('/users', usersRouter);
 app.use('/subject', subjectRouter);
 app.use('/homework', homeworkRouter);
 app.use('/note', noteRouter);
-app.use('/sch', scheduleRouter);
+app.use('/api', statusRouter);
 //
 module.exports = app;

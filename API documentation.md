@@ -428,3 +428,19 @@ The server will respond with an updated list of all homeworks:
     }
 }
 ```
+## /api/
+#### /api/status - `GET`
+This can be used to check the service status. `AppServiceStatus` will always return `alive` if a response is received, while `DatabaseServiceStatus`  will return `down` if it is unavailable, otherwise it will repond with `alive`.
+```json
+{
+    "status": "success",
+    "data": {
+        "AppServiceStatus": "alive",
+        "DatabaseServiceStatus": "alive",
+        "Check": {
+            "encode": "base64",
+            "content1": "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw==",
+        }
+    }
+}
+```
