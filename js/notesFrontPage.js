@@ -10,12 +10,11 @@ xrequest.GET("http://xerrendev01uni.azurewebsites.net/note/frontPage", token, fu
         let frontPageContent = response.data.frontpagecontent;
         sessionStorage.setItem('frontPageContent', JSON.stringify(frontPageContent));
         sessionStorage.setItem('generalNotes', JSON.stringify(subjectSelector[0][0][0]));
-        //console.log(subjectSelector);
-        //console.log(frontPageContent);
         let userNameHeader = document.querySelector('#userNameHeader');
         let groupNameHeader = document.querySelector('#groupNameHeader');
         userNameHeader.innerHTML = userInfo[0].userName;
         groupNameHeader.innerHTML = userInfo[0].userGroup;
+        sessionStorage.setItem('state', 'notes');
         generalNotes();
         subjectTreeBuild(subjectSelector);
     }

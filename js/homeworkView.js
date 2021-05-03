@@ -2,6 +2,7 @@ let token = sessionStorage.getItem('token');
 xrequest.GET("http://xerrendev01uni.azurewebsites.net/homework/getAll", token, function(response) {
     console.log(response);
     sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist));
+    sessionStorage.setItem('state', 'homework');
 });
 
 let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
@@ -45,7 +46,7 @@ function subjectTreeBuild(subjects) {
 };
 
 function homeworkDisplay(subjectName) {
-    let assigmentList = JSON.parse(sessionStorage.getItem('assignmentList'));
+    let assignmentList = JSON.parse(sessionStorage.getItem('assignmentList'));
     let homeworkTarget = document.querySelector('#homeworkTarget');
     homeworkTarget.innerHTML = '';
     let homeworkContainer = document.querySelector('.homeworkContainer')
@@ -61,9 +62,9 @@ function homeworkDisplay(subjectName) {
     homeworkHeader.innerHTML = '';
     homeworkHeader.append(h2, newAssignementBtn);
     //homeworkContainer.prepend(homeworkHeader);
-    if(assigmentList) {
-        for (let i = 0; i < assigmentList.length; i ++) {
-            if(assigmentList[i].subjectName == subjectName) {
+    if(assignmentList) {
+        for (let i = 0; i < assignmentList.length; i ++) {
+            if(assignmentList[i].subjectName == subjectName) {
                 let newHomework = document.createElement('div');
                 newHomework.classList.add('newHomework');
                 let newAssignment = document.createElement('button');
@@ -72,13 +73,13 @@ function homeworkDisplay(subjectName) {
                 assignmentLayout.classList.add('assignmentLayout');
                 let td1 = document.createElement('td');
                 td1.classList.add('courseName');
-                td1.innerHTML = assigmentList[i].subjectName;
+                td1.innerHTML = assignmentList[i].subjectName;
                 let td2 = document.createElement('td');
                 td2.classList.add('homeworkText');
-                td2.innerHTML = assigmentList[i].homeworkName;
+                td2.innerHTML = assignmentList[i].homeworkName;
                 let td3 = document.createElement('td');
                 td3.classList.add('homeworkDeadline');
-                let timestamp = assigmentList[i].homeworkDate;
+                let timestamp = assignmentList[i].homeworkDate;
                 let now = new Date().getTime();
                 let deadLineString = new Date(timestamp).toDateString();
                 td3.innerHTML = deadLineString;
@@ -86,6 +87,9 @@ function homeworkDisplay(subjectName) {
                 let removeButton = document.createElement('button');
                 removeButton.classList.add('homeworkRemoveBtn');
                 removeButton.innerHTML = `<i class="far fa-trash-alt"></i>`;
+                removeButton.onclick = () => {
+                    deleteHomework(assignmentList[i].homeworkID);
+                }
                 td4.append(removeButton);
                 if ((timestamp - now) < 172800000) {
                     let td5 = document.createElement('td');
@@ -101,6 +105,21 @@ function homeworkDisplay(subjectName) {
             };
         };
     };
+};
+
+function deleteHomework(homeworkId) {
+    let userConfirm = confirm('Are you sure you want to delete the selected assignment?');
+    if (userConfirm) {
+        let payload = {
+            "homeworkID": homeworkId
+        };
+        xrequest.POST('http://xerrendev01uni.azurewebsites.net/homework/remove', token, payload, function(response) {
+            sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist));
+            homeworkDisplay(sessionStorage.getItem('subjectName'));
+        });
+    };
+    
+
 };
 
 function addHomeworkMenu() {

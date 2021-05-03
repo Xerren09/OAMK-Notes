@@ -58,13 +58,12 @@ function addNewSubject() {
         let authToken = sessionStorage.getItem('token');
         xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", authToken, payload, function(response) {
             console.log(response);
-            //let subjectSelector = response.data;
-            //subjectTreeBuild(subjectSelector);
+            sessionStorage.setItem('subjectSelector', JSON.stringify(response.data.subjectselectorcontent));
             let yearPeriod = document.querySelector('#year'+subjectYear+'Period'+subjectPeriod);
             let li = document.createElement('li');
             let subjectButton = document.createElement('button');
             subjectButton.innerHTML = subjectName;
-            let subjectsArray = response.data[subjectYear][subjectPeriod];
+            let subjectsArray = response.data.subjectselectorcontent[subjectYear][subjectPeriod];
             for(let i = 0; i < subjectsArray.length; i ++) {
                 if(subjectsArray[i].subjectName == subjectName) {
                     subjectButton.id = subjectsArray[i].subjectID;
@@ -73,12 +72,22 @@ function addNewSubject() {
             li.append(subjectButton);
             yearPeriod.append(li);
             let courseName = document.querySelector('#courseName');
-            subjectButton.onclick = () => {
-                courseName.innerHTML = subjectName;
-                displaySubjectNotes(subjectButton.id);
-                sessionStorage.setItem('subjectName', subjectName);
-                sessionStorage.setItem('subjectId', subjectButton.id);
-              };
+            if(sessionStorage.getItem('state') == 'notes') {
+                subjectButton.onclick = () => {
+                    courseName.innerHTML = subjectName;
+                    displaySubjectNotes(subjectButton.id);
+                    sessionStorage.setItem('subjectName', subjectName);
+                    sessionStorage.setItem('subjectId', subjectButton.id);
+                };
+            } else {
+                subjectButton.onclick = () => {
+                    let courseNameHeader = document.querySelector('#courseNameHeader');
+                    courseNameHeader.innerHTML = subjectName;
+                    homeworkDisplay(subjectName);
+                    sessionStorage.setItem('subjectName', subjectName);
+                    sessionStorage.setItem('subjectId', subjectButton.id);
+                }
+            }
             addSubjectPlusButton.style.transform = 'rotate(0deg)' ;
             addSubjectContainer.classList.add('hidden');
             addSubjectContainer.style.top = '96%';

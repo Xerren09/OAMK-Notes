@@ -21,12 +21,23 @@ removeCourse.onclick = () => {
 };
 
 function deleteSubject() {
-    let payload = {
-        "subjectID": sessionStorage.getItem('subjectId')
+    let userConfirm = confirm('Are you sure you want to delete the selected subject?');
+    if (userConfirm) {
+        let payload = {
+            "subjectID": sessionStorage.getItem('subjectId')
+        };
+        xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/remove", token, payload, function(response){
+            console.log(response);
+            sessionStorage.setItem('subjectSelector', JSON.stringify(response.data.subjectselectorcontent));
+            if (response.status == 'success') {
+                let removedSubject = document.getElementById(sessionStorage.getItem('subjectId'));
+                removedSubject.remove();
+                generalNotes();
+            } else {
+                alert('The selected course has saved notes or homeworks, and can\'t be deleted!');
+            };
+        });
     };
-    xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/remove", token, payload, function(response){
-        console.log(response);
-    });
 };
 
 function generalNotes() {
@@ -36,6 +47,7 @@ function generalNotes() {
     sessionStorage.setItem('subjectName', generalNotesObject.subjectName);
     sessionStorage.setItem('subjectId', genralNotesButton.id);
     let courseName = document.querySelector('#courseName');
+    courseName.innerHTML = generalNotesObject.subjectName;
     displaySubjectNotes(genralNotesButton.id);
     removeCourse.remove();
     genralNotesButton.onclick = () => {
