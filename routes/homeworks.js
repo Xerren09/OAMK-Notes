@@ -16,7 +16,7 @@ router.get('/getAll', function(req, res) {
 				} 
 				else 
 				{
-					xres.success(res, assignmentlist, AuthTokenStatus.refreshToken);
+					xres.success(res, {assignmentlist}, AuthTokenStatus.refreshToken);
 				}
 			});
 		}
@@ -47,7 +47,7 @@ router.post('/remove', function(req, res) {
 						} 
 						else 
 						{
-							xres.success(res, assignmentlist, AuthTokenStatus.refreshToken);
+							xres.success(res, {assignmentlist}, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
@@ -80,7 +80,7 @@ router.post('/addNew', function(req, res) {
 						} 
 						else 
 						{
-							xres.success(res, assignmentlist, AuthTokenStatus.refreshToken);
+							xres.success(res, {assignmentlist}, AuthTokenStatus.refreshToken);
 						}
 					});
 				}
