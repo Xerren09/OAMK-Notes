@@ -13,7 +13,7 @@ const xrequest = {
 		};
 		let protocol = "https://";
 		let fullUrl = (protocol+requestURL);
-		xhttp.open("GET", requestURL, true);
+		xhttp.open("GET", fullUrl, true);
 		xhttp.setRequestHeader("authToken", authorizationToken);
 		xhttp.send();
 	},
@@ -31,7 +31,7 @@ const xrequest = {
 		};
 		let protocol = "https://";
 		let fullUrl = (protocol+requestURL);
-		xhttp.open("POST", requestURL, true);
+		xhttp.open("POST", fullUrl, true);
 		xhttp.setRequestHeader("Content-Type", "application/json");
 		xhttp.setRequestHeader("authToken", authorizationToken);
 		let json = JSON.stringify(requestBody);
