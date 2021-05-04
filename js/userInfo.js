@@ -15,7 +15,7 @@ let userEmailString = '';
 changePassword.onclick = passwordChange;
 
 function userInfoGet(authtoken) {
-    xrequest.GET("http://xerrendev01uni.azurewebsites.net/users/getUserInfo", authtoken, function(response) {
+    xrequest.GET("xerrendev01uni.azurewebsites.net/users/getUserInfo", authtoken, function(response) {
         console.log(response);
         let userInfo = response.data;
         userEmail.innerHTML = userInfo.userEmail;
@@ -42,7 +42,7 @@ function groupSave() {
     let payload = {
         "userGroup": inputGroup.value
     };
-    xrequest.POST('http://xerrendev01uni.azurewebsites.net/users/updateGroupCode', token, payload, function(response) {
+    xrequest.POST('xerrendev01uni.azurewebsites.net/users/updateGroupCode', token, payload, function(response) {
         userInfoGet(token);
     });
     changeGroup.onclick = groupChange;
@@ -81,7 +81,7 @@ function passwordSave() {
         }
         console.log(userEmailString);
         console.log(newPassword.value);
-        xrequest.POST('http://xerrendev01uni.azurewebsites.net/users/updatePassword', token, payload, function(response) {
+        xrequest.POST('xerrendev01uni.azurewebsites.net/users/updatePassword', token, payload, function(response) {
             if (response.status == "success") {
                 console.log(response);
                 let token = response.data.token;
