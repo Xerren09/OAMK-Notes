@@ -111,7 +111,7 @@ function register() {
             userName: document.getElementById("userName").value,
             userGroup: document.getElementById("userGroupCode").value
         }
-        xrequest.POST("http://xerrendev01uni.azurewebsites.net/users/register", "0000", payload, function(response) {	
+        xrequest.POST("xerrendev01uni.azurewebsites.net/users/register", "0000", payload, function(response) {	
             console.log(response);
             if (response.status == "success")
             {
@@ -122,7 +122,7 @@ function register() {
                     "subjectYear" : 0,
                     "subjectPeriod" : 0
                 }
-                xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
+                xrequest.POST("xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
                 console.log(response);
                 window.location.href = "./notes.html";
             });
@@ -171,7 +171,7 @@ function login() {
         userPassword: document.getElementById("userPassword").value,
         userEmail: document.getElementById("userEmail").value
     }
-    xrequest.POST("http://xerrendev01uni.azurewebsites.net/users/login", "0000", payload, function(response) {	
+    xrequest.POST("xerrendev01uni.azurewebsites.net/users/login", "0000", payload, function(response) {	
         console.log(response);
         if (response.status == "success")
         {

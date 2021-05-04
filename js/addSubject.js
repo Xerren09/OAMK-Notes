@@ -58,7 +58,7 @@ function addNewSubject() {
             "subjectPeriod": subjectPeriod
         }
         let authToken = sessionStorage.getItem('token');
-        xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", authToken, payload, function(response) {
+        xrequest.POST("xerrendev01uni.azurewebsites.net/subject/addNew", authToken, payload, function(response) {
             console.log(response);
             sessionStorage.setItem('subjectSelector', JSON.stringify(response.data.subjectselectorcontent));
             let yearPeriod = document.querySelector('#year'+subjectYear+'Period'+subjectPeriod);
