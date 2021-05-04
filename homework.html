@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Homework</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/dropMenu.css">
+        <link rel="stylesheet" href="./css/sideMenu.css">
+        <link rel="stylesheet" href="./css/homework.css">
+        <link rel="stylesheet" href="./css/addSubject.css">
+        <link rel="stylesheet" href="./fontawesome-free-5.15.1-web/css/all.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <img src="./images/logoWhite.png">
+            <a href="./notes.html"><button class="headerBtn">NOTES</button></a>
+            <a href="./homework.html"><button class="headerBtn" a href="">HOMEWORK</button></a>
+            <div class="userInfo">
+                <table>
+                    <tr>
+                        <td id="userNameHeader"></td>
+                    </tr>
+                    <tr>
+                        <td id="groupNameHeader"></td>
+                    </tr>
+                </table>
+                <div class="dropDown">
+                    <button class="dropBtn"><i class="fas fa-bars fa-2x"></i></button>
+                    <div class="dropDownMenu">
+                        <a href="./about.html">About Us</a>
+                        <a href="./userInfo.html">User Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wholePageContainer">
+            <div class="sideDisplayContainer">
+                <div class="sideMenuHeader">
+                    <h1>Courses:</h1>
+                </div>
+                <div class="sideMenuContainer">
+                    <ul class="sideMenuList">
+                        <li>
+                            <span class="caret" id="year1">Year 1</span>
+                            <ul class="nested">
+                                <li>
+                                    <span class="caret">Period 1</span>
+                                    <ul class="nested" id="year1Period1">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 2</span>
+                                    <ul class="nested" id="year1Period2">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 3</span>
+                                    <ul class="nested" id="year1Period3">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 4</span>
+                                    <ul class="nested" id="year1Period4">
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="caret" id="year2">Year 2</span>
+                            <ul class="nested">
+                                <li>
+                                    <span class="caret">Period 1</span>
+                                    <ul class="nested" id="year2Period1">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 2</span>
+                                    <ul class="nested" id="year2Period2">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 3</span>
+                                    <ul class="nested" id="year2Period3">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 4</span>
+                                    <ul class="nested" id="year2Period4">
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="caret" id="year3">Year 3</span>
+                            <ul class="nested">
+                                <li>
+                                    <span class="caret">Period 1</span>
+                                    <ul class="nested" id="year3Period1">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 2</span>
+                                    <ul class="nested" id="year3Period2">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 3</span>
+                                    <ul class="nested" id="year3Period3">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 4</span>
+                                    <ul class="nested" id="year3Period4">
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><li>
+                            <span class="caret" id="year4">Year 4</span>
+                            <ul class="nested">
+                                <li>
+                                    <span class="caret">Period 1</span>
+                                    <ul class="nested" id="year4Period1">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 2</span>
+                                    <ul class="nested" id="year4Period2">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 3</span>
+                                    <ul class="nested" id="year4Period3">
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="caret">Period 4</span>
+                                    <ul class="nested" id="year4Period4">
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div id="addSubjectContainer" class='hidden'>
+                    <i class="fas fa-plus fa-2x"></i><br>
+                    <input type="text" placeholder="Subject name" class='addSubjectInput' id="subjectName">
+                    <input type="number" placeholder="Study year (1-4)" class='addSubjectInput' id="studyYear">
+                    <input type="number" placeholder="Study period (1-4)" class='addSubjectInput' id="studyPeriod">
+                    <button id='addSubjectButton'>ADD</button><br>
+                    <p1 id='addSubjectError'>Place for error messages</p1>
+                </div>
+            </div>
+            <div class="homeworkContainer">
+                <h1 id="courseNameHeader">Select a subject from the sidemenu</h1>
+                <div class="homeworkHeader"></div>
+                <div id="homeworkTarget"></div>
+                <div id="newHomeworkContainer"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./js/xrequest.js"></script>
+        <script type="text/javascript" src="./js/addSubject.js"></script>
+        <script type="text/javascript" src="./js/subjectTree.js"></script>
+        <script type="text/javascript" src="./js/homeworkView.js"></script>
+    </body>
+</html>

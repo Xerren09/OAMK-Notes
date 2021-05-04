@@ -1,0 +1,114 @@
+.wholePageContainer {
+  margin-top: 50px;
+  width: 100%;
+}
+#XEditorContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#XEditorControls {
+  position: fixed;
+  display: flex;
+  height: 4vh;
+  width: 50%;
+  background-color: #f2f2f2;
+  border: none;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#XEditorContainer button {
+  font-size: medium;
+  text-align: center;
+  padding: 1px 3px;
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-color: transparent;
+}
+#XEditorEX {
+  width: auto !important;
+  font-weight: bold;
+  color: #ff9300;
+}
+#XEditorContainer button:hover {
+  background-color: lightgray;
+}
+#XEditorColorSelector {
+  margin-top: 1px;
+  height: 27px;
+  width: 30px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+#XEditorFontSelector {
+  height: 25px;
+}
+#XEditorSizeSelector {
+  height: 25px;
+}
+#XEditorFontGroup {
+  margin-top: 0.8vh;
+  border: none;
+  display: flex;
+  justify-content: space-around;
+}
+#noteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#noteTitle {
+  width: 50%;
+}
+#courseNameHolder {
+  margin-top: 50px;
+  width: 50%;
+}
+#noteTitle input {
+  border: 1px solid grey;
+  border-radius: 2px;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 !important;
+}
+#noteTitle input:focus {
+  outline: none;
+}
+#XEditor {
+  border: 1px solid grey;
+  border-radius: 2px;
+  min-height: 500px;
+  height: auto;
+  width: 50%;
+  margin-top: 5px;
+  margin-bottom: 40px;
+}
+#XEditor:focus {
+  outline: none;
+}
+
+input[type="checkbox"] {
+  filter: hue-rotate(160deg);
+}
+
+#noteTitle input {
+  border: 1px solid grey;
+  border-radius: 2px;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 !important;
+}
+
+#courseNameHolder {
+  margin-top: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

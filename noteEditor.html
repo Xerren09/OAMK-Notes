@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Note Editor</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/dropMenu.css">
+        <link rel="stylesheet" href="./css/custom-text-editor.css">
+        <link rel="stylesheet" href="./fontawesome-free-5.15.1-web/css/all.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <img src="./images/logoWhite.png">
+            <a href="./notes.html"><button class="headerBtn">NOTES</button></a>
+            <a href="./homework.html"><button class="headerBtn" a href="">HOMEWORK</button></a>
+            <div class="userInfo">
+                <table>
+                    <tr>
+                        <td id="userNameHeader"></td>
+                    </tr>
+                    <tr>
+                        <td id="groupNameHeader"></td>
+                    </tr>
+                </table>
+                <div class="dropDown">
+                    <button class="dropBtn"><i class="fas fa-bars fa-2x"></i></button>
+                    <div class="dropDownMenu">
+                        <a href="./about.html">About Us</a>
+                        <a href="./userInfo.html">User Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wholePageContainer">
+            <div id="XEditorContainer">
+                <fieldset id="XEditorControls">
+                    <button id="XEditorItalic" onclick="XEditorCommandPalette('i')"><i class="fa fa-italic"></i></button>
+                    <button id="XEditorBold" onclick="XEditorCommandPalette('b')"><i class="fa fa-bold"></i></button>
+                    <button id="XEditorUnderline" onclick="XEditorCommandPalette('u')"><i class="fa fa-underline"></i></button>
+                    <button id="XEditorStrikethrough" onclick="XEditorCommandPalette('s')"><i class="fa fa-strikethrough"></i></button>
+                    <fieldset id="XEditorFontGroup">
+                        <select id="XEditorFontSelector" onchange="XEditorCommandPalette('cf')">
+                            <option value="PT Sans Narrow, sans-serif">PT Sans Narrow</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Sans serif">Sans serif</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Palatino">Palatino</option>
+                            <option value="Garamond">Garamond</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                            <option value="Arial Black">Arial Black</option>
+                            <option value="Tahoma">Tahoma</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                        </select>
+                        <select id="XEditorSizeSelector" onclick="XEditorCommandPalette('cs')">
+                            <option value="1">8</option>			
+                            <option value="2">10</option>
+                            <option value="3">11</option>
+                            <option value="4">14</option>
+                            <option value="5">18</option>
+                            <option value="6">24</option>
+                            <option value="7">36</option>
+                        </select>
+                    </fieldset>
+                    <input id="XEditorColorSelector" type="color" onchange="XEditorCommandPalette('cc')"> 
+                    <button id="XEditorAL" onclick="XEditorCommandPalette('al')"><i class="fa fa-align-left"></i></button>
+                    <button id="XEditorAC" onclick="XEditorCommandPalette('ac')"><i class="fa fa-align-center"></i></button>
+                    <button id="XEditorAR" onclick="XEditorCommandPalette('ar')"><i class="fa fa-align-right"></i></button>
+                    <button id="XEditorUL" onclick="XEditorCommandPalette('ul')"><i class="fa fa-list-ul"></i></button>
+                    <button id="XEditorEX" onclick="XEditorCommandPalette('exps')">SAVE</button>		
+                </fieldset>
+            </div>
+            <div id=noteContainer>
+                <div id="courseNameHolder">
+                    <h1 id="courseName">Course Name</h1>
+                    <h3>Important:<input type="checkbox" id='important'></h3>
+                </div>
+                <div id="noteTitle">
+                    <input type="text" placeholder="Add a Title" id="addTitle">
+                </div>
+                <div id="XEditor" contenteditable="true"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./js/XTextEditor.js"></script>
+        <script type="text/javascript" src="./js/noteEditor.js"></script>
+        <script type="text/javascript" src="./js/xrequest.js"></script>
+    </body>
+</html>
