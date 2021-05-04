@@ -1,3 +1,7 @@
+#pageContainer {
+  margin-top: 50px;
+}
+
 .infoContainer {
   display: flex;
   flex-direction: column;

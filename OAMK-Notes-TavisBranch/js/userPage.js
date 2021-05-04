@@ -11,7 +11,7 @@ groupButton.onclick = () => {
 passwordButton.onclick = () => {
     let passwordChange = document.getElementById('userPasswordTarget');
     let userPassButton = document.getElementById('passwordButton');
-    passwordChange.innerHTML = `<input type="password" class="inputFieldHW" placeholder="Password"> <lf> <input type="password" class="inputFieldHW" placeholder="Retype your password">`;
+    passwordChange.innerHTML = `<input type="password" class="inputFieldHW" placeholder="Password"> <td> <input type="password" class="inputFieldHW" placeholder="Retype your password"></td>`;
     userPassButton.innerHTML = `Save`;
     /*passwordButton.onclick = () => {
 
