@@ -80,7 +80,7 @@ function addNewSubject() {
                 };
             } else {
                 subjectButton.onclick = () => {
-                    let courseNameHeader = document.querySelector('#courseName');
+                    let courseNameHeader = document.querySelector('#courseNameHeader');
                     courseNameHeader.innerHTML = subjectName;
                     homeworkDisplay(subjectName);
                     sessionStorage.setItem('subjectName', subjectName);
