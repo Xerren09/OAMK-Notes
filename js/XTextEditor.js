@@ -50,8 +50,8 @@ function XEditorCommandPalette(cmdID) {
                 isImportant = 0;
             };
             let timestamp = Date.now();
-            let newNoteUrl = 'http://xerrendev01uni.azurewebsites.net/note/addNew';
-            let updateUrl = 'http://xerrendev01uni.azurewebsites.net/note/updateNote';
+            let newNoteUrl = 'xerrendev01uni.azurewebsites.net/note/addNew';
+            let updateUrl = 'xerrendev01uni.azurewebsites.net/note/updateNote';
             if (noteId == 'newNote') {
                 let payload = {
                     "subjectID": sessionStorage.getItem('subjectId'),

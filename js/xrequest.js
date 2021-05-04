@@ -11,7 +11,9 @@ const xrequest = {
 				callback(requestResponseData);
 			}
 		};
-		xhttp.open("GET", requestURL, true);
+		let protocol = "https://";
+		let fullUrl = (protocol+requestURL);
+		xhttp.open("GET", fullUrl, true);
 		xhttp.setRequestHeader("authToken", authorizationToken);
 		xhttp.send();
 	},
@@ -27,7 +29,9 @@ const xrequest = {
             	callback(requestResponseData);
 			}
 		};
-		xhttp.open("POST", requestURL, true);
+		let protocol = "https://";
+		let fullUrl = (protocol+requestURL);
+		xhttp.open("POST", fullUrl, true);
 		xhttp.setRequestHeader("Content-Type", "application/json");
 		xhttp.setRequestHeader("authToken", authorizationToken);
 		let json = JSON.stringify(requestBody);
