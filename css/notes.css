@@ -61,7 +61,7 @@
   border-radius: 5px;
   background-color: #fefefe;
   margin-right: 5px;
-  width: 176px;
+  width: 181px;
   height: 196px;
   max-width: 181px;
   max-height: 196px;
@@ -85,6 +85,9 @@
 }
 .noteBtn {
   width: 100%;
+  position: relative;
+  bottom: 10%;
+  z-index: 2;
 }
 .newNote button {
   display: none;
@@ -106,6 +109,7 @@
 
 .newNote h1 {
   font-size: 22px;
+  text-align: left;
 }
 .newNote p {
   font-size: 15px;

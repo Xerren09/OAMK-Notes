@@ -4,8 +4,8 @@
         <title>Welcome!</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/dropMenu.css">
-        <link rel="stylesheet" href="./css/about.css">
+        <link rel="stylesheet" href="./css/welcome.css">
+        <link rel="stylesheet" href="./css/signIn.css">
         <link rel="stylesheet" href="./fontawesome-free-5.15.1-web/css/all.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
@@ -13,25 +13,14 @@
     <body>
         <div class="header">
             <img src="./images/logoWhite.png">
-            <a href="./notes.html"><button class="headerBtn">NOTES</button></a>
-            <a href="./homework.html"><button class="headerBtn" a href="">HOMEWORK</button></a>
-            <div class="userInfo">
-                <table>
-                    <tr>
-                        <td id="userNameHeader"></td>
-                    </tr>
-                    <tr>
-                        <td id="groupNameHeader"></td>
-                    </tr>
-                </table>
-                <div class="dropDown">
-                    <button class="dropBtn"><i class="fas fa-bars fa-2x"></i></button>
-                    <div class="dropDownMenu">
-                        <a href="./userInfo.html">User Settings</a>
-                        <a href="#">Logout</a>
-                    </div>
-                </div>
+            <div id="signInHeaderButton">
+                <h1>Sign-in</h1>
             </div>
+        </div>
+        <div id="logRegContainer">
+            <input id="userEmail" class="logRegInput" type="text" placeholder="yourEmail@students.oamk.fi">
+            <input id="userPassword" class="logRegInput" type="password" placeholder="password">
+            <i class="fas fa-times"></i>
         </div>
         <div id="pageContainer">
             <div class="aboutContainer">
@@ -67,5 +56,8 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="./js/signIn.js"></script>
+        <script type="text/javascript" src="./js/signInValidation.js"></script>
+        <script type="text/javascript" src="./js/xrequest.js"></script>
     </body>
 </html>

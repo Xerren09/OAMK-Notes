@@ -68,6 +68,12 @@ let logRegState = '';
 signInHeaderButton.onclick = () => {
     logRegState = 'login';
     signInHeaderButton.remove();
+    br.remove();
+    errorMessage.remove();
+    userEmail.value = '';
+    userPassword.value = '';
+    userPassword.style.borderColor = normalBorder;
+    logRegContainer.style.height = '170px';
     logRegContainer.append(signInButton, newUserButton);
     logRegContainer.style.top = '30%';
     pageContainer.style.filter = 'blur(5px)';

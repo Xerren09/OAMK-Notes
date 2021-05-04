@@ -55,7 +55,7 @@ function registerValidation() {
 
     userEmail.oninput = () => {
         let emailString = userEmail.value;
-        if (emailString.match(/^[a-zA-Z0-9_.+-]+@students\.oamk\.fi$/) && logRegState == 'register') {
+        if (emailString.match(/^[a-zA-Z0-9_.+-]+@students\.oamk\.fi$/) && logRegState == 'register' || emailString.match(/^[a-zA-Z0-9_.+-]+@oamk\.fi$/) && logRegState == 'register') {
             userEmail.style.borderColor = approvedBorder;
             br.remove();
             errorMessage.remove();
@@ -125,9 +125,7 @@ function register() {
                 xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
                 console.log(response);
                 window.location.href = "./notes.html";
-            })
-                //redirect!
-                //window.location.href = "/notes.html";
+            });
             }             
             else if (response.status == "fail" && response.data.type == "credentials_exist")
             {
@@ -179,7 +177,6 @@ function login() {
         {
             let token = response.data.token;
             sessionStorage.setItem('token', token);
-            //redirect!
             window.location.href = "./notes.html";
         }
         else if (response.status == "fail" && response.data.type == "credentials_unknown")

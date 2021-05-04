@@ -40,6 +40,8 @@ function subjectPeriodValidation() {
     };
 }
 
+
+
 function addNewSubject() {
     let subjectName = document.querySelector('#subjectName').value;
     let subjectYear = document.querySelector('#studyYear').value;
@@ -74,6 +76,7 @@ function addNewSubject() {
             let courseName = document.querySelector('#courseName');
             if(sessionStorage.getItem('state') == 'notes') {
                 subjectButton.onclick = () => {
+                    courseHeader.append(removeCourse);
                     courseName.innerHTML = subjectName;
                     displaySubjectNotes(subjectButton.id);
                     sessionStorage.setItem('subjectName', subjectName);
