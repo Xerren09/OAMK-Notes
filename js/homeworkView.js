@@ -1,5 +1,5 @@
 let token = sessionStorage.getItem('token');
-xrequest.GET("xerrendev01uni.azurewebsites.net/homework/getAll", token, function(response) {
+xrequest.GET("http://xerrendev01uni.azurewebsites.net/homework/getAll", token, function(response) {
     console.log(response);
     sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist));
     sessionStorage.setItem('state', 'homework');
@@ -113,7 +113,7 @@ function deleteHomework(homeworkId) {
         let payload = {
             "homeworkID": homeworkId
         };
-        xrequest.POST('xerrendev01uni.azurewebsites.net/homework/remove', token, payload, function(response) {
+        xrequest.POST('http://xerrendev01uni.azurewebsites.net/homework/remove', token, payload, function(response) {
             sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist));
             homeworkDisplay(sessionStorage.getItem('subjectName'));
         });
@@ -159,7 +159,7 @@ function addHomeworkMenu() {
             "homeworkName": inputFieldHW.value,
             "homeworkDate": timestamp
         }
-        xrequest.POST('xerrendev01uni.azurewebsites.net/homework/addNew', token, payload, function(response){
+        xrequest.POST('http://xerrendev01uni.azurewebsites.net/homework/addNew', token, payload, function(response){
             sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist)); 
             console.log(response);
             homeworkDisplay(sessionStorage.getItem('subjectName'));

@@ -26,7 +26,7 @@ function deleteSubject() {
         let payload = {
             "subjectID": sessionStorage.getItem('subjectId')
         };
-        xrequest.POST("xerrendev01uni.azurewebsites.net/subject/remove", token, payload, function(response){
+        xrequest.POST("http://xerrendev01uni.azurewebsites.net/subject/remove", token, payload, function(response){
             console.log(response);
             sessionStorage.setItem('subjectSelector', JSON.stringify(response.data.subjectselectorcontent));
             if (response.status == 'success') {
@@ -163,7 +163,7 @@ function noteOpen(noteId) {
     let payload = {
         "noteID" : noteId
     }
-    xrequest.POST("xerrendev01uni.azurewebsites.net/note/getNote", token, payload, function(response){
+    xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/getNote", token, payload, function(response){
         console.log(response);
         sessionStorage.setItem('noteText', response.data[0].noteText);
         sessionStorage.setItem('noteName', response.data[0].noteName);
@@ -179,7 +179,7 @@ function noteRemove(noteId) {
         let payload = {
             "noteID": noteId
         };
-        xrequest.POST("xerrendev01uni.azurewebsites.net/note/remove", token, payload, function(response){
+        xrequest.POST("http://xerrendev01uni.azurewebsites.net/note/remove", token, payload, function(response){
             console.log(response);
             sessionStorage.setItem('frontPageContent', JSON.stringify(response.data.frontpagecontent));
             displaySubjectNotes(sessionStorage.getItem('subjectId'));
