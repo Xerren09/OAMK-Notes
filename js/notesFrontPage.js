@@ -1,7 +1,6 @@
 let token = sessionStorage.getItem('token');
 xrequest.GET("xerrendev01uni.azurewebsites.net/note/frontPage", token, function(response) {
     if (response.status == 'success') {
-        console.log(response);
         let userInfo = response.data.userinfo;
         sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
         userInfoo = userInfo;

@@ -61,9 +61,7 @@ function XEditorCommandPalette(cmdID) {
                     "noteText": htmlstr
                 };
                 xrequest.POST(newNoteUrl, sessionStorage.getItem("token"), payload, function(response){
-                    console.log(response);
                     window.location.href = './notes.html';
-                    console.log(isImportant);
                 });
             } else {
                 let payload = {
@@ -71,7 +69,6 @@ function XEditorCommandPalette(cmdID) {
                     "noteText": htmlstr
                 };
                 xrequest.POST(updateUrl, sessionStorage.getItem("token"), payload, function(response){
-                    //console.log(response);
                     window.location.href = './notes.html';
                 });
             }

@@ -39,7 +39,6 @@ function registerValidation() {
             logRegContainer.append(br, errorMessage);
             logRegContainer.style.height = '335px';
             matchingPasswords = false;
-            console.log(matchingPasswords);
             setTimeout(() => {
                 errorMessage.style.opacity = '1';
             }, 200);
@@ -49,7 +48,6 @@ function registerValidation() {
             errorMessage.remove();
             logRegContainer.style.height = '315px';
             matchingPasswords = true;
-            console.log(matchingPasswords);
         };
     };
 
@@ -112,7 +110,6 @@ function register() {
             userGroup: document.getElementById("userGroupCode").value
         }
         xrequest.POST("xerrendev01uni.azurewebsites.net/users/register", "0000", payload, function(response) {	
-            console.log(response);
             if (response.status == "success")
             {
                 let token = response.data.token;
@@ -123,9 +120,8 @@ function register() {
                     "subjectPeriod" : 0
                 }
                 xrequest.POST("xerrendev01uni.azurewebsites.net/subject/addNew", token, payload, function(response) {
-                console.log(response);
-                window.location.href = "./notes.html";
-            });
+					window.location.href = "./notes.html";
+				});
             }             
             else if (response.status == "fail" && response.data.type == "credentials_exist")
             {
@@ -172,7 +168,6 @@ function login() {
         userEmail: document.getElementById("userEmail").value
     }
     xrequest.POST("xerrendev01uni.azurewebsites.net/users/login", "0000", payload, function(response) {	
-        console.log(response);
         if (response.status == "success")
         {
             let token = response.data.token;

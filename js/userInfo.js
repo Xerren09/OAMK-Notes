@@ -16,7 +16,6 @@ changePassword.onclick = passwordChange;
 
 function userInfoGet(authtoken) {
     xrequest.GET("xerrendev01uni.azurewebsites.net/users/getUserInfo", authtoken, function(response) {
-        console.log(response);
         let userInfo = response.data;
         userEmail.innerHTML = userInfo.userEmail;
         userEmailString = userInfo.userEmail;
@@ -79,11 +78,8 @@ function passwordSave() {
             "userPassword": newPassword.value,
             "userEmail": userEmailString
         }
-        console.log(userEmailString);
-        console.log(newPassword.value);
         xrequest.POST('xerrendev01uni.azurewebsites.net/users/updatePassword', token, payload, function(response) {
             if (response.status == "success") {
-                console.log(response);
                 let token = response.data.token;
                 sessionStorage.setItem('token', token);
                 userPasswordTarget.append(br, success);

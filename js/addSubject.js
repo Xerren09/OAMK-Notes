@@ -14,8 +14,6 @@ addSubjectPlusButton.onclick = () => {
         addSubjectContainer.classList.add('hidden');
         addSubjectContainer.style.top = '96%';
     }
-    
-    console.log('asdasd');
 }
 
 function subjectYearValidation() {
@@ -46,7 +44,6 @@ function addNewSubject() {
     let subjectName = document.querySelector('#subjectName').value;
     let subjectYear = document.querySelector('#studyYear').value;
     let subjectPeriod = document.querySelector('#studyPeriod').value;
-    console.log(sessionStorage.getItem("token"));
     addSubjectButton.style.transform = 'scale(0.98)' ;
     setTimeout( function() {
         addSubjectButton.style.transform = 'scale(1)' ;
@@ -59,7 +56,6 @@ function addNewSubject() {
         }
         let authToken = sessionStorage.getItem('token');
         xrequest.POST("xerrendev01uni.azurewebsites.net/subject/addNew", authToken, payload, function(response) {
-            console.log(response);
             sessionStorage.setItem('subjectSelector', JSON.stringify(response.data.subjectselectorcontent));
             let yearPeriod = document.querySelector('#year'+subjectYear+'Period'+subjectPeriod);
             let li = document.createElement('li');
@@ -84,7 +80,7 @@ function addNewSubject() {
                 };
             } else {
                 subjectButton.onclick = () => {
-                    let courseNameHeader = document.querySelector('#courseNameHeader');
+                    let courseNameHeader = document.querySelector('#courseName');
                     courseNameHeader.innerHTML = subjectName;
                     homeworkDisplay(subjectName);
                     sessionStorage.setItem('subjectName', subjectName);

@@ -1,6 +1,5 @@
 let token = sessionStorage.getItem('token');
 xrequest.GET("xerrendev01uni.azurewebsites.net/homework/getAll", token, function(response) {
-    console.log(response);
     sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist));
     sessionStorage.setItem('state', 'homework');
 });
@@ -161,7 +160,6 @@ function addHomeworkMenu() {
         }
         xrequest.POST('xerrendev01uni.azurewebsites.net/homework/addNew', token, payload, function(response){
             sessionStorage.setItem('assignmentList', JSON.stringify(response.data.assignmentlist)); 
-            console.log(response);
             homeworkDisplay(sessionStorage.getItem('subjectName'));
         })
     }

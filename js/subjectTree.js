@@ -27,7 +27,6 @@ function deleteSubject() {
             "subjectID": sessionStorage.getItem('subjectId')
         };
         xrequest.POST("xerrendev01uni.azurewebsites.net/subject/remove", token, payload, function(response){
-            console.log(response);
             sessionStorage.setItem('subjectSelector', JSON.stringify(response.data.subjectselectorcontent));
             if (response.status == 'success') {
                 let removedSubject = document.getElementById(sessionStorage.getItem('subjectId'));
@@ -92,7 +91,6 @@ function subjectTreeBuild(subjects) {
 function displaySubjectNotes(subjectId) {
   let frontPageContent = JSON.parse(sessionStorage.getItem('frontPageContent'));
   let noteHolder = document.querySelector('.noteHolder');
-  //console.log(frontPageContent);
   noteHolder.innerHTML = '';
   let addNoteButton = document.createElement('button');
   addNoteButton.id = 'addNewNote';
@@ -164,7 +162,6 @@ function noteOpen(noteId) {
         "noteID" : noteId
     }
     xrequest.POST("xerrendev01uni.azurewebsites.net/note/getNote", token, payload, function(response){
-        console.log(response);
         sessionStorage.setItem('noteText', response.data[0].noteText);
         sessionStorage.setItem('noteName', response.data[0].noteName);
         sessionStorage.setItem('noteId', response.data[0].noteID);
@@ -175,12 +172,10 @@ function noteOpen(noteId) {
 function noteRemove(noteId) {
     let userConfirm = confirm('Are you sure you want to delete this note?');
     if (userConfirm) {
-        console.log('ok');
         let payload = {
             "noteID": noteId
         };
         xrequest.POST("xerrendev01uni.azurewebsites.net/note/remove", token, payload, function(response){
-            console.log(response);
             sessionStorage.setItem('frontPageContent', JSON.stringify(response.data.frontpagecontent));
             displaySubjectNotes(sessionStorage.getItem('subjectId'));
         });
