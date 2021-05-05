@@ -48,27 +48,6 @@ router.post('/login', function(req, res) {
 	});
 });
 
-router.get('/apistatus', function(req, res) {
-	usersData.connectioncheck(function(err, dbResult){
-		if (err)
-		{
-			xres.success(res, {
-				AppServiceStatus : "alive",
-				DatabaseServiceStatus :  "down",
-				Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw=="}
-			});
-		}
-		else
-		{
-			xres.success(res, {
-				AppServiceStatus : "alive",
-				DatabaseServiceStatus :  "alive",
-				Check: {encode: "base64", content1: "aHR0cHM6Ly90aW55dXJsLmNvbS9qaXdvb25pc2JpZ3BvZw==",  content2: "https://tinyurl.com/jiwoonisbigpog"}
-			});
-		}
-	});
-});
-
 router.get('/getUserInfo', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)

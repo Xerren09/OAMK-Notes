@@ -67,7 +67,7 @@ router.post('/getNote', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.getNoteByID(req.body.noteID, function(err, noteData){
+			notesData.getNoteByID(AuthTokenStatus.userID, req.body.noteID, function(err, noteData){
 				if (err) 
 				{
 					console.debug(err);
@@ -113,7 +113,7 @@ router.post('/updateNote', function(req, res) {
 	UserAuthorization.Verify(req.headers.authtoken, function (AuthTokenStatus) {
 		if (AuthTokenStatus.isValid == true)
 		{
-			notesData.updateNote(req.body.noteID, req.body.noteText, function(err, dbResult){
+			notesData.updateNote(AuthTokenStatus.userID, req.body.noteID, req.body.noteText, function(err, dbResult){
 				if (err) 
 				{
 					console.debug(err);
