@@ -430,7 +430,7 @@ The server will respond with an updated list of all homeworks:
 ```
 ## /api/
 #### /api/status - `GET`
-This can be used to check the service status. `AppServiceStatus` will always return `alive` if a response is received, while `DatabaseServiceStatus`  will return `down` if it is unavailable, otherwise it will repond with `alive`.
+This can be used to check the service status. `AppServiceStatus` will always return `alive` if a response is received, while `DatabaseServiceStatus`  will return `down` if it is unavailable, otherwise it will respond with `alive`.
 ```json
 {
     "status": "success",
