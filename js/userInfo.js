@@ -9,10 +9,8 @@ let userName = document.querySelector('#userName');
 let groupCodeTarget = document.querySelector('#groupCodeTarget');
 let userPasswordTarget = document.querySelector('#userPasswordTarget');
 let changeGroup = document.querySelector('#groupButton');
-changeGroup.onclick = groupChange;
 let changePassword = document.querySelector('#passwordButton');
 let userEmailString = '';
-changePassword.onclick = passwordChange;
 
 function userInfoGet(authtoken) {
     xrequest.GET("xerrendev01uni.azurewebsites.net/users/getUserInfo", authtoken, function(response) {
@@ -24,6 +22,8 @@ function userInfoGet(authtoken) {
         userPasswordTarget.innerHTML = userInfo.userPassword;
         changeGroup.innerHTML = 'Change Group';
         changePassword.innerHTML = 'Change Password';
+        changeGroup.onclick = groupChange;
+        changePassword.onclick = passwordChange;
     });
 };
 userInfoGet(sessionStorage.getItem('token'));
@@ -42,9 +42,8 @@ function groupSave() {
         "userGroup": inputGroup.value
     };
     xrequest.POST('xerrendev01uni.azurewebsites.net/users/updateGroupCode', token, payload, function(response) {
-        userInfoGet(token);
+        userInfoGet(sessionStorage.getItem('token'));
     });
-    changeGroup.onclick = groupChange;
 }
 
 function passwordChange() {
@@ -86,7 +85,6 @@ function passwordSave() {
                 error.remove();
                 error2.remove();
                 userPasswordTarget.append(br, success);
-                changePassword.onclick = passwordChange;
                 setTimeout(() => {userInfoGet(token)}, 2000);
             };
         });
