@@ -22,11 +22,14 @@ router.get('/get', function(req, res) {
             var contents = "";
             http_res.on("data", function (chunk) {contents+=chunk;});
             http_res.on("end", function () {
+                //Parser code ported from the C# PoC project, watch out for syntax issues!
                 let _times = [];
                 let _RAW = [];
                 //let _course = new ArrayList();
                 let _tempInfoStorage = "";
-
+                //Possibly the dirtiest and worst performing parser I ever wrote but regex would just refuse
+                //to get every subsection if a day got more than one lecture so had to keep it this way.
+                //The regex code is saved to the duplicate file, it works but for only one lecture a day,,
                 for(let i = 0; i < (contents.length-1); i++)
                 {
                     if(contents[i] == 'c' && contents[i + 1] == 'l' && contents[i + 2] == 'D' && contents[i + 3] == 'a' && contents[i + 4] == 'y')
