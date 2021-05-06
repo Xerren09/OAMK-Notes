@@ -82,6 +82,9 @@ function passwordSave() {
             if (response.status == "success") {
                 let token = response.data.token;
                 sessionStorage.setItem('token', token);
+                br.remove();
+                error.remove();
+                error2.remove();
                 userPasswordTarget.append(br, success);
                 changePassword.onclick = passwordChange;
                 setTimeout(() => {userInfoGet(token)}, 2000);
