@@ -91,6 +91,6 @@ function passwordSave() {
         userPasswordTarget.append(newPassword, newPasswordRepeat, br, error2);
     } else if (newPassword.value.length > 7 && newPassword.value != newPasswordRepeat.value) {
         userPasswordTarget.innerHTML = '';
-        userPasswordTarget.append(newPassword, newPasswordRepeat, br, error2);
+        userPasswordTarget.append(newPassword, newPasswordRepeat, br, error);
     };
 };
