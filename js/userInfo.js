@@ -81,22 +81,16 @@ function passwordSave() {
             if (response.status == "success") {
                 let token = response.data.token;
                 sessionStorage.setItem('token', token);
-                userPasswordTarget.removeChild(br);
-                userPasswordTarget.removeChild(error);
-                userPasswordTarget.removeChild(error2);
+                userPasswordTarget.innerHTML = '';
                 userPasswordTarget.append(br, success);
                 setTimeout(() => {userInfoGet(token)}, 2000);
             };
         });
     } else if (newPassword.value.length < 8) {
-        userPasswordTarget.removeChild(br);
-        userPasswordTarget.removeChild(error);
-        userPasswordTarget.removeChild(error2);
-        userPasswordTarget.append(br, error2);
+        userPasswordTarget.innerHTML = '';
+        userPasswordTarget.append(newPassword, newPasswordRepeat, br, error2);
     } else if (newPassword.value.length > 7 && newPassword.value != newPasswordRepeat.value) {
-        userPasswordTarget.removeChild(br);
-        userPasswordTarget.removeChild(error);
-        userPasswordTarget.removeChild(error2);
-        userPasswordTarget.append(br, error);
+        userPasswordTarget.innerHTML = '';
+        userPasswordTarget.append(newPassword, newPasswordRepeat, br, error2);
     };
 };
