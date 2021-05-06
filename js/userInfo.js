@@ -1,4 +1,3 @@
-let token = sessionStorage.getItem('token');
 let userNameHeader = document.querySelector('#userNameHeader');
 let groupNameHeader = document.querySelector('#groupNameHeader');
 let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
@@ -41,7 +40,7 @@ function groupSave() {
     let payload = {
         "userGroup": inputGroup.value
     };
-    xrequest.POST('xerrendev01uni.azurewebsites.net/users/updateGroupCode', token, payload, function(response) {
+    xrequest.POST('xerrendev01uni.azurewebsites.net/users/updateGroupCode', sessionStorage.getItem('token'), payload, function(response) {
         userInfoGet(sessionStorage.getItem('token'));
     });
 }
