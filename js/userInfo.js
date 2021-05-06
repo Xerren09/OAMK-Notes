@@ -71,7 +71,7 @@ function passwordSave() {
     error2.innerHTML = 'Use at least 8 characters!';
     let success = document.createElement('p1');
     success.classList.add('success');
-    success.innerHTML = 'New Password saved!';
+    success.innerHTML = 'Password saved!';
     if (newPassword.value && newPassword.value.length > 7 && newPassword.value == newPasswordRepeat.value) {
         let payload = {
             "userPassword": newPassword.value,
@@ -82,7 +82,7 @@ function passwordSave() {
                 let token = response.data.token;
                 sessionStorage.setItem('token', token);
                 userPasswordTarget.innerHTML = '';
-                userPasswordTarget.append(br, success);
+                userPasswordTarget.append(success);
                 setTimeout(() => {userInfoGet(token)}, 2000);
             };
         });
