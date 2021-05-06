@@ -73,7 +73,7 @@ function passwordSave() {
     let success = document.createElement('p1');
     success.classList.add('success');
     success.innerHTML = 'New Password saved!';
-    if (newPassword.value && newPassword.value == newPasswordRepeat.value) {
+    if (newPassword.value && newPassword.value.length > 7 && newPassword.value == newPasswordRepeat.value) {
         let payload = {
             "userPassword": newPassword.value,
             "userEmail": userEmailString
@@ -83,11 +83,19 @@ function passwordSave() {
                 let token = response.data.token;
                 sessionStorage.setItem('token', token);
                 userPasswordTarget.append(br, success);
+                changePassword.onclick = passwordChange;
                 setTimeout(() => {userInfoGet(token)}, 2000);
             };
         });
     } else if (newPassword.value.length < 8) {
+        br.remove();
+        error.remove();
+        error2.remove();
         userPasswordTarget.append(br, error2);
+    } else if (newPassword.value.length > 7 && newPassword.value != newPasswordRepeat.value) {
+        br.remove();
+        error.remove();
+        error2.remove();
+        userPasswordTarget.append(br, error);
     };
-    changePassword.onclick = passwordChange;
-}
+};
